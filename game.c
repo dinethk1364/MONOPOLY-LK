@@ -20,7 +20,7 @@ int rollDies(int *die1,int *die2)
     *die2 = (rand()%6)+1;
     return (*die1) + (*die2);
 }
-int playersDieRoll(Player *players)
+void playersDieRoll(Player *players)
 {
     int playerRolls[Maxplayers];
     
@@ -32,28 +32,8 @@ int playersDieRoll(Player *players)
         players[i].dieRollValue=playerRolls[i];
     }
 }
-void detFirstPlayer(Player *players)
+void tieBreaker(int *tiedPlayers,int tieCount,Player *players)
 {
-    int highestRollValue=players[0].dieRollValue;
-    int firstPlayerIndex=0;
-    for(int i=1;i<Maxplayers;i++)
-    {
-        if(highestRollValue<players[i].dieRollValue)
-        {
-            highestRollValue=players[i].dieRollValue;
-            firstPlayerIndex=i;
-        }
-    }
-    int tieCount=0;
-    int tiedPlayers[Maxplayers];
-    for(int i=0;i<Maxplayers;i++)
-    {
-        if(players[i].dieRollValue==highestRollValue)
-        {
-            tiedPlayers[tieCount]=i;
-            tieCount++;
-        }
-    }
     while(tieCount>1)
     {
         printf("\n------TIE DETECTED------\n\n");
@@ -66,7 +46,7 @@ void detFirstPlayer(Player *players)
             printf("%s rolls %d\n",players[tieIndex].name,players[tieIndex].dieRollValue);  
         }
         //get highest value after reroll
-        highestRollValue = players[tiedPlayers[0]].dieRollValue;
+        int highestRollValue = players[tiedPlayers[0]].dieRollValue;
         for(int i=1;i<tieCount;i++)
         {
             int tieIndex = tiedPlayers[i];
@@ -93,15 +73,47 @@ void detFirstPlayer(Player *players)
             tiedPlayers[i]=newTiedPlayers[i];
         }
     }
+}
+void detTurnOrder(Player *players)
+{
+    for(int i=0;i<Maxplayers-1;i++)//bubble sort
+    {
+        for(int j=0;j<Maxplayers-i-1;j++)
+        {
+            if(players[j].dieRollValue<players[j+1].dieRollValue)
+            {
+                Player temp =players[j];
+                players[j]=players[j+1];
+                players[j+1]=temp;
+            }
+        }
+    }
+    for(int i=0;i<Maxplayers-1;i++)
+    {
+        if(players[i].dieRollValue==players[i+1].dieRollValue)
+        {
+            int tiedPlayers[2]={i,i+1};
 
-    firstPlayerIndex = tiedPlayers[0];
-    printf("\n%s will begin the game\n\n",players[firstPlayerIndex].name);
+            tieBreaker(tiedPlayers,2,players);
+
+            if(players[i].dieRollValue<players[i+1].dieRollValue)
+            {
+                Player temp=players[i];
+                players[i]=players[i+1];
+                players[i+1]=temp;
+            }
+        }
+    }
+    printf("\n%s will begin the game.\n\n",players[0].name);
+    printf("Turn Order:\n");
+    for(int i=0;i<Maxplayers;i++)
+    {
+        printf("%s\n",players[i].name);
+    }
 }
 void gameFunctions()
 {
     gameBegins();
-    int d1,d2;
-    rollDies(&d1,&d2);
 
     Player *playersList = createPlayers();//get array and assign values 
 
@@ -109,5 +121,5 @@ void gameFunctions()
     
     playersDieRoll(playersList);
 
-    detFirstPlayer(playersList);
+    detTurnOrder(playersList);
 }
