@@ -7,10 +7,10 @@ Player* createPlayers()
 {
     //static is use to keep array in memory always
     static Player playersList[Maxplayers]={
-        {1,"Aggressive Investor",30000.0,0},
-        {2,"Conservative Banker",30000.0,0},
-        {3,"Risk Taker",30000.0,0},
-        {4,"Opportunistic Trader",30000.0,0}
+        {1,"Aggressive Investor",30000.0,0,0},
+        {2,"Conservative Banker",30000.0,0,0},
+        {3,"Risk Taker",30000.0,0,0},
+        {4,"Opportunistic Trader",30000.0,0,0}
     };
     return playersList;
 }
@@ -57,7 +57,6 @@ void detFirstPlayer(Player *players)
     while(tieCount>1)
     {
         printf("\n------TIE DETECTED------\n\n");
-
         //roll die of tied players
         for(int i=0;i<tieCount;i++)
         {
@@ -66,7 +65,6 @@ void detFirstPlayer(Player *players)
             players[tieIndex].dieRollValue = rollDies(&d1,&d2);
             printf("%s rolls %d\n",players[tieIndex].name,players[tieIndex].dieRollValue);  
         }
-
         //get highest value after reroll
         highestRollValue = players[tiedPlayers[0]].dieRollValue;
         for(int i=1;i<tieCount;i++)
@@ -77,11 +75,9 @@ void detFirstPlayer(Player *players)
                 highestRollValue=players[tieIndex].dieRollValue;
             }
         }
-
         //update tie count
         int newTiedPlayers[Maxplayers];
         int newTieCount=0;
-
         for(int i=0;i<tieCount;i++)
         {
            int tieIndex=tiedPlayers[i];
@@ -97,6 +93,7 @@ void detFirstPlayer(Player *players)
             tiedPlayers[i]=newTiedPlayers[i];
         }
     }
+
     firstPlayerIndex = tiedPlayers[0];
     printf("\n%s will begin the game\n\n",players[firstPlayerIndex].name);
 }
@@ -107,8 +104,10 @@ void gameFunctions()
     rollDies(&d1,&d2);
 
     Player *playersList = createPlayers();//get array and assign values 
+
+    printf("\n-----DETERMINEING THE FIRST PLAYER-----\n\n");
+    
     playersDieRoll(playersList);
 
-    printf("\n-----DETERMINEING THE FIRST PLAYER-----\n");
     detFirstPlayer(playersList);
 }
