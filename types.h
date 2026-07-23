@@ -2,6 +2,9 @@
 #ifndef TYPES_H
 #define TYPES_H
 
+#define Maxplayers 4
+
+
 typedef enum{
     GO,
     Pettah,
@@ -58,5 +61,13 @@ typedef struct{
     int InsuaranceStatus;
     int noOfBuilds;
 }landProperties;
+
+typedef struct{
+    int id;
+    char name[50];
+    double chash;
+    int currentPosition;
+    int dieRollValue;
+}Player;
 
 #endif // !TYPES_H

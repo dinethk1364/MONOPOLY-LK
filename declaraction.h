@@ -3,7 +3,7 @@
 
 
 void gameFunctions();
-int rollDies();
+int rollDies(int *, int*);
 void gameBegins();
 
 #endif // !DECLARATION
