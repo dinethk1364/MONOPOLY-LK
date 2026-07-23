@@ -1,0 +1,11 @@
+# Ignore Executable Files
+*.exe
+*.out
+*.o
+a
+monopoly
+
+# Ignore VS Code / IDE Settings
+.vscode/
+.idea/
+.output/
