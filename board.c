@@ -41,17 +41,17 @@ void initializeBoard()
 
     //special tiles
 
-    board[GO]=(landProperties){"Go"};    
-    board[CommunityDevFund]=(landProperties){"Community Development Fund"};    
-    board[Incometax]=(landProperties){"Income Tax"};      
-    board[NationalEvent1]=(landProperties){"National Event Card"};    
-    board[Jail]=(landProperties){"Jail"}; 
-    board[SrilankaInsuarance]=(landProperties){"Sri Lanka Insuarance"};    
-    board[FreeParking]=(landProperties){"Free Parking"};    
-    board[NationalEvent2]=(landProperties){"National Event Card"};
-    board[GoToJail]=(landProperties){"Go to Jail"};
-    board[CeylincoInsuarance]=(landProperties){"Ceylinco Insuarance"};
-    board[NationalEvent3]=(landProperties){"National Event Card"};
-    board[BOC]=(landProperties){"Bank of Ceylon"}; 
+    board[GO]=(landProperties){.name="Go"};    
+    board[CommunityDevFund]=(landProperties){.name="Community Development Fund"};    
+    board[Incometax]=(landProperties){.name="Income Tax"};      
+    board[NationalEvent1]=(landProperties){.name="National Event Card"};    
+    board[Jail]=(landProperties){.name="Jail"}; 
+    board[SrilankaInsuarance]=(landProperties){.name="Sri Lanka Insuarance"};    
+    board[FreeParking]=(landProperties){.name="Free Parking"};    
+    board[NationalEvent2]=(landProperties){.name="National Event Card"};
+    board[GoToJail]=(landProperties){.name="Go to Jail"};
+    board[CeylincoInsuarance]=(landProperties){.name="Ceylinco Insuarance"};
+    board[NationalEvent3]=(landProperties){.name="National Event Card"};
+    board[BOC]=(landProperties){.name="Bank of Ceylon"}; 
 
 }
