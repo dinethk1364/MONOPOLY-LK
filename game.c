@@ -148,5 +148,10 @@ void gameFunctions()
     
     playersDieRoll(playersList);
 
+    // playersList[0].dieRollValue = 6;
+    // playersList[1].dieRollValue = 6;
+    // playersList[2].dieRollValue = 6;
+    // playersList[3].dieRollValue = 6;
+
     detTurnOrder(playersList);
 }
