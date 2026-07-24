@@ -145,7 +145,7 @@ void gameFunctions()
     Player *playersList = createPlayers();//get array and assign values 
 
     printf("\n-----DETERMINEING THE FIRST PLAYER-----\n\n");
-    
+    initializeBoard();
     playersDieRoll(playersList);
 
     // playersList[0].dieRollValue = 6;

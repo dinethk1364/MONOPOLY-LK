@@ -3,7 +3,7 @@
 #define TYPES_H
 
 #define Maxplayers 4
-
+#define TileSize 40
 
 typedef enum{
     GO,                 //0
@@ -49,7 +49,6 @@ typedef enum{
 }boardTiles;
 
 typedef struct{
-    int ID;
     char name[50];
     double purchasePrice;
     double mortgagePrice;
@@ -59,8 +58,12 @@ typedef struct{
     int currentOwner;
     int mortgageStatus;
     int InsuaranceStatus;
-    int noOfBuilds;
+    int noOfHouses;
+    int noOfHotels;
 }landProperties;
+
+extern landProperties board[TileSize];//declare global array(Global Extern Declarations)
+
 
 typedef struct{
     int id;
