@@ -88,21 +88,48 @@ void detTurnOrder(Player *players)
             }
         }
     }
-    for(int i=0;i<Maxplayers-1;i++)
+    int i=0;
+    while(i<Maxplayers-1)
     {
         if(players[i].dieRollValue==players[i+1].dieRollValue)
         {
-            int tiedPlayers[2]={i,i+1};
-
-            tieBreaker(tiedPlayers,2,players);
-
-            if(players[i].dieRollValue<players[i+1].dieRollValue)
+            int tiedPlayers[Maxplayers];
+            int tieCount = 0;
+            int targetValue=players[i].dieRollValue;
+            
+            for(int j=i;j<Maxplayers;j++)
             {
-                Player temp=players[i];
-                players[i]=players[i+1];
-                players[i+1]=temp;
+                if(players[j].dieRollValue==targetValue)
+                {
+                    tiedPlayers[tieCount]=j;
+                    tieCount++;
+                }
+                else
+                    break;
             }
+            // for (int k = 0; k<tieCount; k++)
+            // {
+            //     printf("#####");
+            //     printf("%s######\n",players[tiedPlayers[k]].name);
+            // }
+            tieBreaker(tiedPlayers,tieCount,players);
+
+            for(int x=0;x<tieCount-1;x++)//bubble sort
+            {
+                for(int y=i;y<i+tieCount-x-1;y++)
+                {
+                    if(players[y].dieRollValue<players[y+1].dieRollValue)
+                    {
+                        Player temp =players[y];
+                        players[y]=players[y+1];
+                        players[y+1]=temp;
+                    }
+                }
+            }
+            i=0;
         }
+        else
+            i++;
     }
     printf("\n%s will begin the game.\n\n",players[0].name);
     printf("Turn Order:\n");
