@@ -4,6 +4,10 @@
 
 #define Maxplayers 4
 #define TileSize 40
+#define RoundCount 20 
+
+#define BOLD_GREEN  "\033[1;32m"
+#define RESET       "\033[0m"
 
 typedef enum{
     GO,                 //0
@@ -56,8 +60,8 @@ typedef struct{
     double houseCost;
     double hotelCost;
     int currentOwner;
-    int mortgageStatus;
-    int InsuaranceStatus;
+    int mortgageStatus;// 1 is true 0 is false
+    int InsuaranceStatus;// 1 is true 0 is false
     int noOfHouses;
     int noOfHotels;
 }landProperties;
@@ -68,9 +72,10 @@ extern landProperties board[TileSize];//declare global array(Global Extern Decla
 typedef struct{
     int id;
     char name[50];
-    double chash;
+    double cash;
     int currentPosition;
     int dieRollValue;
+    int isBankrupt;//1 is bankrupt, 0 is not
 }Player;
 
 #endif // !TYPES_H

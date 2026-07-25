@@ -7,10 +7,10 @@ Player* createPlayers()
 {
     //static is use to keep array in memory always
     static Player playersList[Maxplayers]={
-        {1,"Aggressive Investor",30000.0,0,0},
-        {2,"Conservative Banker",30000.0,0,0},
-        {3,"Risk Taker",30000.0,0,0},
-        {4,"Opportunistic Trader",30000.0,0,0}
+        {1,"Aggressive Investor",30000.0,0,0,0},
+        {2,"Conservative Banker",30000.0,0,0,0},
+        {3,"Risk Taker",30000.0,0,0,0},
+        {4,"Opportunistic Trader",30000.0,0,0,0}//turn order is save in this array
     };
     return playersList;
 }
@@ -107,11 +107,6 @@ void detTurnOrder(Player *players)
                 else
                     break;
             }
-            // for (int k = 0; k<tieCount; k++)
-            // {
-            //     printf("#####");
-            //     printf("%s######\n",players[tiedPlayers[k]].name);
-            // }
             tieBreaker(tiedPlayers,tieCount,players);
 
             for(int x=0;x<tieCount-1;x++)//bubble sort
@@ -138,6 +133,39 @@ void detTurnOrder(Player *players)
         printf("%s\n",players[i].name);
     }
 }
+void playerMovement(Player *players)
+{
+    for(int i=1;i<=5;i++)//round limit
+    {
+        printf("\n=========================== ROUND %d ===========================\n",i);
+        for (int j=0;j<Maxplayers;j++)
+        {
+            if(players[j].isBankrupt!=1)// check player bankrupt
+            {
+                int d1,d2;
+                int diesTotal = rollDies(&d1,&d2);
+                printf(BOLD_GREEN"\n Dies Roll \n"RESET);
+                printf("%s rolled %d\n",players[j].name,diesTotal);    
+                
+                int oldPosition = players[j].currentPosition;
+                players[j].currentPosition = (oldPosition+diesTotal)%TileSize;//use modulus to after passing 40th tile back to 0
+                
+                printf(BOLD_GREEN"\n Player Movement \n"RESET);
+                printf("%s moves from Square %d to Square %d\n",players[j].name,oldPosition,players[j].currentPosition);
+
+                if (players[j].currentPosition < oldPosition)
+                {
+                    printf(BOLD_GREEN"\n Passing GO \n"RESET);
+                    
+                    printf("\n%s is passed GO.\n",players[j].name);
+                    printf("Collected LKR 2,000.\n");
+                    players[j].cash+=2000.0;
+                    printf("Current Balance : LKR %.2lf\n",players[j].cash);    
+                }
+            }
+        }
+    }
+}
 void gameFunctions()
 {
     gameBegins();
@@ -154,4 +182,5 @@ void gameFunctions()
     // playersList[3].dieRollValue = 6;
 
     detTurnOrder(playersList);
+    playerMovement(playersList);
 }
