@@ -1,9 +1,10 @@
 #ifndef DECLARATION
 #define DECLARATION
+#include "types.h"
 
-void gameFunctions();
+void gameRun();
 int rollDies(int *, int*);
 void initializeBoard();
-void gameBegins();
+void playerMovement(Player *players);
 
 #endif // !DECLARATION

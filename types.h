@@ -4,7 +4,7 @@
 
 #define Maxplayers 4
 #define TileSize 40
-#define RoundCount 20 
+#define RoundCount 500 
 
 #define BOLD_GREEN  "\033[1;32m"
 #define RESET       "\033[0m"
