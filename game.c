@@ -148,10 +148,10 @@ void gameRun()
     initializeBoard();
     playersDieRoll(playersList);
 
-    // playersList[0].dieRollValue = 6;
-    // playersList[1].dieRollValue = 6;
-    // playersList[2].dieRollValue = 6;
-    // playersList[3].dieRollValue = 6;
+    playersList[0].dieRollValue = 3;
+    playersList[1].dieRollValue = 11;
+    playersList[2].dieRollValue = 3;
+    playersList[3].dieRollValue = 7;
 
     detTurnOrder(playersList);
     playerMovement(playersList);

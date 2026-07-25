@@ -5,7 +5,7 @@
 void gameRun();
 int main()
 {
-    srand(time(NULL));
+    srand(200);
     gameRun();
     return 0;
 }
