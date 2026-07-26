@@ -59,10 +59,10 @@ void initializeBoard()
 void playerMovement(Player *players)
 {
     int currentRound = 1;
-    printf(BOLD_BLUE"\n========================== ROUND %d ==========================\n"RESET,currentRound);
     int diesRollRound = 1;
+    printf(BOLD_BLUE"\n========================== ROUND %d ==========================\n"RESET,currentRound);
 
-    while(currentRound<=2)//round limit
+    while(currentRound<=RoundCount)//round limit
     {
         printf(BOLD_RED"\n\t\tDIES ROLL ROUND %d\n"RESET,diesRollRound);
 
@@ -116,8 +116,12 @@ void playerMovement(Player *players)
             {
                 players[k].hasPassedGo=0;
             }
+            if(currentRound<=RoundCount)
+            {
+                printf(BOLD_BLUE"\n========================== ROUND %d ==========================\n"RESET,currentRound);                
+            }
         }        
     }
-    printf(BOLD_BLUE"\n====================== ROUND END ======================\n"RESET);
+    printf(BOLD_BLUE"\n====================== GAME END ======================\n"RESET);
 
 }
