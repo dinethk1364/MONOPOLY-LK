@@ -58,9 +58,14 @@ void initializeBoard()
 }
 void playerMovement(Player *players)
 {
-    for(int i=1;i<=5;i++)//round limit
+    int currentRound = 1;
+    printf(BOLD_BLUE"\n========================== ROUND %d ==========================\n"RESET,currentRound);
+    int diesRollRound = 1;
+
+    while(currentRound<=2)//round limit
     {
-        printf("\n======================= DIES ROLL ROUND %d =======================\n",i);
+        printf(BOLD_RED"\n\t\tDIES ROLL ROUND %d\n"RESET,diesRollRound);
+
         for (int j=0;j<Maxplayers;j++)
         {
             if(players[j].isBankrupt!=1)// check player bankrupt
@@ -83,9 +88,36 @@ void playerMovement(Player *players)
                     printf("\n%s is passed GO.\n",players[j].name);
                     printf("Collected LKR 2,000.\n");
                     players[j].cash+=2000.0;
+                    players[j].hasPassedGo = 1;//mark that player passed Go
                     printf("Current Balance : LKR %.2lf\n",players[j].cash);    
                 }
             }
         }
+        diesRollRound++;
+
+        int playerWhoPassedGo = 0;
+        int activePlayersCount = 0;
+        for(int k =0;k<Maxplayers;k++)
+        {
+            if(players[k].isBankrupt != 1 && players[k].inJail !=1)
+            {
+                activePlayersCount++;//get active player count
+                if(players[k].hasPassedGo == 1)
+                {
+                    playerWhoPassedGo++;
+                }
+            }
+        }
+
+        if(playerWhoPassedGo==activePlayersCount && activePlayersCount>0)
+        {
+            currentRound++;
+            for(int k=0;k<Maxplayers;k++)
+            {
+                players[k].hasPassedGo=0;
+            }
+        }        
     }
+    printf(BOLD_BLUE"\n====================== ROUND END ======================\n"RESET);
+
 }

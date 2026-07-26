@@ -7,6 +7,8 @@
 #define RoundCount 500 
 
 #define BOLD_GREEN  "\033[1;32m"
+#define BOLD_RED  "\033[1;31m"
+#define BOLD_BLUE  "\033[1;34m"
 #define RESET       "\033[0m"
 
 typedef enum{
@@ -75,7 +77,9 @@ typedef struct{
     double cash;
     int currentPosition;
     int dieRollValue;
-    int isBankrupt;//1 is bankrupt, 0 is not
+    int isBankrupt; //1 if bankrupt, 0 otherwise
+    int hasPassedGo; // 1 if passed Go, 0 otherwise
+    int inJail; //1 if in jail, 0 otherwise
 }Player;
 
 #endif // !TYPES_H

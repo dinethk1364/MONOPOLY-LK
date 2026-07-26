@@ -2,10 +2,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "types.h"
+#include "declaraction.h"
 void gameRun();
 int main()
 {
-    srand(200);
+    srand(time(NULL));
     gameRun();
     return 0;
 }

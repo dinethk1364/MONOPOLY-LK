@@ -7,10 +7,10 @@ Player* createPlayers()
 {
     //static is use to keep array in memory always
     static Player playersList[Maxplayers]={
-        {1,"Aggressive Investor",30000.0,0,0,0},
-        {2,"Conservative Banker",30000.0,0,0,0},
-        {3,"Risk Taker",30000.0,0,0,0},
-        {4,"Opportunistic Trader",30000.0,0,0,0}//turn order is save in this array
+        {.id=1,.name="Aggressive Investor",.cash=30000.0},
+        {.id=2,.name="Conservative Banker",.cash=30000.0},
+        {.id=3,.name="Risk Taker",.cash=30000.0},
+        {.id=4,.name="Opportunistic Trader",.cash=30000.0}//turn order is save in this array
     };
     return playersList;
 }
@@ -148,10 +148,10 @@ void gameRun()
     initializeBoard();
     playersDieRoll(playersList);
 
-    playersList[0].dieRollValue = 3;
-    playersList[1].dieRollValue = 11;
-    playersList[2].dieRollValue = 3;
-    playersList[3].dieRollValue = 7;
+    // playersList[0].dieRollValue = 3;
+    // playersList[1].dieRollValue = 11;
+    // playersList[2].dieRollValue = 3;
+    // playersList[3].dieRollValue = 7;
 
     detTurnOrder(playersList);
     playerMovement(playersList);
