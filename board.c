@@ -54,7 +54,6 @@ void initializeBoard()
     board[CeylincoInsuarance]=(landProperties){.name="Ceylinco Insuarance"};
     board[NationalEvent3]=(landProperties){.name="National Event Card"};
     board[BOC]=(landProperties){.name="Bank of Ceylon"}; 
-
 }
 void playerMovement(Player *players)
 {
@@ -70,11 +69,11 @@ void playerMovement(Player *players)
         {
             if(players[j].isBankrupt!=1)// check player bankrupt
             {
+                int d1,d2;
+                int diesTotal = rollDies(&d1,&d2);
                 
                 if(players[j].inJail!=1)//move player if not in jail
                 {
-                    int d1,d2;
-                    int diesTotal = rollDies(&d1,&d2);
                     printf(BOLD_GREEN"\n Dies Roll \n"RESET);
                     printf("%s rolled %d\n",players[j].name,diesTotal);    
                 
@@ -82,15 +81,15 @@ void playerMovement(Player *players)
                     players[j].currentPosition = (oldPosition+diesTotal)%TileSize;//use modulus to after passing 40th tile back to 0
                     printf(BOLD_GREEN"\n Player Movement \n"RESET);
 
-
                     if(players[j].currentPosition==GoToJail)//send to jail
                     {
                         printf("%s moves from Square %d to Square %d\n",players[j].name,oldPosition,players[j].currentPosition);
 
-                        printf("\033[1;31m""Busted! %s was caught and sent straight to Jail!\n""\033[0m",players[j].name);
+                        printf(RED"Busted! %s was caught and sent straight to Jail!\n"RESET,players[j].name);
                         players[j].currentPosition = Jail;
                         players[j].inJail = 1;
                         players[j].hasPassedGo=1;
+                        players[j].jailTurns=0;
                         continue;
                     }
 
@@ -98,7 +97,7 @@ void playerMovement(Player *players)
                     printf("%s lands on %s\n",players[j].name,board[players[j].currentPosition].name);
                     if(players[j].currentPosition==10)
                     {
-                        printf("(Just visiting Jail)");
+                        printf("(Just visiting Jail)\n");
                     }
                     if (players[j].currentPosition < oldPosition)
                     {
@@ -109,6 +108,46 @@ void playerMovement(Player *players)
                         players[j].hasPassedGo = 1;//mark that player passed Go
                         printf("Current Balance : LKR %.2lf\n",players[j].cash);    
                     }                
+                }
+                else // (if inJail==1)free from jail
+                {
+                    players[j].jailTurns++;
+                    printf(BOLD_RED"\n Jail turn %d\n"RESET,players[j].jailTurns);
+                    printf("%s rolled %d and %d\n",players[j].name,d1,d2);
+                    if(d1==d2)//if rolling doubles
+                    {
+                        printf(YELLOW"%s rolled DOUBLES and free from JAIL!\n"RESET,players[j].name);
+                        players[j].inJail = 0;
+                        players[j].jailTurns =0;
+                        //move player after roll doubles
+                        int oldPosition = players[j].currentPosition;
+                        players[j].currentPosition=(oldPosition+diesTotal)%TileSize;
+                        printf(BOLD_GREEN"\n Player Movement \n"RESET);
+                        printf("%s moves from Square %d to Square %d\n", players[j].name, oldPosition, players[j].currentPosition);
+                        printf("%s lands on %s\n", players[j].name, board[players[j].currentPosition].name);
+
+                        players[j].hasPassedGo = 1;//for round complete
+                    }
+                    else if(players[j].jailTurns>3)//if remain imprisoned for 3 turns
+                    {
+                        printf(YELLOW"%s completed 3 turns in Jail and has beed released from Jail\n"RESET,players[j].name);
+                        players[j].inJail = 0 ;
+                        players[j].jailTurns = 0; 
+                        //move player
+                        int oldPosition = players[j].currentPosition;
+                        players[j].currentPosition=(oldPosition+diesTotal)%TileSize;
+                        printf(BOLD_GREEN"\n Player Movement \n"RESET);
+                        printf("%s moves from Square %d to Square %d\n", players[j].name, oldPosition, players[j].currentPosition);
+                        printf("%s lands on %s\n", players[j].name, board[players[j].currentPosition].name);
+
+                        players[j].hasPassedGo = 1;//for round complete
+                    }
+                    else
+                    {
+                        printf(RED"%s failed to roll doubles and remains in Jail.\n"RESET,players[j].name);
+                        players[j].hasPassedGo = 1; //not to stuck round
+                    }
+
                 }
             }
         }

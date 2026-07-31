@@ -7,9 +7,13 @@
 #define RoundCount 5
 
 #define BOLD_GREEN  "\033[1;32m"
+#define GREEN  "\033[0;32m"
 #define BOLD_RED  "\033[1;31m"
+#define RED  "\033[0;31m"
 #define BOLD_BLUE  "\033[1;34m"
+#define BLUE  "\033[0;34m"
 #define BOLD_YELLOW "\033[1;33m"
+#define YELLOW "\033[0;33m"
 #define RESET       "\033[0m"
 
 typedef enum{
@@ -81,6 +85,7 @@ typedef struct{
     int isBankrupt; //1 if bankrupt, 0 otherwise
     int hasPassedGo; // 1 if passed Go, 0 otherwise
     int inJail; //1 if in jail, 0 otherwise
+    int jailTurns;// turns which player in jail
 }Player;
 
 #endif // !TYPES_H

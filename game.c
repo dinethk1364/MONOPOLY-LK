@@ -7,10 +7,10 @@ Player* createPlayers()
 {
     //static is use to keep array in memory always
     static Player playersList[Maxplayers]={
-        {.id=1,.name="Aggressive Investor",.cash=30000.0},
-        {.id=2,.name="Conservative Banker",.cash=30000.0},
-        {.id=3,.name="Risk Taker",.cash=30000.0},
-        {.id=4,.name="Opportunistic Trader",.cash=30000.0}//turn order is save in this array
+        {.id=1,.name="Aggressive Investor",.cash=30000.0,.inJail = 0},
+        {.id=2,.name="Conservative Banker",.cash=30000.0,.inJail = 0},
+        {.id=3,.name="Risk Taker",.cash=30000.0,.inJail = 0},
+        {.id=4,.name="Opportunistic Trader",.cash=30000.0,.inJail = 0}//turn order is save in this array
     };
     return playersList;
 }
