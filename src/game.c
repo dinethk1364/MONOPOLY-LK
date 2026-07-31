@@ -1,8 +1,7 @@
 //Game controler and eimulation engine
 #include <stdio.h>
 #include <stdlib.h>
-#include "declaraction.h"   
-#include "types.h"
+#include "../headerFiles/declaraction.h"
 Player* createPlayers()
 {
     //static is use to keep array in memory always

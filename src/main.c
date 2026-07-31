@@ -1,9 +1,7 @@
 //program entry point
-#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "types.h"
-#include "declaraction.h"
+#include "../headerFiles/declaraction.h"
 void gameRun();
 int main()
 {

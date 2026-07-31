@@ -1,8 +1,7 @@
 //Board initializeation and movement logic
 #include <stdio.h>
 #include <string.h>
-#include "types.h"
-#include "declaraction.h"   
+#include "../headerFiles/declaraction.h"   
 
 landProperties board[TileSize];
 
