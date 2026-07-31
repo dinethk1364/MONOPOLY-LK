@@ -154,5 +154,5 @@ void gameRun()
     // playersList[3].dieRollValue = 7;
 
     detTurnOrder(playersList);
-    playerMovement(playersList);
+    // playerMovement(playersList);
 }

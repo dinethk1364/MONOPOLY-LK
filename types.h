@@ -77,6 +77,7 @@ typedef struct{
     double cash;
     int currentPosition;
     int dieRollValue;
+    int iftied;// 1 if tied , 0 otherwise
     int isBankrupt; //1 if bankrupt, 0 otherwise
     int hasPassedGo; // 1 if passed Go, 0 otherwise
     int inJail; //1 if in jail, 0 otherwise

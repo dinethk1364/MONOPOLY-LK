@@ -9,28 +9,28 @@ landProperties board[TileSize];
 void initializeBoard()
 {
     //land Propeties
-    board[Pettah]=(landProperties){"Pettah",0,0,0,0,0,-1,0,0,0,0};
-    board[Maradhana]=(landProperties){"Maradhana",0,0,0,0,0,-1,0,0,0,0};
-    board[Bambalapitiya]=(landProperties){"Bambalapitiya",0,0,0,0,0,-1,0,0,0,0};
-    board[Wellawatta]=(landProperties){"Wellawatta",0,0,0,0,0,-1,0,0,0,0};
-    board[MountLavinia]=(landProperties){"MountLavinia",0,0,0,0,0,-1,0,0,0,0};
-    board[Nugegoda]=(landProperties){"Nugegoda",0,0,0,0,0,-1,0,0,0,0};
-    board[Maharagama]=(landProperties){"Maharagama",0,0,0,0,0,-1,0,0,0,0};
-    board[Kottawa]=(landProperties){"Kottawa",0,0,0,0,0,-1,0,0,0,0};
-    board[Negombo]=(landProperties){"Negombo",0,0,0,0,0,-1,0,0,0,0};
-    board[Katunayake]=(landProperties){"Katunayake",0,0,0,0,0,-1,0,0,0,0};
-    board[JaEla]=(landProperties){"Ja-Ela",0,0,0,0,0,-1,0,0,0,0};
-    board[Kandy]=(landProperties){"Kandy",0,0,0,0,0,-1,0,0,0,0};
-    board[Peradeniya]=(landProperties){"Peradeniya",0,0,0,0,0,-1,0,0,0,0};
-    board[Katugasthota]=(landProperties){"Katugasthota",0,0,0,0,0,-1,0,0,0,0};
-    board[GalleFort]=(landProperties){"Galle Fort",0,0,0,0,0,-1,0,0,0,0};
-    board[Unawatuna]=(landProperties){"Unawatuna",0,0,0,0,0,-1,0,0,0,0};
-    board[Hikkaduwa]=(landProperties){"Hikkaduwa",0,0,0,0,0,-1,0,0,0,0}; 
-    board[Jaffna]=(landProperties){"Jaffna",0,0,0,0,0,-1,0,0,0,0};
-    board[Nallur]=(landProperties){"Nallur",0,0,0,0,0,-1,0,0,0,0};
-    board[Trincomalee]=(landProperties){"Trincomalee",0,0,0,0,0,-1,0,0,0,0};
-    board[NuwaraEliya]=(landProperties){"NuwaraEliya",0,0,0,0,0,-1,0,0,0,0};
-    board[GalleFace]=(landProperties){"Galle Face",0,0,0,0,0,-1,0,0,0,0};
+    board[Pettah]=(landProperties){.name="Pettah",.currentOwner=-1};
+    board[Maradhana]=(landProperties){.name="Maradhana",.currentOwner=-1};
+    board[Bambalapitiya]=(landProperties){.name="Bambalapitiya",.currentOwner=-1};
+    board[Wellawatta]=(landProperties){.name="Wellawatta",.currentOwner=-1};
+    board[MountLavinia]=(landProperties){.name="MountLavinia",.currentOwner=-1};
+    board[Nugegoda]=(landProperties){.name="Nugegoda",.currentOwner=-1};
+    board[Maharagama]=(landProperties){.name="Maharagama",.currentOwner=-1};
+    board[Kottawa]=(landProperties){.name="Kottawa",.currentOwner=-1};
+    board[Negombo]=(landProperties){.name="Negombo",.currentOwner=-1};
+    board[Katunayake]=(landProperties){.name="Katunayake",.currentOwner=-1};
+    board[JaEla]=(landProperties){.name="Ja-Ela",.currentOwner=-1};
+    board[Kandy]=(landProperties){.name="Kandy",.currentOwner=-1};
+    board[Peradeniya]=(landProperties){.name="Peradeniya",.currentOwner=-1};
+    board[Katugasthota]=(landProperties){.name="Katugasthota",.currentOwner=-1};
+    board[GalleFort]=(landProperties){.name="Galle Fort",.currentOwner=-1};
+    board[Unawatuna]=(landProperties){.name="Unawatuna",.currentOwner=-1};
+    board[Hikkaduwa]=(landProperties){.name="Hikkaduwa",.currentOwner=-1}; 
+    board[Jaffna]=(landProperties){.name="Jaffna",.currentOwner=-1};
+    board[Nallur]=(landProperties){.name="Nallur",.currentOwner=-1};
+    board[Trincomalee]=(landProperties){.name="Trincomalee",.currentOwner=-1};
+    board[NuwaraEliya]=(landProperties){.name="NuwaraEliya",.currentOwner=-1};
+    board[GalleFace]=(landProperties){.name="Galle Face",.currentOwner=-1};
 
     //special properties
     board[ColomboFortRailway]=(landProperties){.name="Colombo Fort Railway", .purchasePrice=0,.mortgagePrice=0,.baseRental=0,.currentOwner=-1};
