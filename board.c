@@ -64,52 +64,71 @@ void playerMovement(Player *players)
 
     while(currentRound<=RoundCount)//round limit
     {
-        printf(BOLD_RED"\n\t\tDIES ROLL ROUND %d\n"RESET,diesRollRound);
+        printf(BOLD_YELLOW"\n\t\tDIES ROLL ROUND %d\n"RESET,diesRollRound);
 
         for (int j=0;j<Maxplayers;j++)
         {
             if(players[j].isBankrupt!=1)// check player bankrupt
             {
-                int d1,d2;
-                int diesTotal = rollDies(&d1,&d2);
-                printf(BOLD_GREEN"\n Dies Roll \n"RESET);
-                printf("%s rolled %d\n",players[j].name,diesTotal);    
                 
-                int oldPosition = players[j].currentPosition;
-                players[j].currentPosition = (oldPosition+diesTotal)%TileSize;//use modulus to after passing 40th tile back to 0
-                
-                printf(BOLD_GREEN"\n Player Movement \n"RESET);
-                printf("%s moves from Square %d to Square %d\n",players[j].name,oldPosition,players[j].currentPosition);
-
-                if (players[j].currentPosition < oldPosition)
+                if(players[j].inJail!=1)//move player if not in jail
                 {
-                    printf(BOLD_GREEN"\n Passing GO \n"RESET);
-                    
-                    printf("\n%s is passed GO.\n",players[j].name);
-                    printf("Collected LKR 2,000.\n");
-                    players[j].cash+=2000.0;
-                    players[j].hasPassedGo = 1;//mark that player passed Go
-                    printf("Current Balance : LKR %.2lf\n",players[j].cash);    
+                    int d1,d2;
+                    int diesTotal = rollDies(&d1,&d2);
+                    printf(BOLD_GREEN"\n Dies Roll \n"RESET);
+                    printf("%s rolled %d\n",players[j].name,diesTotal);    
+                
+                    int oldPosition = players[j].currentPosition;
+                    players[j].currentPosition = (oldPosition+diesTotal)%TileSize;//use modulus to after passing 40th tile back to 0
+                    printf(BOLD_GREEN"\n Player Movement \n"RESET);
+
+
+                    if(players[j].currentPosition==GoToJail)//send to jail
+                    {
+                        printf("%s moves from Square %d to Square %d\n",players[j].name,oldPosition,players[j].currentPosition);
+
+                        printf("\033[1;31m""Busted! %s was caught and sent straight to Jail!\n""\033[0m",players[j].name);
+                        players[j].currentPosition = Jail;
+                        players[j].inJail = 1;
+                        players[j].hasPassedGo=1;
+                        continue;
+                    }
+
+                    printf("%s moves from Square %d to Square %d\n",players[j].name,oldPosition,players[j].currentPosition);
+                    printf("%s lands on %s\n",players[j].name,board[players[j].currentPosition].name);
+                    if(players[j].currentPosition==10)
+                    {
+                        printf("(Just visiting Jail)");
+                    }
+                    if (players[j].currentPosition < oldPosition)
+                    {
+                        printf(BOLD_GREEN"\n Passing GO \n"RESET);
+                        printf("\n%s is passed GO.\n",players[j].name);
+                        printf("Collected LKR 2,000.\n");
+                        players[j].cash+=2000.0;
+                        players[j].hasPassedGo = 1;//mark that player passed Go
+                        printf("Current Balance : LKR %.2lf\n",players[j].cash);    
+                    }                
                 }
             }
         }
         diesRollRound++;
 
-        int playerWhoPassedGo = 0;
+        int playersPassedGo = 0;
         int activePlayersCount = 0;
         for(int k =0;k<Maxplayers;k++)
         {
-            if(players[k].isBankrupt != 1 && players[k].inJail !=1)
+            if(players[k].isBankrupt != 1)
             {
                 activePlayersCount++;//get active player count
-                if(players[k].hasPassedGo == 1)
+                if(players[k].hasPassedGo == 1 || players[k].inJail==1)
                 {
-                    playerWhoPassedGo++;
+                    playersPassedGo++;
                 }
             }
         }
 
-        if(playerWhoPassedGo==activePlayersCount && activePlayersCount>0)
+        if(playersPassedGo==activePlayersCount && activePlayersCount>0)
         {
             currentRound++;
             for(int k=0;k<Maxplayers;k++)
