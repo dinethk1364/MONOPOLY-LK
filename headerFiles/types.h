@@ -89,4 +89,12 @@ typedef struct{
     int jailTurns;// turns which player in jail
 }Player;
 
+typedef enum {
+    BUY_PROPERTY_DECISION,
+    AUCTION_MAX_BID_DECISION,
+    BUILD_HOUSE_DECISION,
+    TAKE_LOAN_DECISION,
+    BUY_INSURANCE_DECISION
+} DecisionType;
+
 #endif // !TYPES_H

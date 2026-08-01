@@ -111,10 +111,16 @@ void playerMovement(Player *players)
                 else // (if inJail==1)free from jail
                 {
                     players[j].jailTurns++;
-                    printf(BOLD_RED"\n Jail turn %d\n"RESET,players[j].jailTurns);
-                    printf("%s rolled %d and %d\n",players[j].name,d1,d2);
-                    if(d1==d2)//if rolling doubles
+                    if(players[j].jailTurns==4)
                     {
+                        printf(BOLD_YELLOW"\n Free From Jail \n"RESET);
+                        printf("%s rolled %d and %d\n",players[j].name,d1,d2);
+                    }
+                    if(d1==d2 && players[j].jailTurns<=3)//if rolling doubles
+                    {
+                        printf(BOLD_RED"\n Jail turn %d\n"RESET,players[j].jailTurns);
+                        printf("%s rolled %d and %d\n",players[j].name,d1,d2);
+
                         printf(YELLOW"%s rolled DOUBLES and free from JAIL!\n"RESET,players[j].name);
                         players[j].inJail = 0;
                         players[j].jailTurns =0;
@@ -143,6 +149,9 @@ void playerMovement(Player *players)
                     }
                     else
                     {
+                        printf(BOLD_RED"\n Jail turn %d\n"RESET,players[j].jailTurns);
+                        printf("%s rolled %d and %d\n",players[j].name,d1,d2);
+
                         printf(RED"%s failed to roll doubles and remains in Jail.\n"RESET,players[j].name);
                         players[j].hasPassedGo = 1; //not to stuck round
                     }
