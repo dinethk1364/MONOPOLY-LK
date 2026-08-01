@@ -129,15 +129,59 @@ void detTurnOrder(Player *players)
         printf("%s\n",players[i].name);
     }
 }
+void buyProperty(Player *player, landProperties *property)
+{
+    if(property->currentOwner==-1)
+    {
+        int shouldBuy = 0; //1=Buy , 0= dont buy
+        switch(player->id)
+        {
+            case 1:
+            {
+                double tempFutureRent = 250.00;////// tempary value
+                shouldBuy=aggInvDecisions(player,*property,BUY_PROPERTY_DECISION,tempFutureRent);
+                break;
+            }
+            case 2:
+            {
+                shouldBuy=consBanDecisions(player,*property,BUY_PROPERTY_DECISION);
+                break;
+            }
+            case 3:
+            {
+                shouldBuy=riskTakDecisions(player,*property,BUY_PROPERTY_DECISION);
+                break;
+            }
+            case 4:
+            {
+                shouldBuy = 0;
+                break;
+            }
+        }
+        if(shouldBuy==1)
+        {
+            if(player->cash>=property->purchasePrice)
+            {
+                property->currentOwner=player->id;
+                player->cash -= property->purchasePrice;
+                property->currentRent=property->baseRental;//update current rent
+                printf(GREEN"\n%s purchased %s for LKR %.2f\n"RESET,player->name,property->name,property->purchasePrice);
+                printf("Remaining Balance : LKR %.2f\n",player->cash);
+            }
+            else
+            {
+                printf(RED"Not enough cash to buy\n"RESET);
+            }
+        }
+        else
+        {
+            printf(YELLOW"\n%s decided to not to buy\n"RESET,player->name);
+        }
+    }
+}
 void gameRun()
 {
-    printf("\033[31mMONOPOLY-LK Simulation\033[0m\n\n");
-    printf("\033[33mPlayer 1 : Aggressive Investor\033[0m\n");
-    printf("\033[32mPlayer 2 : Conservative Banker\033[0m\n");
-    printf("\033[34mPlayer 3 : Risk Taker\033[0m\n");
-    printf("\033[36mPlayer 4 : Opportunistic Trader\033[0m\n\n");
-    printf("Each player begins with LKR 30,000\n");
-
+    printGameBegins();
     Player *playersList = createPlayers();//get array and assign values 
 
     printf("\n-----DETERMINEING THE FIRST PLAYER-----\n\n");
@@ -150,6 +194,6 @@ void gameRun()
     // playersList[3].dieRollValue = 7;
 
     detTurnOrder(playersList);
-    playerMovement(playersList);
+    playerMovement(playersList,board);
 
 }

@@ -1,7 +1,7 @@
 //player decision-making algorithms
 #include "../headerFiles/types.h"
 
-int aggInvBuyDecisions(Player *players, landProperties property, int actionType, double futureRent)
+int aggInvDecisions(Player *players, landProperties property, int actionType, double futureRent)
 {
     switch(actionType)
     {

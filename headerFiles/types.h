@@ -67,6 +67,7 @@ typedef struct{
     double houseCost;
     double hotelCost;
     int currentOwner;
+    double currentRent;
     int mortgageStatus;// 1 is true 0 is false
     int InsuaranceStatus;// 1 is true 0 is false
     int noOfHouses;
