@@ -54,6 +54,12 @@ void initializeBoard()
     board[NationalEvent3]=(landProperties){.name="National Event Card",.currentOwner=0};
     board[BOC]=(landProperties){.name="Bank of Ceylon",.currentOwner=0}; 
 }
+void handleLandLanding(Player *player, landProperties *property, Player *playerlist)
+{
+    displayLandDetails(player,property);
+    buyProperty(player,property);
+    payRent(player,property,playerlist);
+}
 void playerMovement(Player *players,landProperties *propery)
 {
     int currentRound = 1;
@@ -98,8 +104,8 @@ void playerMovement(Player *players,landProperties *propery)
                     {
                         printf("(Just visiting Jail)\n");
                     }
-                    displayLandDetails(&board[players[j].currentPosition]);
-                    buyProperty(&players[j],&board[players[j].currentPosition]);
+                    handleLandLanding(&players[j],&board[players[j].currentPosition],players);
+
                     if (players[j].currentPosition < oldPosition)
                     {
                         printf(BOLD_GREEN"\n Passing GO \n"RESET);
@@ -132,8 +138,8 @@ void playerMovement(Player *players,landProperties *propery)
                         printf(BOLD_GREEN"\n Player Movement \n"RESET);
                         printf("%s moves from Square %d to Square %d\n", players[j].name, oldPosition, players[j].currentPosition);
                         printf("%s lands on %s\n", players[j].name, board[players[j].currentPosition].name);
-                        displayLandDetails(&board[players[j].currentPosition]);
-                        buyProperty(&players[j],&board[players[j].currentPosition]);
+                        
+                        handleLandLanding(&players[j],&board[players[j].currentPosition],players);
 
                         players[j].hasPassedGo = 1;//for round complete
                     }
@@ -148,8 +154,9 @@ void playerMovement(Player *players,landProperties *propery)
                         printf(BOLD_GREEN"\n Player Movement \n"RESET);
                         printf("%s moves from Square %d to Square %d\n", players[j].name, oldPosition, players[j].currentPosition);
                         printf("%s lands on %s\n", players[j].name, board[players[j].currentPosition].name);
-                        displayLandDetails(&board[players[j].currentPosition]);
-                        buyProperty(&players[j],&board[players[j].currentPosition]);
+    
+                        handleLandLanding(&players[j],&board[players[j].currentPosition],players);
+
                         players[j].hasPassedGo = 1;//for round complete
                     }
                     else

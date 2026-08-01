@@ -4,7 +4,7 @@
 
 #define Maxplayers 4
 #define TileSize 40
-#define RoundCount 5
+#define RoundCount 2
 
 #define BOLD_GREEN "\033[1;32m"
 #define GREEN "\033[0;32m"

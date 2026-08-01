@@ -57,7 +57,7 @@ int riskTakDecisions(Player *players, landProperties property, int actionType)
             {
                 return 1;
             }
-    return 0;        
+            return 0;        
         }
 
         default:

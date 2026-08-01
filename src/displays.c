@@ -11,7 +11,7 @@ void printGameBegins()
     printf("Each player begins with LKR 30,000\n");
 }
 
-void displayLandDetails(landProperties *property)
+void displayLandDetails(Player *player,landProperties *property)
 {
     printf("\n================ PROPERTY DETAILS ================\n");
     if(property->currentOwner==-1)
@@ -25,28 +25,36 @@ void displayLandDetails(landProperties *property)
     }
     else
     {
-        //get owner name
-        int ownerID = property->currentOwner;
-        const char *ownerName = "Unknown";
-        switch(ownerID)
+        if(player->id==property->currentOwner)
         {
-            case 1:
-                ownerName = "Aggressive Investor";
-                break;
-            case 2:
-                ownerName = "Conservative Banker";
-                break;
-            case 3:
-                ownerName = "Risk Taker";
-                break;
-            case 4:
-                ownerName = "Opportunistic Trader";
-                break;
-            default:
-                ownerName = "Unknown Player";
-                break;
+            printf("This property is belongs to you\n");
         }
-        printf("Status          : Owned by %s\n",ownerName);
-        printf("Current Rent    : LKR %.2f\n",property->currentRent);
+        else
+        { 
+            //get owner name
+            int ownerID = property->currentOwner;
+            const char *ownerName = "Unknown";
+            switch(ownerID)
+            {
+                case 1:
+                    ownerName = "Aggressive Investor";
+                    break;
+                case 2:
+                    ownerName = "Conservative Banker";
+                    break;
+                case 3:
+                    ownerName = "Risk Taker";
+                    break;
+                case 4:
+                    ownerName = "Opportunistic Trader";
+                    break;
+                default:
+                    ownerName = "Unknown Player";
+                    break;
+            }
+            printf("Status          : Owned by %s\n",ownerName);
+            printf("Current Rent    : LKR %.2f\n",property->currentRent);
+            
+        }
     }
 }

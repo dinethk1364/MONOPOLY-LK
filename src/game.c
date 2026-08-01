@@ -165,6 +165,7 @@ void buyProperty(Player *player, landProperties *property)
                 property->currentOwner=player->id;
                 player->cash -= property->purchasePrice;
                 property->currentRent=property->baseRental;//update current rent
+                printf(BOLD_GREEN"\n Purchasing Property \n"RESET);
                 printf(GREEN"\n%s purchased %s for LKR %.2f\n"RESET,player->name,property->name,property->purchasePrice);
                 printf("Remaining Balance : LKR %.2f\n",player->cash);
             }
@@ -176,6 +177,33 @@ void buyProperty(Player *player, landProperties *property)
         else
         {
             printf(YELLOW"\n%s decided to not to buy\n"RESET,player->name);
+        }
+    }
+}
+void payRent(Player *player,landProperties *property,Player *playerlist)
+{
+    if(property->currentOwner>0 && property->currentOwner!=player->id)
+    {
+        double rentAmount = property->currentRent; 
+        printf(BOLD_GREEN"\n Paying Rent \n"RESET);
+        if(player->cash >= rentAmount)
+        {
+            player->cash -= rentAmount;
+            for(int i=0;i<Maxplayers;i++)
+            {
+                if(playerlist[i].id==property->currentOwner)
+                {
+                    //printf("Reciver cash before: %.2f\n",playerlist[i].cash);// for testing
+                    playerlist[i].cash += rentAmount;
+                    printf("Rent Paid to %s : LKR %.2f\n",playerlist[i].name,property->currentRent);
+                    //printf("Reciver cash after: %.2f\n",playerlist[i].cash);// for testing
+                }
+            }
+            printf("Remaining Balance : LKR %.2f",player->cash);
+        }
+        else
+        {
+            printf(RED"%s doesn't have enough money to pay the rent!\n"RESET);
         }
     }
 }
