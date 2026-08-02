@@ -10,6 +10,7 @@ void playerMovement(Player *players,landProperties *propery);
 void displayLandDetails(Player *player,landProperties *property);
 void buyProperty(Player *player, landProperties *property);
 void payRent(Player *player,landProperties *property,Player *playerlist);
+
 //player decisions
 int aggInvDecisions(Player *players, landProperties property, int actionType, double futureRent);
 int consBanDecisions(Player *players, landProperties property, int actionType);

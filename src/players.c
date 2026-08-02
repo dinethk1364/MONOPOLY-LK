@@ -7,7 +7,7 @@ int aggInvDecisions(Player *players, landProperties property, int actionType, do
     {
         case BUY_PROPERTY_DECISION:
         {
-            if(players->cash < property.purchasePrice) return TRUE;//check have enough cash to buy property
+            if(players->cash < property.purchasePrice) return FALSE;//check have enough cash to buy property
 
             double remainingCash = players->cash - property.purchasePrice;//get remaing cash if buy the property
             if(remainingCash>=futureRent)// if have money to pay at least one future rent

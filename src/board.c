@@ -54,6 +54,22 @@ void initializeBoard()
     board[NationalEvent3]=(landProperties){.name="National Event Card",.currentOwner=0};
     board[BOC]=(landProperties){.name="Bank of Ceylon",.currentOwner=0}; 
 }
+void gameCountCounter(Player *players,int *currentRound,int *activePlayersList,int *activePlayersCount)
+{
+    int minRound = players[activePlayersList[0]].roundCount;
+    for(int i=1;i<*activePlayersCount;i++)
+    {
+        if(players[activePlayersList[i]].roundCount<minRound)
+        {
+            minRound=players[activePlayersList[i]].roundCount;
+        }
+    }
+    if(minRound>*currentRound)
+    {
+        *currentRound=minRound;
+        printf(BOLD_BLUE"\n====================== ROUND %d END ======================\n"RESET,*currentRound);
+    }
+}
 void handleLandLanding(Player *player, landProperties *property, Player *playerlist)
 {
     displayLandDetails(player,property);
@@ -62,11 +78,16 @@ void handleLandLanding(Player *player, landProperties *property, Player *playerl
 }
 void playerMovement(Player *players,landProperties *propery)
 {
-    int currentRound = 1;
+    int currentRound = 0;
     int diesRollRound = 1;
-    printf(BOLD_BLUE"\n\n========================== ROUND %d ==========================\n"RESET,currentRound);
+    for(int i=0;i<Maxplayers;i++)
+    {
+        players[i].roundCount=0;
+    }
+    
+    printf(BOLD_BLUE"\n\n========================== GAME BEGINS ==========================\n"RESET);
 
-    while(currentRound<=RoundCount)//round limit
+    while(currentRound<RoundCount)//round limit
     {
         printf(BOLD_YELLOW"\n\t\tDIES ROLL ROUND %d\n"RESET,diesRollRound);
 
@@ -93,7 +114,6 @@ void playerMovement(Player *players,landProperties *propery)
                         printf(RED"Busted! %s was caught and sent straight to Jail!\n"RESET,players[j].name);
                         players[j].currentPosition = Jail;
                         players[j].inJail = TRUE;
-                        players[j].hasPassedGo=TRUE;
                         players[j].jailTurns=0;
                         continue;
                     }
@@ -112,8 +132,9 @@ void playerMovement(Player *players,landProperties *propery)
                         printf("\n%s is passed GO.\n",players[j].name);
                         printf("Collected LKR 2,000.00\n");
                         players[j].cash+=2000.0;
-                        players[j].hasPassedGo = TRUE;//mark that player passed Go
-                        printf("Current Balance : LKR %.2lf\n",players[j].cash);    
+                        players[j].roundCount++;
+                        printf("Current Balance : LKR %.2lf\n",players[j].cash);   
+                        printf(BOLD_RED"##########player round %d\n"RESET,players[j].roundCount); 
                     }                
                 }
                 else // (if inJail==1)free from jail
@@ -140,8 +161,10 @@ void playerMovement(Player *players,landProperties *propery)
                         printf("%s lands on %s\n", players[j].name, board[players[j].currentPosition].name);
                         
                         handleLandLanding(&players[j],&board[players[j].currentPosition],players);
-
-                        players[j].hasPassedGo = TRUE;//for round complete
+                        if(players[j].roundCount<currentRound)
+                        {
+                            players[j].roundCount=currentRound;
+                        }
                     }
                     else if(players[j].jailTurns>3)//if remain imprisoned for 3 turns
                     {
@@ -156,8 +179,10 @@ void playerMovement(Player *players,landProperties *propery)
                         printf("%s lands on %s\n", players[j].name, board[players[j].currentPosition].name);
     
                         handleLandLanding(&players[j],&board[players[j].currentPosition],players);
-
-                        players[j].hasPassedGo = TRUE;//for round complete
+                        if(players[j].roundCount<currentRound)
+                        {
+                            players[j].roundCount=currentRound;
+                        }
                     }
                     else
                     {
@@ -165,41 +190,26 @@ void playerMovement(Player *players,landProperties *propery)
                         printf("%s rolled %d and %d\n",players[j].name,d1,d2);
 
                         printf(RED"%s failed to roll doubles and remains in Jail.\n"RESET,players[j].name);
-                        players[j].hasPassedGo = TRUE; //not to stuck round
                     }
-
                 }
             }
-        }
-        diesRollRound++;
+            int activePlayersCount = 0;
+            int activePlayerList[Maxplayers];
 
-        int playersPassedGo = 0;
-        int activePlayersCount = 0;
-        for(int k =0;k<Maxplayers;k++)
-        {
-            if(players[k].isBankrupt ==FALSE)
+            for(int k =0;k<Maxplayers;k++)
             {
-                activePlayersCount++;//get active player count
-                if(players[k].hasPassedGo == TRUE || players[k].inJail==TRUE)
+                if(players[k].isBankrupt ==FALSE && players[k].inJail==FALSE)
                 {
-                    playersPassedGo++;
+                    activePlayerList[activePlayersCount]=k;
+                    activePlayersCount++;//get active player count
                 }
             }
+            if(activePlayersCount>0)
+            {
+                gameCountCounter(players,&currentRound,activePlayerList,&activePlayersCount);
+            }
         }
-
-        if(playersPassedGo==activePlayersCount && activePlayersCount>0)
-        {
-            currentRound++;
-            for(int k=0;k<Maxplayers;k++)
-            {
-                players[k].hasPassedGo=FALSE;
-            }
-            if(currentRound<=RoundCount)
-            {
-                printf(BOLD_BLUE"\n========================== ROUND %d ==========================\n"RESET,currentRound);                
-            }
-        }        
+        diesRollRound++;      
     }
-    printf(BOLD_BLUE"\n====================== GAME END ======================\n"RESET);
-
 }
+

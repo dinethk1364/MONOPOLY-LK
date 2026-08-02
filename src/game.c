@@ -203,7 +203,7 @@ void payRent(Player *player,landProperties *property,Player *playerlist)
         }
         else
         {
-            printf(RED"%s doesn't have enough money to pay the rent!\n"RESET);
+            printf(RED"%s doesn't have enough money to pay the rent!\n"RESET,player->name);
         }
     }
 }

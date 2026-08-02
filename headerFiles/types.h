@@ -86,8 +86,8 @@ typedef struct{
     char name[50];
     double cash;
     int currentPosition;
-    int currentRound;
     int dieRollValue;
+    int roundCount;
     boolValue isBankrupt; //1 if bankrupt, 0 otherwise
     boolValue hasPassedGo; // 1 if passed Go, 0 otherwise
     boolValue inJail; //1 if in jail, 0 otherwise
