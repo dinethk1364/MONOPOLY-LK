@@ -2,14 +2,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../headerFiles/declaraction.h"
-Player* createPlayers()
+Player* createPlayers()//return array in Player data type
 {
     //static is use to keep array in memory always
     static Player playersList[Maxplayers]={
-        {.id=1,.name="Aggressive Investor",.cash=30000.0,.inJail = 0},
-        {.id=2,.name="Conservative Banker",.cash=30000.0,.inJail = 0},
-        {.id=3,.name="Risk Taker",.cash=30000.0,.inJail = 0},
-        {.id=4,.name="Opportunistic Trader",.cash=30000.0,.inJail = 0}//turn order is save in this array
+        {.id=1,.name="Aggressive Investor",.cash=30000.0,.inJail = FALSE,.isBankrupt=FALSE},
+        {.id=2,.name="Conservative Banker",.cash=30000.0,.inJail = FALSE,.isBankrupt=FALSE},
+        {.id=3,.name="Risk Taker",.cash=30000.0,.inJail = FALSE,.isBankrupt=FALSE},
+        {.id=4,.name="Opportunistic Trader",.cash=30000.0,.inJail = FALSE,.isBankrupt=FALSE}//turn order is save in this array
     };
     return playersList;
 }
@@ -133,7 +133,7 @@ void buyProperty(Player *player, landProperties *property)
 {
     if(property->currentOwner==-1)
     {
-        int shouldBuy = 0; //1=Buy , 0= dont buy
+        int shouldBuy = FALSE; //TRUE(1)=Buy , FALSE(0)= dont buy
         switch(player->id)
         {
             case 1:
@@ -154,11 +154,11 @@ void buyProperty(Player *player, landProperties *property)
             }
             case 4:
             {
-                shouldBuy = 0;
+                shouldBuy = FALSE;
                 break;
             }
         }
-        if(shouldBuy==1)
+        if(shouldBuy==TRUE)
         {
             if(player->cash>=property->purchasePrice)
             {

@@ -17,6 +17,10 @@
 #define RESET "\033[0m"
 
 typedef enum{
+    TRUE,FALSE
+}boolValue;
+
+typedef enum{
     GO,                 //0
     Pettah,             //1
     CommunityDevFund,   //2
@@ -66,10 +70,10 @@ typedef struct{
     double baseRental;
     double houseCost;
     double hotelCost;
-    int currentOwner;
+    int currentOwner;//-1:no owner  //0:cannot be own //1,2,3,4: belongs to player ID
     double currentRent;
-    int mortgageStatus;// 1 is true 0 is false
-    int InsuaranceStatus;// 1 is true 0 is false
+    boolValue mortgageStatus;// 1 is true 0 is false
+    boolValue InsuaranceStatus;// 1 is true 0 is false
     int noOfHouses;
     int noOfHotels;
 }landProperties;
@@ -84,10 +88,10 @@ typedef struct{
     int currentPosition;
     int currentRound;
     int dieRollValue;
-    int isBankrupt; //1 if bankrupt, 0 otherwise
-    int hasPassedGo; // 1 if passed Go, 0 otherwise
-    int inJail; //1 if in jail, 0 otherwise
-    int jailTurns;// turns which player in jail
+    boolValue isBankrupt; //1 if bankrupt, 0 otherwise
+    boolValue hasPassedGo; // 1 if passed Go, 0 otherwise
+    boolValue inJail; //1 if in jail, 0 otherwise
+    int jailTurns;// turns of player who in jail
 }Player;
 
 typedef enum {

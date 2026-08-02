@@ -64,7 +64,7 @@ void playerMovement(Player *players,landProperties *propery)
 {
     int currentRound = 1;
     int diesRollRound = 1;
-    printf(BOLD_BLUE"\n========================== ROUND %d ==========================\n"RESET,currentRound);
+    printf(BOLD_BLUE"\n\n========================== ROUND %d ==========================\n"RESET,currentRound);
 
     while(currentRound<=RoundCount)//round limit
     {
@@ -72,12 +72,12 @@ void playerMovement(Player *players,landProperties *propery)
 
         for (int j=0;j<Maxplayers;j++)
         {
-            if(players[j].isBankrupt!=1)// check player bankrupt
+            if(players[j].isBankrupt==FALSE)// check player bankrupt
             {
                 int d1,d2;
                 int diesTotal = rollDies(&d1,&d2);
                 
-                if(players[j].inJail!=1)//move player if not in jail
+                if(players[j].inJail==FALSE)//move player if not in jail
                 {
                     printf(BOLD_GREEN"\n Dies Roll \n"RESET);
                     printf("%s rolled %d\n",players[j].name,diesTotal);    
@@ -92,8 +92,8 @@ void playerMovement(Player *players,landProperties *propery)
 
                         printf(RED"Busted! %s was caught and sent straight to Jail!\n"RESET,players[j].name);
                         players[j].currentPosition = Jail;
-                        players[j].inJail = 1;
-                        players[j].hasPassedGo=1;
+                        players[j].inJail = TRUE;
+                        players[j].hasPassedGo=TRUE;
                         players[j].jailTurns=0;
                         continue;
                     }
@@ -112,7 +112,7 @@ void playerMovement(Player *players,landProperties *propery)
                         printf("\n%s is passed GO.\n",players[j].name);
                         printf("Collected LKR 2,000.00\n");
                         players[j].cash+=2000.0;
-                        players[j].hasPassedGo = 1;//mark that player passed Go
+                        players[j].hasPassedGo = TRUE;//mark that player passed Go
                         printf("Current Balance : LKR %.2lf\n",players[j].cash);    
                     }                
                 }
@@ -130,7 +130,7 @@ void playerMovement(Player *players,landProperties *propery)
                         printf("%s rolled %d and %d\n",players[j].name,d1,d2);
 
                         printf(YELLOW"%s rolled DOUBLES and free from JAIL!\n"RESET,players[j].name);
-                        players[j].inJail = 0;
+                        players[j].inJail = FALSE;
                         players[j].jailTurns =0;
                         //move player after roll doubles
                         int oldPosition = players[j].currentPosition;
@@ -141,12 +141,12 @@ void playerMovement(Player *players,landProperties *propery)
                         
                         handleLandLanding(&players[j],&board[players[j].currentPosition],players);
 
-                        players[j].hasPassedGo = 1;//for round complete
+                        players[j].hasPassedGo = TRUE;//for round complete
                     }
                     else if(players[j].jailTurns>3)//if remain imprisoned for 3 turns
                     {
                         printf(YELLOW"%s completed 3 turns in Jail and has beed released from Jail\n"RESET,players[j].name);
-                        players[j].inJail = 0 ;
+                        players[j].inJail = FALSE ;
                         players[j].jailTurns = 0; 
                         //move player
                         int oldPosition = players[j].currentPosition;
@@ -157,7 +157,7 @@ void playerMovement(Player *players,landProperties *propery)
     
                         handleLandLanding(&players[j],&board[players[j].currentPosition],players);
 
-                        players[j].hasPassedGo = 1;//for round complete
+                        players[j].hasPassedGo = TRUE;//for round complete
                     }
                     else
                     {
@@ -165,7 +165,7 @@ void playerMovement(Player *players,landProperties *propery)
                         printf("%s rolled %d and %d\n",players[j].name,d1,d2);
 
                         printf(RED"%s failed to roll doubles and remains in Jail.\n"RESET,players[j].name);
-                        players[j].hasPassedGo = 1; //not to stuck round
+                        players[j].hasPassedGo = TRUE; //not to stuck round
                     }
 
                 }
@@ -177,10 +177,10 @@ void playerMovement(Player *players,landProperties *propery)
         int activePlayersCount = 0;
         for(int k =0;k<Maxplayers;k++)
         {
-            if(players[k].isBankrupt != 1)
+            if(players[k].isBankrupt ==FALSE)
             {
                 activePlayersCount++;//get active player count
-                if(players[k].hasPassedGo == 1 || players[k].inJail==1)
+                if(players[k].hasPassedGo == TRUE || players[k].inJail==TRUE)
                 {
                     playersPassedGo++;
                 }
@@ -192,7 +192,7 @@ void playerMovement(Player *players,landProperties *propery)
             currentRound++;
             for(int k=0;k<Maxplayers;k++)
             {
-                players[k].hasPassedGo=0;
+                players[k].hasPassedGo=FALSE;
             }
             if(currentRound<=RoundCount)
             {

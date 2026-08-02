@@ -7,21 +7,21 @@ int aggInvDecisions(Player *players, landProperties property, int actionType, do
     {
         case BUY_PROPERTY_DECISION:
         {
-            if(players->cash < property.purchasePrice) return 0;//check have enough cash to buy property
+            if(players->cash < property.purchasePrice) return TRUE;//check have enough cash to buy property
 
             double remainingCash = players->cash - property.purchasePrice;//get remaing cash if buy the property
             if(remainingCash>=futureRent)// if have money to pay at least one future rent
             {
-                return 1;
+                return TRUE;
             }
             //prioritized Properties
             //prioritize completing property groups
             
-            return 0;
+            return FALSE;
         }
 
         default:
-            return 0;
+            return FALSE;
     }
 }
 
@@ -31,17 +31,17 @@ int consBanDecisions(Player *players, landProperties property, int actionType)
     {
         case BUY_PROPERTY_DECISION:
         {
-            if(players->cash < property.purchasePrice) return 0;
+            if(players->cash < property.purchasePrice) return FALSE;
             double remainingCash = players->cash - property.purchasePrice;
             if(remainingCash>=(players->cash*0.50))
             {
-                return 1;
+                return TRUE;
             }
-            return 0;
+            return FALSE;
         }
 
         default:
-            return 0;
+            return FALSE;
     }
 }
 
@@ -51,17 +51,17 @@ int riskTakDecisions(Player *players, landProperties property, int actionType)
     {
         case BUY_PROPERTY_DECISION:
         {
-            if(players->cash < property.purchasePrice) return 0;
+            if(players->cash < property.purchasePrice) return FALSE;
             double remainingCash = players->cash - property.purchasePrice;
             if(remainingCash>0.0)
             {
-                return 1;
+                return TRUE;
             }
-            return 0;        
+            return FALSE;        
         }
 
         default:
-            return 0;
+            return FALSE;
     }
 }
 
@@ -71,10 +71,10 @@ int oppTraDecisions(Player *players, landProperties property,double projectedApp
     {
         case BUY_PROPERTY_DECISION:
         {
-            if(players->cash < property.purchasePrice) return 0;
+            if(players->cash < property.purchasePrice) return FALSE;
         }
 
         default:
-            return 0;
+            return FALSE;
     }
 }
