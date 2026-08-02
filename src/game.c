@@ -180,7 +180,25 @@ void buyProperty(Player *player, landProperties *property)
         }
     }
 }
-void payRent(Player *player,landProperties *property,Player *playerlist)
+void Bankrupt(Player *player,Player *playerlist,landProperties *properties)
+{
+    printf(RED"\n%s doesn't have enough money to pay! Bankrupt Risk!\n"RESET,player->name);
+    //sell properties or mortgage
+    player->isBankrupt=TRUE;
+    printf(RED"\n%s is BANKRUPT and eliminated form the game!\n"RESET,player->name);
+    //Transferring the bankrupt players properties to the bank
+    for(int i=0;i<TileSize;i++)
+    {
+        if(properties[i].currentOwner==player->id)
+        {
+            properties[i].currentOwner = -1;
+            properties[i].noOfHouses= 0;
+            properties[i].noOfHotels=0;
+            printf(GREEN"\n%s trasferred to the bank and all buildings have been removed\n"RESET,properties[i].name);
+        }
+    }
+}
+void payRent(Player *player,landProperties *property,Player *playerlist,landProperties *properties)
 {
     if(property->currentOwner>0 && property->currentOwner!=player->id)
     {
@@ -196,14 +214,14 @@ void payRent(Player *player,landProperties *property,Player *playerlist)
                     //printf("Reciver cash before: %.2f\n",playerlist[i].cash);// for testing
                     playerlist[i].cash += rentAmount;
                     printf("Rent Paid to %s : LKR %.2f\n",playerlist[i].name,property->currentRent);
-                    //printf("Reciver cash after: %.2f\n",playerlist[i].cash);// for testing
+                    printf("Reciver cash after: %.2f\n",playerlist[i].cash);// for testing
                 }
             }
-            printf("Remaining Balance : LKR %.2f",player->cash);
+            printf("Remaining Balance : LKR %.2f\n",player->cash);
         }
         else
         {
-            printf(RED"%s doesn't have enough money to pay the rent!\n"RESET,player->name);
+            Bankrupt(player,playerlist,properties);
         }
     }
 }
@@ -213,7 +231,7 @@ void gameRun()
     Player *playersList = createPlayers();//get array and assign values 
 
     printf("\n-----DETERMINEING THE FIRST PLAYER-----\n\n");
-    initializeBoard();
+    landProperties *board = initializeBoard();
     playersDieRoll(playersList);
 
     // playersList[0].dieRollValue = 7;

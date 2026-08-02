@@ -3,10 +3,9 @@
 #include <string.h>
 #include "../headerFiles/declaraction.h"   
 
-landProperties board[TileSize];
-
-void initializeBoard()
+landProperties *initializeBoard()
 {
+    static landProperties board[TileSize];
     //land Propeties
     board[Pettah]=(landProperties){.name="Pettah",.purchasePrice=1500.0,.baseRental=100.0,.currentOwner=-1};
     board[Maradhana]=(landProperties){.name="Maradhana",.purchasePrice=1800.0,.baseRental=120.0,.currentOwner=-1};
@@ -53,6 +52,9 @@ void initializeBoard()
     board[CeylincoInsuarance]=(landProperties){.name="Ceylinco Insuarance",.currentOwner=0};
     board[NationalEvent3]=(landProperties){.name="National Event Card",.currentOwner=0};
     board[BOC]=(landProperties){.name="Bank of Ceylon",.currentOwner=0}; 
+
+
+    return board;
 }
 void gameCountCounter(Player *players,int *currentRound,int *activePlayersList,int *activePlayersCount)
 {
@@ -70,13 +72,14 @@ void gameCountCounter(Player *players,int *currentRound,int *activePlayersList,i
         printf(BOLD_BLUE"\n====================== ROUND %d END ======================\n"RESET,*currentRound);
     }
 }
-void handleLandLanding(Player *player, landProperties *property, Player *playerlist)
+void handleLandLanding(Player *player, landProperties *property, Player *playerlist,landProperties *board)
 {
     displayLandDetails(player,property);
     buyProperty(player,property);
-    payRent(player,property,playerlist);
+    payRent(player,property,playerlist,board);
+    printf(BLUE"#############balance %f\n"RESET,player->cash);
 }
-void playerMovement(Player *players,landProperties *propery)
+void playerMovement(Player *players,landProperties *board)
 {
     int currentRound = 0;
     int diesRollRound = 1;
@@ -124,7 +127,7 @@ void playerMovement(Player *players,landProperties *propery)
                     {
                         printf("(Just visiting Jail)\n");
                     }
-                    handleLandLanding(&players[j],&board[players[j].currentPosition],players);
+                    handleLandLanding(&players[j],&board[players[j].currentPosition],players,board);
 
                     if (players[j].currentPosition < oldPosition)
                     {
@@ -160,7 +163,7 @@ void playerMovement(Player *players,landProperties *propery)
                         printf("%s moves from Square %d to Square %d\n", players[j].name, oldPosition, players[j].currentPosition);
                         printf("%s lands on %s\n", players[j].name, board[players[j].currentPosition].name);
                         
-                        handleLandLanding(&players[j],&board[players[j].currentPosition],players);
+                        handleLandLanding(&players[j],&board[players[j].currentPosition],players,board);
                         if(players[j].roundCount<currentRound)
                         {
                             players[j].roundCount=currentRound;
@@ -178,7 +181,7 @@ void playerMovement(Player *players,landProperties *propery)
                         printf("%s moves from Square %d to Square %d\n", players[j].name, oldPosition, players[j].currentPosition);
                         printf("%s lands on %s\n", players[j].name, board[players[j].currentPosition].name);
     
-                        handleLandLanding(&players[j],&board[players[j].currentPosition],players);
+                        handleLandLanding(&players[j],&board[players[j].currentPosition],players,board);
                         if(players[j].roundCount<currentRound)
                         {
                             players[j].roundCount=currentRound;
@@ -207,6 +210,10 @@ void playerMovement(Player *players,landProperties *propery)
             if(activePlayersCount>0)
             {
                 gameCountCounter(players,&currentRound,activePlayerList,&activePlayersCount);
+                if(currentRound>=RoundCount)
+                {
+                    break;
+                }
             }
         }
         diesRollRound++;      
