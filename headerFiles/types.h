@@ -5,6 +5,8 @@
 #define Maxplayers 4
 #define TileSize 40
 #define RoundCount 2
+#define GO_MONEY 2000.0f
+#define PLAYER_STARTING_CASH 30000.0f
 
 #define BOLD_GREEN "\033[1;32m"
 #define GREEN "\033[0;32m"
@@ -19,6 +21,17 @@
 typedef enum{
     TRUE,FALSE
 }boolValue;
+
+typedef enum{
+    G_BROWN = 1,
+    G_LIGHT_BLUE,
+    G_PINK,
+    G_ORANGE,
+    G_RED,
+    G_YELLOW,
+    G_GREEN,
+    G_DARK_BLUE
+}colorGroup;
 
 typedef enum{
     GO,                 //0
@@ -76,6 +89,8 @@ typedef struct{
     boolValue InsuaranceStatus;// 1 is true 0 is false
     int noOfHouses;
     int noOfHotels;
+    colorGroup cGroup;
+
 }landProperties;
 
 extern landProperties board[TileSize];//declare global array(Global Extern Declarations)

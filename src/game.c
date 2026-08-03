@@ -6,10 +6,10 @@ Player* createPlayers()//return array in Player data type
 {
     //static is use to keep array in memory always
     static Player playersList[Maxplayers]={
-        {.id=1,.name="Aggressive Investor",.cash=30000.0,.inJail = FALSE,.isBankrupt=FALSE},
-        {.id=2,.name="Conservative Banker",.cash=30000.0,.inJail = FALSE,.isBankrupt=FALSE},
-        {.id=3,.name="Risk Taker",.cash=30000.0,.inJail = FALSE,.isBankrupt=FALSE},
-        {.id=4,.name="Opportunistic Trader",.cash=30000.0,.inJail = FALSE,.isBankrupt=FALSE}//turn order is save in this array
+        {.id=1,.name="Aggressive Investor",.cash=PLAYER_STARTING_CASH,.inJail = FALSE,.isBankrupt=FALSE},
+        {.id=2,.name="Conservative Banker",.cash=PLAYER_STARTING_CASH,.inJail = FALSE,.isBankrupt=FALSE},
+        {.id=3,.name="Risk Taker",.cash=PLAYER_STARTING_CASH,.inJail = FALSE,.isBankrupt=FALSE},
+        {.id=4,.name="Opportunistic Trader",.cash=PLAYER_STARTING_CASH,.inJail = FALSE,.isBankrupt=FALSE}//turn order is save in this array
     };
     return playersList;
 }
@@ -184,6 +184,7 @@ void Bankrupt(Player *player,Player *playerlist,landProperties *properties)
 {
     printf(RED"\n%s doesn't have enough money to pay! Bankrupt Risk!\n"RESET,player->name);
     //sell properties or mortgage
+    
     player->isBankrupt=TRUE;
     printf(RED"\n%s is BANKRUPT and eliminated form the game!\n"RESET,player->name);
     //Transferring the bankrupt players properties to the bank

@@ -7,28 +7,36 @@ landProperties *initializeBoard()
 {
     static landProperties board[TileSize];
     //land Propeties
-    board[Pettah]=(landProperties){.name="Pettah",.purchasePrice=1500.0,.baseRental=100.0,.currentOwner=-1};
-    board[Maradhana]=(landProperties){.name="Maradhana",.purchasePrice=1800.0,.baseRental=120.0,.currentOwner=-1};
-    board[Bambalapitiya]=(landProperties){.name="Bambalapitiya",.purchasePrice=2500.0,.baseRental=180.0,.currentOwner=-1};
-    board[Wellawatta]=(landProperties){.name="Wellawatta",.purchasePrice=2700.0,.baseRental=200.0,.currentOwner=-1};
-    board[MountLavinia]=(landProperties){.name="MountLavinia",.purchasePrice=3000.0,.baseRental=220.0,.currentOwner=-1};
-    board[Nugegoda]=(landProperties){.name="Nugegoda",.purchasePrice=3500.0,.baseRental=260.0,.currentOwner=-1};
-    board[Maharagama]=(landProperties){.name="Maharagama",.purchasePrice=3800.0,.baseRental=280.0,.currentOwner=-1};
-    board[Kottawa]=(landProperties){.name="Kottawa",.purchasePrice=4000.0,.baseRental=300.0,.currentOwner=-1};
-    board[Negombo]=(landProperties){.name="Negombo",.purchasePrice=4500.0,.baseRental=350.0,.currentOwner=-1};
-    board[Katunayake]=(landProperties){.name="Katunayake",.purchasePrice=4700.0,.baseRental=370.0,.currentOwner=-1};
-    board[JaEla]=(landProperties){.name="Ja-Ela",.purchasePrice=5000.0,.baseRental=400.0,.currentOwner=-1};
-    board[Kandy]=(landProperties){.name="Kandy",.purchasePrice=5500.0,.baseRental=450.0,.currentOwner=-1};
-    board[Peradeniya]=(landProperties){.name="Peradeniya",.purchasePrice=5800.0,.baseRental=480.0,.currentOwner=-1};
-    board[Katugasthota]=(landProperties){.name="Katugasthota",.purchasePrice=6000.0,.baseRental=500.0,.currentOwner=-1};
-    board[GalleFort]=(landProperties){.name="Galle Fort",.purchasePrice=6500.0,.baseRental=600.0,.currentOwner=-1};
-    board[Unawatuna]=(landProperties){.name="Unawatuna",.purchasePrice=6800.0,.baseRental=620.0,.currentOwner=-1};
-    board[Hikkaduwa]=(landProperties){.name="Hikkaduwa",.purchasePrice=7000.0,.baseRental=650.0,.currentOwner=-1}; 
-    board[Jaffna]=(landProperties){.name="Jaffna",.purchasePrice=8000.0,.baseRental=750.0,.currentOwner=-1};
-    board[Nallur]=(landProperties){.name="Nallur",.purchasePrice=8300.0,.baseRental=780.0,.currentOwner=-1};
-    board[Trincomalee]=(landProperties){.name="Trincomalee",.purchasePrice=8500.0,.baseRental=800.0,.currentOwner=-1};
-    board[NuwaraEliya]=(landProperties){.name="NuwaraEliya",.purchasePrice=10000.0,.baseRental=1000.0,.currentOwner=-1};
-    board[GalleFace]=(landProperties){.name="Galle Face",.purchasePrice=12000.0,.baseRental=1200.0,.currentOwner=-1};
+                        //brown
+    board[Pettah]=(landProperties){.name="Pettah",.purchasePrice=1500.0,.baseRental=100.0,.currentOwner=-1,.cGroup=G_BROWN};
+    board[Maradhana]=(landProperties){.name="Maradhana",.purchasePrice=1800.0,.baseRental=120.0,.currentOwner=-1,.cGroup=G_BROWN};
+                        //light blue
+    board[Bambalapitiya]=(landProperties){.name="Bambalapitiya",.purchasePrice=2500.0,.baseRental=180.0,.currentOwner=-1,.cGroup=G_LIGHT_BLUE};
+    board[Wellawatta]=(landProperties){.name="Wellawatta",.purchasePrice=2700.0,.baseRental=200.0,.currentOwner=-1,.cGroup=G_LIGHT_BLUE};
+    board[MountLavinia]=(landProperties){.name="MountLavinia",.purchasePrice=3000.0,.baseRental=220.0,.currentOwner=-1,.cGroup=G_LIGHT_BLUE};
+                        //pink
+    board[Nugegoda]=(landProperties){.name="Nugegoda",.purchasePrice=3500.0,.baseRental=260.0,.currentOwner=-1,.cGroup=G_PINK};
+    board[Maharagama]=(landProperties){.name="Maharagama",.purchasePrice=3800.0,.baseRental=280.0,.currentOwner=-1,.cGroup=G_PINK};
+    board[Kottawa]=(landProperties){.name="Kottawa",.purchasePrice=4000.0,.baseRental=300.0,.currentOwner=-1,.cGroup=G_PINK};
+                        //orange
+    board[Negombo]=(landProperties){.name="Negombo",.purchasePrice=4500.0,.baseRental=350.0,.currentOwner=-1,.cGroup=G_ORANGE};
+    board[Katunayake]=(landProperties){.name="Katunayake",.purchasePrice=4700.0,.baseRental=370.0,.currentOwner=-1,.cGroup=G_ORANGE};
+    board[JaEla]=(landProperties){.name="Ja-Ela",.purchasePrice=5000.0,.baseRental=400.0,.currentOwner=-1,.cGroup=G_ORANGE};
+                        //red
+    board[Kandy]=(landProperties){.name="Kandy",.purchasePrice=5500.0,.baseRental=450.0,.currentOwner=-1,.cGroup=G_RED};
+    board[Peradeniya]=(landProperties){.name="Peradeniya",.purchasePrice=5800.0,.baseRental=480.0,.currentOwner=-1,.cGroup=G_RED};
+    board[Katugasthota]=(landProperties){.name="Katugasthota",.purchasePrice=6000.0,.baseRental=500.0,.currentOwner=-1,.cGroup=G_RED};
+                        //yellow
+    board[GalleFort]=(landProperties){.name="Galle Fort",.purchasePrice=6500.0,.baseRental=600.0,.currentOwner=-1,.cGroup=G_YELLOW};
+    board[Unawatuna]=(landProperties){.name="Unawatuna",.purchasePrice=6800.0,.baseRental=620.0,.currentOwner=-1,.cGroup=G_YELLOW};
+    board[Hikkaduwa]=(landProperties){.name="Hikkaduwa",.purchasePrice=7000.0,.baseRental=650.0,.currentOwner=-1,.cGroup=G_YELLOW}; 
+                        //green
+    board[Jaffna]=(landProperties){.name="Jaffna",.purchasePrice=8000.0,.baseRental=750.0,.currentOwner=-1,.cGroup=G_GREEN};
+    board[Nallur]=(landProperties){.name="Nallur",.purchasePrice=8300.0,.baseRental=780.0,.currentOwner=-1,.cGroup=G_GREEN};
+    board[Trincomalee]=(landProperties){.name="Trincomalee",.purchasePrice=8500.0,.baseRental=800.0,.currentOwner=-1,.cGroup=G_GREEN};
+                        //darkblue
+    board[NuwaraEliya]=(landProperties){.name="NuwaraEliya",.purchasePrice=10000.0,.baseRental=1000.0,.currentOwner=-1,.cGroup=G_DARK_BLUE};
+    board[GalleFace]=(landProperties){.name="Galle Face",.purchasePrice=12000.0,.baseRental=1200.0,.currentOwner=-1,.cGroup=G_DARK_BLUE};
 
     //special properties
     board[ColomboFortRailway]=(landProperties){.name="Colombo Fort Railway", .purchasePrice=0,.mortgagePrice=0,.baseRental=0,.currentOwner=-1};
@@ -133,8 +141,8 @@ void playerMovement(Player *players,landProperties *board)
                     {
                         printf(BOLD_GREEN"\n Passing GO \n"RESET);
                         printf("\n%s is passed GO.\n",players[j].name);
-                        printf("Collected LKR 2,000.00\n");
-                        players[j].cash+=2000.0;
+                        printf("Collected LKR %.2f\n",GO_MONEY);
+                        players[j].cash+=GO_MONEY;
                         players[j].roundCount++;
                         printf("Current Balance : LKR %.2lf\n",players[j].cash);   
                         printf(BOLD_RED"##########player round %d\n"RESET,players[j].roundCount); 
