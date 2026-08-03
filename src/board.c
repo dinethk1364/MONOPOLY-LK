@@ -83,8 +83,14 @@ void gameCountCounter(Player *players,int *currentRound,int *activePlayersList,i
 void handleLandLanding(Player *player, landProperties *property, Player *playerlist,landProperties *board)
 {
     displayLandDetails(player,property);
-    buyProperty(player,property,playerlist);
-    payRent(player,property,playerlist,board);
+    if(property->currentOwner>0)
+    {
+        payRent(player,property,playerlist,board);
+    }
+    else
+    {
+        buyProperty(player,property,playerlist);
+    }
     printf(BLUE"#############balance %f\n"RESET,player->cash);
 }
 void playerMovement(Player *players,landProperties *board)

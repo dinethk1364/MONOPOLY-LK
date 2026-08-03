@@ -6,9 +6,9 @@ Player* createPlayers()//return array in Player data type
 {
     //static is use to keep array in memory always
     static Player playersList[Maxplayers]={
-        {.id=1,.name="Aggressive Investor",.cash=PLAYER_STARTING_CASH,.inJail = FALSE,.isBankrupt=FALSE},
-        {.id=2,.name="Conservative Banker",.cash=PLAYER_STARTING_CASH,.inJail = FALSE,.isBankrupt=FALSE},
-        {.id=3,.name="Risk Taker",.cash=PLAYER_STARTING_CASH,.inJail = FALSE,.isBankrupt=FALSE},
+        {.id=1,.name="Aggressive Investor",.cash=100.0,.inJail = FALSE,.isBankrupt=FALSE},
+        {.id=2,.name="Conservative Banker",.cash=100.0,.inJail = FALSE,.isBankrupt=FALSE},
+        {.id=3,.name="Risk Taker",.cash=100.0,.inJail = FALSE,.isBankrupt=FALSE},
         {.id=4,.name="Opportunistic Trader",.cash=PLAYER_STARTING_CASH,.inJail = FALSE,.isBankrupt=FALSE}//turn order is save in this array
     };
     return playersList;
@@ -300,6 +300,8 @@ void Bankrupt(Player *player,Player *playerlist,landProperties *properties)
             printf(GREEN"\n%s trasferred to the bank and all buildings have been removed\n"RESET,properties[i].name);
         }
     }
+    gameOver(playerlist);
+
 }
 void payRent(Player *player,landProperties *property,Player *playerlist,landProperties *properties)
 {
@@ -317,7 +319,7 @@ void payRent(Player *player,landProperties *property,Player *playerlist,landProp
                     //printf("Reciver cash before: %.2f\n",playerlist[i].cash);// for testing
                     playerlist[i].cash += rentAmount;
                     printf("Rent Paid to %s : LKR %.2f\n",playerlist[i].name,property->currentRent);
-                    printf("Reciver cash after: %.2f\n",playerlist[i].cash);// for testing
+                    // printf("Reciver cash after: %.2f\n",playerlist[i].cash);// for testing
                 }
             }
             printf("Remaining Balance : LKR %.2f\n",player->cash);
@@ -326,6 +328,43 @@ void payRent(Player *player,landProperties *property,Player *playerlist,landProp
         {
             Bankrupt(player,playerlist,properties);
         }
+    }
+}
+int checkGameOver(Player *playerlist)
+{
+    int bankruptCount = 0;
+    for(int i=0;i<Maxplayers;i++)
+    {
+        if(playerlist[i].isBankrupt==TRUE)
+        {
+            bankruptCount++;
+        }
+    }
+    if(bankruptCount==3)
+    {
+        return TRUE;
+    }
+    return FALSE;
+}
+void gameOver(Player *playerlist)
+{
+    if(checkGameOver(playerlist)==TRUE)
+    {
+        printf(BOLD_RED"\n===========================================================\n"RESET);
+        printf(BOLD_RED"                           GAME OVER !                     "RESET);
+        printf(BOLD_RED"\n===========================================================\n"RESET);
+        printf(GREEN"\n3 Players have been bankrupt. The game has ended ! \n"RESET);
+
+        for(int i=0;i<Maxplayers;i++)
+        {
+            if(playerlist[i].isBankrupt==FALSE)
+            {
+                printf(BOLD_GREEN"\nWinner of the Game: %s\n"RESET,playerlist[i].name);
+                printf(BOLD_GREEN"Remaining Cash: LKR %.2f\n"RESET,playerlist[i].cash);
+            }
+        }
+        printf(BOLD_RED"\n===========================================================\n"RESET);
+        exit(0);//exit the game
     }
 }
 void gameRun()

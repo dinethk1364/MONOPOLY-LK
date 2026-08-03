@@ -4,7 +4,7 @@
 
 #define Maxplayers 4
 #define TileSize 40
-#define RoundCount 2
+#define RoundCount 20
 #define GO_MONEY 2000.0f
 #define PLAYER_STARTING_CASH 30000.0f
 
