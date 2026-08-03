@@ -83,7 +83,7 @@ void gameCountCounter(Player *players,int *currentRound,int *activePlayersList,i
 void handleLandLanding(Player *player, landProperties *property, Player *playerlist,landProperties *board)
 {
     displayLandDetails(player,property);
-    buyProperty(player,property);
+    buyProperty(player,property,playerlist);
     payRent(player,property,playerlist,board);
     printf(BLUE"#############balance %f\n"RESET,player->cash);
 }

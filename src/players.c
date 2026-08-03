@@ -1,7 +1,7 @@
 //player decision-making algorithms
 #include "../headerFiles/types.h"
 
-int aggInvDecisions(Player *players, landProperties property, int actionType, double futureRent)
+int aggInvDecisions(Player *players, landProperties property, int actionType, double value)
 {
     switch(actionType)
     {
@@ -10,7 +10,7 @@ int aggInvDecisions(Player *players, landProperties property, int actionType, do
             if(players->cash < property.purchasePrice) return FALSE;//check have enough cash to buy property
 
             double remainingCash = players->cash - property.purchasePrice;//get remaing cash if buy the property
-            if(remainingCash>=futureRent)// if have money to pay at least one future rent
+            if(remainingCash>=value)// if have money to pay at least one future rent(pass a future rent for value parameter)
             {
                 return TRUE;
             }
@@ -19,7 +19,17 @@ int aggInvDecisions(Player *players, landProperties property, int actionType, do
             
             return FALSE;
         }
+        case AUCTION_MAX_BID_DECISION:
+        {
+            double maxbid = property.purchasePrice*1.20;
+            int proposedBid = value;
 
+            if(players->cash >= proposedBid && proposedBid<=maxbid)
+            {
+                return TRUE;
+            }
+            return FALSE;
+        }
         default:
             return FALSE;
     }

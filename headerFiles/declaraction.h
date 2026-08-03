@@ -8,7 +8,7 @@ int rollDies(int *, int*);
 landProperties *initializeBoard();
 void playerMovement(Player *players,landProperties *propery);
 void displayLandDetails(Player *player,landProperties *property);
-void buyProperty(Player *player, landProperties *property);
+void buyProperty(Player *player, landProperties *property,Player *playerlist);
 void payRent(Player *player,landProperties *property,Player *playerlist,landProperties *properties);
 
 //player decisions
