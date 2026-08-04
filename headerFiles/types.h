@@ -4,9 +4,10 @@
 
 #define Maxplayers 4
 #define TileSize 40
-#define RoundCount 20
+#define RoundCount 500
 #define GO_MONEY 2000.0f
 #define PLAYER_STARTING_CASH 30000.0f
+#define MAX_ROWS 22
 
 #define BOLD_GREEN "\033[1;32m"
 #define GREEN "\033[0;32m"

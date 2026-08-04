@@ -6,9 +6,9 @@ Player* createPlayers()//return array in Player data type
 {
     //static is use to keep array in memory always
     static Player playersList[Maxplayers]={
-        {.id=1,.name="Aggressive Investor",.cash=100.0,.inJail = FALSE,.isBankrupt=FALSE},
-        {.id=2,.name="Conservative Banker",.cash=100.0,.inJail = FALSE,.isBankrupt=FALSE},
-        {.id=3,.name="Risk Taker",.cash=100.0,.inJail = FALSE,.isBankrupt=FALSE},
+        {.id=1,.name="Aggressive Investor",.cash=PLAYER_STARTING_CASH,.inJail = FALSE,.isBankrupt=FALSE},
+        {.id=2,.name="Conservative Banker",.cash=PLAYER_STARTING_CASH,.inJail = FALSE,.isBankrupt=FALSE},
+        {.id=3,.name="Risk Taker",.cash=PLAYER_STARTING_CASH,.inJail = FALSE,.isBankrupt=FALSE},
         {.id=4,.name="Opportunistic Trader",.cash=PLAYER_STARTING_CASH,.inJail = FALSE,.isBankrupt=FALSE}//turn order is save in this array
     };
     return playersList;
@@ -204,7 +204,14 @@ void auctionProperty(Player *playerlist,landProperties *property)
             }
             if(activeBidders<=1) break;
         }
-        if(placedBids ==0)break;
+        
+        if(activeBidders<=1) break;// for safty
+
+        if(placedBids ==0)
+        {
+            printf(YELLOW"No Players are willing to bid, Auction ended.\n"RESET);
+            break;
+        }
     }
 
     //select winner
@@ -233,7 +240,7 @@ void buyProperty(Player *player, landProperties *property,Player *playerList)
         {
             case 1:
             {
-                double tempFutureRent = 250.00;////// tempary value
+                double tempFutureRent = 50.00;////// tempary value
                 shouldBuy=aggInvDecisions(player,*property,BUY_PROPERTY_DECISION,tempFutureRent);
                 break;
             }

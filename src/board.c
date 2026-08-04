@@ -5,38 +5,50 @@
 
 landProperties *initializeBoard()
 {
+    double purchasePrice[MAX_ROWS];
+    double baseRents[MAX_ROWS];
+
+    int totalRows = landData(purchasePrice,baseRents);
+    /*
+    printf("\n---- Successfully Stored and Returned Data ----\n");
+    
+    for (int i = 0; i < totalRows; i++) {
+        printf("%d. Purchase Price: %lf | Base Rent: %lf\n", i, purchasePrice[i], baseRents[i]);
+    }
+    */
+
     static landProperties board[TileSize];
     //land Propeties
                         //brown
-    board[Pettah]=(landProperties){.name="Pettah",.purchasePrice=1500.0,.baseRental=100.0,.currentOwner=-1,.cGroup=G_BROWN};
-    board[Maradhana]=(landProperties){.name="Maradhana",.purchasePrice=1800.0,.baseRental=120.0,.currentOwner=-1,.cGroup=G_BROWN};
+    board[Pettah]=(landProperties){.name="Pettah",.purchasePrice=purchasePrice[0],.baseRental=baseRents[0],.currentOwner=-1,.cGroup=G_BROWN};
+    board[Maradhana]=(landProperties){.name="Maradhana",.purchasePrice=purchasePrice[1],.baseRental=baseRents[1],.currentOwner=-1,.cGroup=G_BROWN};
                         //light blue
-    board[Bambalapitiya]=(landProperties){.name="Bambalapitiya",.purchasePrice=2500.0,.baseRental=180.0,.currentOwner=-1,.cGroup=G_LIGHT_BLUE};
-    board[Wellawatta]=(landProperties){.name="Wellawatta",.purchasePrice=2700.0,.baseRental=200.0,.currentOwner=-1,.cGroup=G_LIGHT_BLUE};
-    board[MountLavinia]=(landProperties){.name="MountLavinia",.purchasePrice=3000.0,.baseRental=220.0,.currentOwner=-1,.cGroup=G_LIGHT_BLUE};
+    board[Bambalapitiya]=(landProperties){.name="Bambalapitiya",.purchasePrice=purchasePrice[2],.baseRental=baseRents[2],.currentOwner=-1,.cGroup=G_LIGHT_BLUE};
+    board[Wellawatta]=(landProperties){.name="Wellawatta",.purchasePrice=purchasePrice[3],.baseRental=baseRents[3],.currentOwner=-1,.cGroup=G_LIGHT_BLUE};
+    board[MountLavinia]=(landProperties){.name="MountLavinia",.purchasePrice=purchasePrice[4],.baseRental=baseRents[4],.currentOwner=-1,.cGroup=G_LIGHT_BLUE};
                         //pink
-    board[Nugegoda]=(landProperties){.name="Nugegoda",.purchasePrice=3500.0,.baseRental=260.0,.currentOwner=-1,.cGroup=G_PINK};
-    board[Maharagama]=(landProperties){.name="Maharagama",.purchasePrice=3800.0,.baseRental=280.0,.currentOwner=-1,.cGroup=G_PINK};
-    board[Kottawa]=(landProperties){.name="Kottawa",.purchasePrice=4000.0,.baseRental=300.0,.currentOwner=-1,.cGroup=G_PINK};
+    board[Nugegoda]=(landProperties){.name="Nugegoda",.purchasePrice=purchasePrice[5],.baseRental=baseRents[5],.currentOwner=-1,.cGroup=G_PINK};
+    board[Maharagama]=(landProperties){.name="Maharagama",.purchasePrice=purchasePrice[6],.baseRental=baseRents[6],.currentOwner=-1,.cGroup=G_PINK};
+    board[Kottawa]=(landProperties){.name="Kottawa",.purchasePrice=purchasePrice[7],.baseRental=baseRents[7],.currentOwner=-1,.cGroup=G_PINK};
                         //orange
-    board[Negombo]=(landProperties){.name="Negombo",.purchasePrice=4500.0,.baseRental=350.0,.currentOwner=-1,.cGroup=G_ORANGE};
-    board[Katunayake]=(landProperties){.name="Katunayake",.purchasePrice=4700.0,.baseRental=370.0,.currentOwner=-1,.cGroup=G_ORANGE};
-    board[JaEla]=(landProperties){.name="Ja-Ela",.purchasePrice=5000.0,.baseRental=400.0,.currentOwner=-1,.cGroup=G_ORANGE};
+    board[Negombo]=(landProperties){.name="Negombo",.purchasePrice=purchasePrice[8],.baseRental=baseRents[8],.currentOwner=-1,.cGroup=G_ORANGE};
+    board[Katunayake]=(landProperties){.name="Katunayake",.purchasePrice=purchasePrice[9],.baseRental=baseRents[9],.currentOwner=-1,.cGroup=G_ORANGE};
+    board[JaEla]=(landProperties){.name="Ja-Ela",.purchasePrice=purchasePrice[10],.baseRental=baseRents[10],.currentOwner=-1,.cGroup=G_ORANGE};
                         //red
-    board[Kandy]=(landProperties){.name="Kandy",.purchasePrice=5500.0,.baseRental=450.0,.currentOwner=-1,.cGroup=G_RED};
-    board[Peradeniya]=(landProperties){.name="Peradeniya",.purchasePrice=5800.0,.baseRental=480.0,.currentOwner=-1,.cGroup=G_RED};
-    board[Katugasthota]=(landProperties){.name="Katugasthota",.purchasePrice=6000.0,.baseRental=500.0,.currentOwner=-1,.cGroup=G_RED};
+    board[Kandy]=(landProperties){.name="Kandy",.purchasePrice=purchasePrice[11],.baseRental=baseRents[11],.currentOwner=-1,.cGroup=G_RED};
+    board[Peradeniya]=(landProperties){.name="Peradeniya",.purchasePrice=purchasePrice[12],.baseRental=baseRents[12],.currentOwner=-1,.cGroup=G_RED};
+    board[Katugasthota]=(landProperties){.name="Katugasthota",.purchasePrice=purchasePrice[13],.baseRental=baseRents[13],.currentOwner=-1,.cGroup=G_RED};
                         //yellow
-    board[GalleFort]=(landProperties){.name="Galle Fort",.purchasePrice=6500.0,.baseRental=600.0,.currentOwner=-1,.cGroup=G_YELLOW};
-    board[Unawatuna]=(landProperties){.name="Unawatuna",.purchasePrice=6800.0,.baseRental=620.0,.currentOwner=-1,.cGroup=G_YELLOW};
-    board[Hikkaduwa]=(landProperties){.name="Hikkaduwa",.purchasePrice=7000.0,.baseRental=650.0,.currentOwner=-1,.cGroup=G_YELLOW}; 
+    board[GalleFort]=(landProperties){.name="Galle Fort",.purchasePrice=purchasePrice[14],.baseRental=baseRents[14],.currentOwner=-1,.cGroup=G_YELLOW};
+    board[Unawatuna]=(landProperties){.name="Unawatuna",.purchasePrice=purchasePrice[15],.baseRental=baseRents[15],.currentOwner=-1,.cGroup=G_YELLOW};
+    board[Hikkaduwa]=(landProperties){.name="Hikkaduwa",.purchasePrice=purchasePrice[16],.baseRental=baseRents[16],.currentOwner=-1,.cGroup=G_YELLOW}; 
                         //green
-    board[Jaffna]=(landProperties){.name="Jaffna",.purchasePrice=8000.0,.baseRental=750.0,.currentOwner=-1,.cGroup=G_GREEN};
-    board[Nallur]=(landProperties){.name="Nallur",.purchasePrice=8300.0,.baseRental=780.0,.currentOwner=-1,.cGroup=G_GREEN};
-    board[Trincomalee]=(landProperties){.name="Trincomalee",.purchasePrice=8500.0,.baseRental=800.0,.currentOwner=-1,.cGroup=G_GREEN};
+    board[Jaffna]=(landProperties){.name="Jaffna",.purchasePrice=purchasePrice[17],.baseRental=baseRents[17],.currentOwner=-1,.cGroup=G_GREEN};
+    board[Nallur]=(landProperties){.name="Nallur",.purchasePrice=purchasePrice[18],.baseRental=baseRents[18],.currentOwner=-1,.cGroup=G_GREEN};
+    board[Trincomalee]=(landProperties){.name="Trincomalee",.purchasePrice=purchasePrice[19],.baseRental=baseRents[19],.currentOwner=-1,.cGroup=G_GREEN};
                         //darkblue
-    board[NuwaraEliya]=(landProperties){.name="NuwaraEliya",.purchasePrice=10000.0,.baseRental=1000.0,.currentOwner=-1,.cGroup=G_DARK_BLUE};
-    board[GalleFace]=(landProperties){.name="Galle Face",.purchasePrice=12000.0,.baseRental=1200.0,.currentOwner=-1,.cGroup=G_DARK_BLUE};
+    board[NuwaraEliya]=(landProperties){.name="NuwaraEliya",.purchasePrice=purchasePrice[20],.baseRental=baseRents[20],.currentOwner=-1,.cGroup=G_DARK_BLUE};
+    board[GalleFace]=(landProperties){.name="Galle Face",.purchasePrice=purchasePrice[21],.baseRental=baseRents[21],.currentOwner=-1,.cGroup=G_DARK_BLUE};
 
     //special properties
     board[ColomboFortRailway]=(landProperties){.name="Colombo Fort Railway", .purchasePrice=0,.mortgagePrice=0,.baseRental=0,.currentOwner=-1};
@@ -60,7 +72,10 @@ landProperties *initializeBoard()
     board[CeylincoInsuarance]=(landProperties){.name="Ceylinco Insuarance",.currentOwner=0};
     board[NationalEvent3]=(landProperties){.name="National Event Card",.currentOwner=0};
     board[BOC]=(landProperties){.name="Bank of Ceylon",.currentOwner=0}; 
-
+/*
+    for (int i = 0; i < TileSize; i++) {
+        printf("%d. Purchase Price: %lf | Base Rent: %lf\n", i, board[i].purchasePrice, board[i].baseRental);
+    }*/
 
     return board;
 }
