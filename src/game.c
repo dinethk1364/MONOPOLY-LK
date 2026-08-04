@@ -13,7 +13,7 @@ Player* createPlayers()//return array in Player data type
     };
     return playersList;
 }
-int rollDies(int *die1,int *die2)
+int rollDice(int *die1,int *die2)
 {
     *die1 = (rand()%6)+1;
     *die2 = (rand()%6)+1;
@@ -26,7 +26,7 @@ void playersDieRoll(Player *players)
     for(int i=0;i<Maxplayers;i++)
     {
         int d1,d2;
-        playerRolls[i]=rollDies(&d1,&d2);
+        playerRolls[i]=rollDice(&d1,&d2);
         printf("%s rolls %d\n",players[i].name,playerRolls[i]);
         players[i].dieRollValue=playerRolls[i];
     }
@@ -44,7 +44,7 @@ void tieBreaker(Player *players,int start,int end)
     for(int i=start;i<=end;i++)// reroll tie players
     {
         int d1,d2;
-        tempRollVal[i]=rollDies(&d1,&d2);
+        tempRollVal[i]=rollDice(&d1,&d2);
         printf("%s rerolls %d\n",players[i].name,tempRollVal[i]);
     }
     // sorting reroll value array
@@ -310,6 +310,18 @@ void Bankrupt(Player *player,Player *playerlist,landProperties *properties)
     gameOver(playerlist);
 
 }
+int countOwnedRailway(int ownerID, landProperties board[])
+{
+    int count = 0;
+    for(int i=0;i<TileSize;i++)
+    {
+        if(board[i].type==railway && board[i].currentOwner==ownerID)
+        {
+            count++;
+        }
+    }
+    return count;
+}
 void payRent(Player *player,landProperties *property,Player *playerlist,landProperties *properties)
 {
     if(property->currentOwner>0 && property->currentOwner!=player->id)
@@ -334,6 +346,30 @@ void payRent(Player *player,landProperties *property,Player *playerlist,landProp
         else
         {
             Bankrupt(player,playerlist,properties);
+        }
+    }
+}
+void updateRailwayRent(landProperties *property, landProperties board[])
+{
+    if(property->type==railway && property->currentOwner >0)
+        {
+        int ownerId = property->currentOwner;
+        int ownedRailway = countOwnedRailway(ownerId,board);
+
+        switch(ownedRailway)
+        {
+            case 1:
+                property->currentRent = 250.0;
+                break;
+            case 2:
+                property->currentRent = 500.0;
+                break;
+            case 3:
+                property->currentRent = 1000.0;
+                break;
+            case 4:
+                property->currentRent = 2000.0;
+                break;
         }
     }
 }

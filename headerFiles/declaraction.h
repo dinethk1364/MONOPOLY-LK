@@ -4,7 +4,7 @@
 
 void printGameBegins();
 void gameRun();
-int rollDies(int *, int*);
+int rollDice(int *, int*);
 landProperties *initializeBoard();
 void playerMovement(Player *players,landProperties *propery);
 void displayLandDetails(Player *player,landProperties *property);
@@ -13,6 +13,8 @@ void payRent(Player *player,landProperties *property,Player *playerlist,landProp
 int checkGameOver(Player *playerlist);
 void gameOver(Player *playerlist);
 int landData(double purchasePrice[],double baseRents[]);
+void updateRailwayRent(landProperties *property, landProperties board[]);
+
 //player decisions
 int aggInvDecisions(Player *players, landProperties property, int actionType, double futureRent);
 int consBanDecisions(Player *players, landProperties property, int actionType);

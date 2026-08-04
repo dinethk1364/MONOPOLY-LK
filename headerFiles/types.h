@@ -4,7 +4,7 @@
 
 #define Maxplayers 4
 #define TileSize 40
-#define RoundCount 500
+#define RoundCount 5
 #define GO_MONEY 2000.0f
 #define PLAYER_STARTING_CASH 30000.0f
 #define MAX_ROWS 22
@@ -77,6 +77,13 @@ typedef enum{
     GalleFace           //39
 }boardTiles;
 
+typedef enum{
+    land=1,
+    utility,
+    railway,
+    nonProperty
+}tileTypes;
+
 typedef struct{
     char name[50];
     double purchasePrice;
@@ -84,6 +91,7 @@ typedef struct{
     double baseRental;
     double houseCost;
     double hotelCost;
+    int type;// 1: land 2: utility  3: railway   4: nonproperty
     int currentOwner;//-1:no owner  //0:cannot be own //1,2,3,4: belongs to player ID
     double currentRent;
     boolValue mortgageStatus;// 1 is true 0 is false

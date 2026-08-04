@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define MAX_ROWS 22
+#include <math.h>
 
 typedef struct {
     char name[50];
@@ -12,6 +13,7 @@ typedef struct {
 
 int main()
 {
+    int x = sqrt(0.455);
     int purchasePrice[MAX_ROWS];
     int baseRents[MAX_ROWS];
     FILE *fp = fopen("Rent.csv","r");
