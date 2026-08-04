@@ -52,10 +52,10 @@ landProperties *initializeBoard()
 
     //special properties
     board[ColomboFortRailway]=(landProperties){.name="Colombo Fort Railway",.type=railway ,.purchasePrice=2000.0,.mortgagePrice=1000.0,.baseRental=0,.currentOwner=1};
-    board[CEB]=(landProperties){.name="Ceylon Electricity Board",.type=utility ,.purchasePrice=1500.0,.mortgagePrice=750.0,.baseRental=0,.currentOwner=-1};
+    board[CEB]=(landProperties){.name="Ceylon Electricity Board",.type=utility ,.purchasePrice=1500.0,.mortgagePrice=750.0,.baseRental=0,.currentOwner=1};
     board[KandyRailway]=(landProperties){.name="Kandy Railway Station",.type=railway ,.purchasePrice=2000.0,.mortgagePrice=1000.0,.baseRental=0,.currentOwner=1};
     board[GalleRailway]=(landProperties){.name="Galle Railway Station",.type=railway ,.purchasePrice=2000.0,.mortgagePrice=1000.0,.baseRental=0,.currentOwner=1};
-    board[WaterBoard]=(landProperties){.name="National Water Board",.type=utility ,.purchasePrice=1500.0,.mortgagePrice=750.0,.baseRental=0,.currentOwner=-1};
+    board[WaterBoard]=(landProperties){.name="National Water Board",.type=utility ,.purchasePrice=1500.0,.mortgagePrice=750.0,.baseRental=0,.currentOwner=1};
     board[JaffnaRailway]=(landProperties){.name="Jaffna Railway Station",.type=railway ,.purchasePrice=2000.0,.mortgagePrice=1000.0,.baseRental=0,.currentOwner=0};
 
     //special tiles
@@ -98,7 +98,9 @@ void gameCountCounter(Player *players,int *currentRound,int *activePlayersList,i
 void handleLandLanding(Player *player, landProperties *property, Player *playerlist,landProperties *board)
 {
     updateRailwayRent(property,board);
+    updateUtilityRent(property,board,player->dieRollValue);
     displayLandDetails(player,property);
+    printf(YELLOW"###############dice roll : %d"RESET,player->dieRollValue);
     if(property->currentOwner>0)
     {
         payRent(player,property,playerlist,board);
@@ -134,6 +136,7 @@ void playerMovement(Player *players,landProperties *board)
             {
                 int d1,d2;
                 int diceTotal = rollDice(&d1,&d2);
+                players[j].dieRollValue = diceTotal;//for utility
                 
                 if(players[j].inJail==FALSE)//move player if not in jail
                 {

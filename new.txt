@@ -9,18 +9,10 @@ Each player begins with LKR 30000.00
 
 -----DETERMINEING THE FIRST PLAYER-----
 
-Aggressive Investor rolls 4
-Conservative Banker rolls 11
+Aggressive Investor rolls 6
+Conservative Banker rolls 9
 Risk Taker rolls 11
-Opportunistic Trader rolls 2
-
------- TIE DETECTED ------
-Conservative Banker rerolls 8
-Risk Taker rerolls 8
-
------- TIE DETECTED ------
-Conservative Banker rerolls 5
-Risk Taker rerolls 8
+Opportunistic Trader rolls 5
 
 Risk Taker will begin the game.
 
@@ -36,183 +28,185 @@ Opportunistic Trader
 		DICE ROLL ROUND 1
 [0m[1;32m
  Dice Roll 
-[0mRisk Taker rolled 4
+[0mRisk Taker rolled 9
 [1;32m
  Player Movement 
-[0mRisk Taker moves from Square 0 to Square 4
-Risk Taker lands on Income Tax
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 30000.000000
-[0m[1;32m
- Dice Roll 
-[0mConservative Banker rolled 10
-[1;32m
- Player Movement 
-[0mConservative Banker moves from Square 0 to Square 10
-Conservative Banker lands on Jail
-(Just visiting Jail)
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 30000.000000
-[0m[1;32m
- Dice Roll 
-[0mAggressive Investor rolled 7
-[1;32m
- Player Movement 
-[0mAggressive Investor moves from Square 0 to Square 7
-Aggressive Investor lands on National Event Card
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 30000.000000
-[0m[1;32m
- Dice Roll 
-[0mOpportunistic Trader rolled 8
-[1;32m
- Player Movement 
-[0mOpportunistic Trader moves from Square 0 to Square 8
-Opportunistic Trader lands on Wellawatta
+[0mRisk Taker moves from Square 0 to Square 9
+Risk Taker lands on MountLavinia
 
 ================ PROPERTY DETAILS ================
 Status          : Unowned (Available to Buy)
-Purcase Price   : LKR 2700.00
-[1;32m
+Purcase Price   : LKR 3000.00
+[0;33m###############9[0m[1;32m
  Purchasing Property 
 [0m[0;32m
-Opportunistic Trader purchased Wellawatta for LKR 2700.00
-[0mRemaining Balance : LKR 27300.00
-[0;34m#############balance 27300.000000
-[0m[1;33m
-		DICE ROLL ROUND 2
+Risk Taker purchased MountLavinia for LKR 3000.00
+[0mRemaining Balance : LKR 27000.00
+[0;34m#############balance 27000.000000
 [0m[1;32m
  Dice Roll 
-[0mRisk Taker rolled 6
+[0mConservative Banker rolled 5
 [1;32m
  Player Movement 
-[0mRisk Taker moves from Square 4 to Square 10
-Risk Taker lands on Jail
-(Just visiting Jail)
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 30000.000000
-[0m[1;32m
- Dice Roll 
-[0mConservative Banker rolled 9
-[1;32m
- Player Movement 
-[0mConservative Banker moves from Square 10 to Square 19
-Conservative Banker lands on Ja-Ela
-
-================ PROPERTY DETAILS ================
-Status          : Unowned (Available to Buy)
-Purcase Price   : LKR 5000.00
-[1;32m
- Purchasing Property 
-[0m[0;32m
-Conservative Banker purchased Ja-Ela for LKR 5000.00
-[0mRemaining Balance : LKR 25000.00
-[0;34m#############balance 25000.000000
-[0m[1;32m
- Dice Roll 
-[0mAggressive Investor rolled 7
-[1;32m
- Player Movement 
-[0mAggressive Investor moves from Square 7 to Square 14
-Aggressive Investor lands on Kottawa
-
-================ PROPERTY DETAILS ================
-Status          : Unowned (Available to Buy)
-Purcase Price   : LKR 4000.00
-[1;32m
- Purchasing Property 
-[0m[0;32m
-Aggressive Investor purchased Kottawa for LKR 4000.00
-[0mRemaining Balance : LKR 26000.00
-[0;34m#############balance 26000.000000
-[0m[1;32m
- Dice Roll 
-[0mOpportunistic Trader rolled 8
-[1;32m
- Player Movement 
-[0mOpportunistic Trader moves from Square 8 to Square 16
-Opportunistic Trader lands on Negombo
-
-================ PROPERTY DETAILS ================
-Status          : Unowned (Available to Buy)
-Purcase Price   : LKR 4500.00
-[1;32m
- Purchasing Property 
-[0m[0;32m
-Opportunistic Trader purchased Negombo for LKR 4500.00
-[0mRemaining Balance : LKR 22800.00
-[0;34m#############balance 22800.000000
-[0m[1;33m
-		DICE ROLL ROUND 3
-[0m[1;32m
- Dice Roll 
-[0mRisk Taker rolled 5
-[1;32m
- Player Movement 
-[0mRisk Taker moves from Square 10 to Square 15
-Risk Taker lands on Kandy Railway Station
+[0mConservative Banker moves from Square 0 to Square 5
+Conservative Banker lands on Colombo Fort Railway
 
 ================ PROPERTY DETAILS ================
 Status          : Owned by Aggressive Investor
 Current Rent    : LKR 1000.00
-[1;32m
+[0;33m###############5[0m[1;32m
  Paying Rent 
 [0mRent Paid to Aggressive Investor : LKR 1000.00
 Remaining Balance : LKR 29000.00
 [0;34m#############balance 29000.000000
 [0m[1;32m
  Dice Roll 
-[0mConservative Banker rolled 9
+[0mAggressive Investor rolled 8
 [1;32m
  Player Movement 
-[0mConservative Banker moves from Square 19 to Square 28
-Conservative Banker lands on National Water Board
+[0mAggressive Investor moves from Square 0 to Square 8
+Aggressive Investor lands on Wellawatta
 
 ================ PROPERTY DETAILS ================
 Status          : Unowned (Available to Buy)
-Purcase Price   : LKR 1500.00
-[1;32m
+Purcase Price   : LKR 2700.00
+[0;33m###############8[0m[1;32m
  Purchasing Property 
 [0m[0;32m
-Conservative Banker purchased National Water Board for LKR 1500.00
-[0mRemaining Balance : LKR 23500.00
-[0;34m#############balance 23500.000000
+Aggressive Investor purchased Wellawatta for LKR 2700.00
+[0mRemaining Balance : LKR 28300.00
+[0;34m#############balance 28300.000000
+[0m[1;32m
+ Dice Roll 
+[0mOpportunistic Trader rolled 12
+[1;32m
+ Player Movement 
+[0mOpportunistic Trader moves from Square 0 to Square 12
+Opportunistic Trader lands on Ceylon Electricity Board
+
+================ PROPERTY DETAILS ================
+Status          : Owned by Aggressive Investor
+Current Rent    : LKR 120.00
+[0;33m###############12[0m[1;32m
+ Paying Rent 
+[0mRent Paid to Aggressive Investor : LKR 120.00
+Remaining Balance : LKR 29880.00
+[0;34m#############balance 29880.000000
+[0m[1;33m
+		DICE ROLL ROUND 2
+[0m[1;32m
+ Dice Roll 
+[0mRisk Taker rolled 4
+[1;32m
+ Player Movement 
+[0mRisk Taker moves from Square 9 to Square 13
+Risk Taker lands on Maharagama
+
+================ PROPERTY DETAILS ================
+Status          : Unowned (Available to Buy)
+Purcase Price   : LKR 3800.00
+[0;33m###############4[0m[1;32m
+ Purchasing Property 
+[0m[0;32m
+Risk Taker purchased Maharagama for LKR 3800.00
+[0mRemaining Balance : LKR 23200.00
+[0;34m#############balance 23200.000000
+[0m[1;32m
+ Dice Roll 
+[0mConservative Banker rolled 7
+[1;32m
+ Player Movement 
+[0mConservative Banker moves from Square 5 to Square 12
+Conservative Banker lands on Ceylon Electricity Board
+
+================ PROPERTY DETAILS ================
+Status          : Owned by Aggressive Investor
+Current Rent    : LKR 70.00
+[0;33m###############7[0m[1;32m
+ Paying Rent 
+[0mRent Paid to Aggressive Investor : LKR 70.00
+Remaining Balance : LKR 28930.00
+[0;34m#############balance 28930.000000
 [0m[1;32m
  Dice Roll 
 [0mAggressive Investor rolled 7
 [1;32m
  Player Movement 
-[0mAggressive Investor moves from Square 14 to Square 21
-Aggressive Investor lands on Kandy
+[0mAggressive Investor moves from Square 8 to Square 15
+Aggressive Investor lands on Kandy Railway Station
+
+================ PROPERTY DETAILS ================
+This property is belongs to you
+[0;33m###############7[0m[0;34m#############balance 28490.000000
+[0m[1;32m
+ Dice Roll 
+[0mOpportunistic Trader rolled 5
+[1;32m
+ Player Movement 
+[0mOpportunistic Trader moves from Square 12 to Square 17
+Opportunistic Trader lands on Sri Lanka Insuarance
+
+================ PROPERTY DETAILS ================
+Status          : Non-purchasable Property (Cannot be bought)
+[0;33m###############5[0m[0;34m#############balance 29880.000000
+[0m[1;33m
+		DICE ROLL ROUND 3
+[0m[1;32m
+ Dice Roll 
+[0mRisk Taker rolled 8
+[1;32m
+ Player Movement 
+[0mRisk Taker moves from Square 13 to Square 21
+Risk Taker lands on Kandy
 
 ================ PROPERTY DETAILS ================
 Status          : Unowned (Available to Buy)
 Purcase Price   : LKR 5500.00
-[1;32m
+[0;33m###############8[0m[1;32m
  Purchasing Property 
 [0m[0;32m
-Aggressive Investor purchased Kandy for LKR 5500.00
-[0mRemaining Balance : LKR 21500.00
-[0;34m#############balance 21500.000000
+Risk Taker purchased Kandy for LKR 5500.00
+[0mRemaining Balance : LKR 17700.00
+[0;34m#############balance 17700.000000
 [0m[1;32m
  Dice Roll 
-[0mOpportunistic Trader rolled 6
+[0mConservative Banker rolled 7
 [1;32m
  Player Movement 
-[0mOpportunistic Trader moves from Square 16 to Square 22
-Opportunistic Trader lands on National Event Card
+[0mConservative Banker moves from Square 12 to Square 19
+Conservative Banker lands on Ja-Ela
+
+================ PROPERTY DETAILS ================
+Status          : Unowned (Available to Buy)
+Purcase Price   : LKR 5000.00
+[0;33m###############7[0m[1;32m
+ Purchasing Property 
+[0m[0;32m
+Conservative Banker purchased Ja-Ela for LKR 5000.00
+[0mRemaining Balance : LKR 23930.00
+[0;34m#############balance 23930.000000
+[0m[1;32m
+ Dice Roll 
+[0mAggressive Investor rolled 7
+[1;32m
+ Player Movement 
+[0mAggressive Investor moves from Square 15 to Square 22
+Aggressive Investor lands on National Event Card
 
 ================ PROPERTY DETAILS ================
 Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 22800.000000
+[0;33m###############7[0m[0;34m#############balance 28490.000000
+[0m[1;32m
+ Dice Roll 
+[0mOpportunistic Trader rolled 3
+[1;32m
+ Player Movement 
+[0mOpportunistic Trader moves from Square 17 to Square 20
+Opportunistic Trader lands on Free Parking
+
+================ PROPERTY DETAILS ================
+Status          : Non-purchasable Property (Cannot be bought)
+[0;33m###############3[0m[0;34m#############balance 29880.000000
 [0m[1;33m
 		DICE ROLL ROUND 4
 [0m[1;32m
@@ -220,423 +214,91 @@ Status          : Non-purchasable Property (Cannot be bought)
 [0mRisk Taker rolled 5
 [1;32m
  Player Movement 
-[0mRisk Taker moves from Square 15 to Square 20
-Risk Taker lands on Free Parking
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 29000.000000
-[0m[1;32m
- Dice Roll 
-[0mConservative Banker rolled 5
-[1;32m
- Player Movement 
-[0mConservative Banker moves from Square 28 to Square 33
-Conservative Banker lands on Ceylinco Insuarance
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 23500.000000
-[0m[1;32m
- Dice Roll 
-[0mAggressive Investor rolled 10
-[1;32m
- Player Movement 
-[0mAggressive Investor moves from Square 21 to Square 31
-Aggressive Investor lands on Jaffna
+[0mRisk Taker moves from Square 21 to Square 26
+Risk Taker lands on Galle Fort
 
 ================ PROPERTY DETAILS ================
 Status          : Unowned (Available to Buy)
-Purcase Price   : LKR 8000.00
-[1;32m
+Purcase Price   : LKR 6500.00
+[0;33m###############5[0m[1;32m
  Purchasing Property 
 [0m[0;32m
-Aggressive Investor purchased Jaffna for LKR 8000.00
-[0mRemaining Balance : LKR 13500.00
-[0;34m#############balance 13500.000000
+Risk Taker purchased Galle Fort for LKR 6500.00
+[0mRemaining Balance : LKR 11200.00
+[0;34m#############balance 11200.000000
 [0m[1;32m
  Dice Roll 
-[0mOpportunistic Trader rolled 10
+[0mConservative Banker rolled 10
 [1;32m
  Player Movement 
-[0mOpportunistic Trader moves from Square 22 to Square 32
-Opportunistic Trader lands on Nallur
+[0mConservative Banker moves from Square 19 to Square 29
+Conservative Banker lands on Hikkaduwa
 
 ================ PROPERTY DETAILS ================
 Status          : Unowned (Available to Buy)
-Purcase Price   : LKR 8300.00
-[1;32m
+Purcase Price   : LKR 7000.00
+[0;33m###############10[0m[1;32m
  Purchasing Property 
 [0m[0;32m
-Opportunistic Trader purchased Nallur for LKR 8300.00
-[0mRemaining Balance : LKR 14500.00
-[0;34m#############balance 14500.000000
-[0m[1;33m
-		DICE ROLL ROUND 5
+Conservative Banker purchased Hikkaduwa for LKR 7000.00
+[0mRemaining Balance : LKR 16930.00
+[0;34m#############balance 16930.000000
 [0m[1;32m
  Dice Roll 
-[0mRisk Taker rolled 7
+[0mAggressive Investor rolled 12
 [1;32m
  Player Movement 
-[0mRisk Taker moves from Square 20 to Square 27
-Risk Taker lands on Unawatuna
-
-================ PROPERTY DETAILS ================
-Status          : Unowned (Available to Buy)
-Purcase Price   : LKR 6800.00
-[1;32m
- Purchasing Property 
-[0m[0;32m
-Risk Taker purchased Unawatuna for LKR 6800.00
-[0mRemaining Balance : LKR 22200.00
-[0;34m#############balance 22200.000000
-[0m[1;32m
- Dice Roll 
-[0mConservative Banker rolled 7
-[1;32m
- Player Movement 
-[0mConservative Banker moves from Square 33 to Square 0
-Conservative Banker lands on Go
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 23500.000000
-[0m[1;32m
- Passing GO 
-[0m
-Conservative Banker is passed GO.
-Collected LKR 2000.00
-Current Balance : LKR 25500.00
-[1;31m##########player round 1
-[0m[1;32m
- Dice Roll 
-[0mAggressive Investor rolled 7
-[1;32m
- Player Movement 
-[0mAggressive Investor moves from Square 31 to Square 38
-Aggressive Investor lands on Bank of Ceylon
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 13500.000000
-[0m[1;32m
- Dice Roll 
-[0mOpportunistic Trader rolled 4
-[1;32m
- Player Movement 
-[0mOpportunistic Trader moves from Square 32 to Square 36
-Opportunistic Trader lands on National Event Card
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 14500.000000
-[0m[1;33m
-		DICE ROLL ROUND 6
-[0m[1;32m
- Dice Roll 
-[0mRisk Taker rolled 6
-[1;32m
- Player Movement 
-[0mRisk Taker moves from Square 27 to Square 33
-Risk Taker lands on Ceylinco Insuarance
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 22200.000000
-[0m[1;32m
- Dice Roll 
-[0mConservative Banker rolled 2
-[1;32m
- Player Movement 
-[0mConservative Banker moves from Square 0 to Square 2
-Conservative Banker lands on Community Development Fund
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 25500.000000
-[0m[1;32m
- Dice Roll 
-[0mAggressive Investor rolled 8
-[1;32m
- Player Movement 
-[0mAggressive Investor moves from Square 38 to Square 6
-Aggressive Investor lands on Bambalapitiya
-
-================ PROPERTY DETAILS ================
-Status          : Unowned (Available to Buy)
-Purcase Price   : LKR 2500.00
-[1;32m
- Purchasing Property 
-[0m[0;32m
-Aggressive Investor purchased Bambalapitiya for LKR 2500.00
-[0mRemaining Balance : LKR 11000.00
-[0;34m#############balance 11000.000000
-[0m[1;32m
- Passing GO 
-[0m
-Aggressive Investor is passed GO.
-Collected LKR 2000.00
-Current Balance : LKR 13000.00
-[1;31m##########player round 1
-[0m[1;32m
- Dice Roll 
-[0mOpportunistic Trader rolled 8
-[1;32m
- Player Movement 
-[0mOpportunistic Trader moves from Square 36 to Square 4
-Opportunistic Trader lands on Income Tax
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 14500.000000
-[0m[1;32m
- Passing GO 
-[0m
-Opportunistic Trader is passed GO.
-Collected LKR 2000.00
-Current Balance : LKR 16500.00
-[1;31m##########player round 1
-[0m[1;33m
-		DICE ROLL ROUND 7
-[0m[1;32m
- Dice Roll 
-[0mRisk Taker rolled 6
-[1;32m
- Player Movement 
-[0mRisk Taker moves from Square 33 to Square 39
-Risk Taker lands on Galle Face
-
-================ PROPERTY DETAILS ================
-Status          : Unowned (Available to Buy)
-Purcase Price   : LKR 12000.00
-[1;32m
- Purchasing Property 
-[0m[0;32m
-Risk Taker purchased Galle Face for LKR 12000.00
-[0mRemaining Balance : LKR 10200.00
-[0;34m#############balance 10200.000000
-[0m[1;32m
- Dice Roll 
-[0mConservative Banker rolled 8
-[1;32m
- Player Movement 
-[0mConservative Banker moves from Square 2 to Square 10
-Conservative Banker lands on Jail
-(Just visiting Jail)
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 25500.000000
-[0m[1;32m
- Dice Roll 
-[0mAggressive Investor rolled 9
-[1;32m
- Player Movement 
-[0mAggressive Investor moves from Square 6 to Square 15
-Aggressive Investor lands on Kandy Railway Station
-
-================ PROPERTY DETAILS ================
-This property is belongs to you
-[0;34m#############balance 13000.000000
-[0m[1;32m
- Dice Roll 
-[0mOpportunistic Trader rolled 8
-[1;32m
- Player Movement 
-[0mOpportunistic Trader moves from Square 4 to Square 12
-Opportunistic Trader lands on Ceylon Electricity Board
-
-================ PROPERTY DETAILS ================
-Status          : Unowned (Available to Buy)
-Purcase Price   : LKR 1500.00
-[1;32m
- Purchasing Property 
-[0m[0;32m
-Opportunistic Trader purchased Ceylon Electricity Board for LKR 1500.00
-[0mRemaining Balance : LKR 15000.00
-[0;34m#############balance 15000.000000
-[0m[1;33m
-		DICE ROLL ROUND 8
-[0m[1;32m
- Dice Roll 
-[0mRisk Taker rolled 7
-[1;32m
- Player Movement 
-[0mRisk Taker moves from Square 39 to Square 6
-Risk Taker lands on Bambalapitiya
-
-================ PROPERTY DETAILS ================
-Status          : Owned by Aggressive Investor
-Current Rent    : LKR 180.00
-[1;32m
- Paying Rent 
-[0mRent Paid to Aggressive Investor : LKR 180.00
-Remaining Balance : LKR 10020.00
-[0;34m#############balance 10020.000000
-[0m[1;32m
- Passing GO 
-[0m
-Risk Taker is passed GO.
-Collected LKR 2000.00
-Current Balance : LKR 12020.00
-[1;31m##########player round 1
-[0m[1;34m
-====================== ROUND 1 END ======================
-[0m[1;32m
- Dice Roll 
-[0mConservative Banker rolled 8
-[1;32m
- Player Movement 
-[0mConservative Banker moves from Square 10 to Square 18
-Conservative Banker lands on Katunayake
-
-================ PROPERTY DETAILS ================
-Status          : Unowned (Available to Buy)
-Purcase Price   : LKR 4700.00
-[1;32m
- Purchasing Property 
-[0m[0;32m
-Conservative Banker purchased Katunayake for LKR 4700.00
-[0mRemaining Balance : LKR 20800.00
-[0;34m#############balance 20800.000000
-[0m[1;32m
- Dice Roll 
-[0mAggressive Investor rolled 8
-[1;32m
- Player Movement 
-[0mAggressive Investor moves from Square 15 to Square 23
-Aggressive Investor lands on Peradeniya
-
-================ PROPERTY DETAILS ================
-Status          : Unowned (Available to Buy)
-Purcase Price   : LKR 5800.00
-[1;32m
- Purchasing Property 
-[0m[0;32m
-Aggressive Investor purchased Peradeniya for LKR 5800.00
-[0mRemaining Balance : LKR 7380.00
-[0;34m#############balance 7380.000000
-[0m[1;32m
- Dice Roll 
-[0mOpportunistic Trader rolled 8
-[1;32m
- Player Movement 
-[0mOpportunistic Trader moves from Square 12 to Square 20
-Opportunistic Trader lands on Free Parking
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 15000.000000
-[0m[1;33m
-		DICE ROLL ROUND 9
-[0m[1;32m
- Dice Roll 
-[0mRisk Taker rolled 8
-[1;32m
- Player Movement 
-[0mRisk Taker moves from Square 6 to Square 14
-Risk Taker lands on Kottawa
-
-================ PROPERTY DETAILS ================
-Status          : Owned by Aggressive Investor
-Current Rent    : LKR 300.00
-[1;32m
- Paying Rent 
-[0mRent Paid to Aggressive Investor : LKR 300.00
-Remaining Balance : LKR 11720.00
-[0;34m#############balance 11720.000000
-[0m[1;32m
- Dice Roll 
-[0mConservative Banker rolled 9
-[1;32m
- Player Movement 
-[0mConservative Banker moves from Square 18 to Square 27
-Conservative Banker lands on Unawatuna
-
-================ PROPERTY DETAILS ================
-Status          : Owned by Risk Taker
-Current Rent    : LKR 620.00
-[1;32m
- Paying Rent 
-[0mRent Paid to Risk Taker : LKR 620.00
-Remaining Balance : LKR 20180.00
-[0;34m#############balance 20180.000000
-[0m[1;32m
- Dice Roll 
-[0mAggressive Investor rolled 10
-[1;32m
- Player Movement 
-[0mAggressive Investor moves from Square 23 to Square 33
-Aggressive Investor lands on Ceylinco Insuarance
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 7680.000000
-[0m[1;32m
- Dice Roll 
-[0mOpportunistic Trader rolled 11
-[1;32m
- Player Movement 
-[0mOpportunistic Trader moves from Square 20 to Square 31
-Opportunistic Trader lands on Jaffna
-
-================ PROPERTY DETAILS ================
-Status          : Owned by Aggressive Investor
-Current Rent    : LKR 750.00
-[1;32m
- Paying Rent 
-[0mRent Paid to Aggressive Investor : LKR 750.00
-Remaining Balance : LKR 14250.00
-[0;34m#############balance 14250.000000
-[0m[1;33m
-		DICE ROLL ROUND 10
-[0m[1;32m
- Dice Roll 
-[0mRisk Taker rolled 10
-[1;32m
- Player Movement 
-[0mRisk Taker moves from Square 14 to Square 24
-Risk Taker lands on Katugasthota
-
-================ PROPERTY DETAILS ================
-Status          : Unowned (Available to Buy)
-Purcase Price   : LKR 6000.00
-[1;32m
- Purchasing Property 
-[0m[0;32m
-Risk Taker purchased Katugasthota for LKR 6000.00
-[0mRemaining Balance : LKR 6340.00
-[0;34m#############balance 6340.000000
-[0m[1;32m
- Dice Roll 
-[0mConservative Banker rolled 7
-[1;32m
- Player Movement 
-[0mConservative Banker moves from Square 27 to Square 34
-Conservative Banker lands on Trincomalee
+[0mAggressive Investor moves from Square 22 to Square 34
+Aggressive Investor lands on Trincomalee
 
 ================ PROPERTY DETAILS ================
 Status          : Unowned (Available to Buy)
 Purcase Price   : LKR 8500.00
-[1;32m
+[0;33m###############12[0m[1;32m
  Purchasing Property 
 [0m[0;32m
-Conservative Banker purchased Trincomalee for LKR 8500.00
-[0mRemaining Balance : LKR 11680.00
-[0;34m#############balance 11680.000000
+Aggressive Investor purchased Trincomalee for LKR 8500.00
+[0mRemaining Balance : LKR 19990.00
+[0;34m#############balance 19990.000000
 [0m[1;32m
  Dice Roll 
-[0mAggressive Investor rolled 4
+[0mOpportunistic Trader rolled 3
 [1;32m
  Player Movement 
-[0mAggressive Investor moves from Square 33 to Square 37
-Aggressive Investor lands on NuwaraEliya
+[0mOpportunistic Trader moves from Square 20 to Square 23
+Opportunistic Trader lands on Peradeniya
+
+================ PROPERTY DETAILS ================
+Status          : Unowned (Available to Buy)
+Purcase Price   : LKR 5800.00
+[0;33m###############3[0m[1;32m
+ Purchasing Property 
+[0m[0;32m
+Opportunistic Trader purchased Peradeniya for LKR 5800.00
+[0mRemaining Balance : LKR 24080.00
+[0;34m#############balance 24080.000000
+[0m[1;33m
+		DICE ROLL ROUND 5
+[0m[1;32m
+ Dice Roll 
+[0mRisk Taker rolled 4
+[1;32m
+ Player Movement 
+[0mRisk Taker moves from Square 26 to Square 30
+[0;31mBusted! Risk Taker was caught and sent straight to Jail!
+[0m[1;32m
+ Dice Roll 
+[0mConservative Banker rolled 8
+[1;32m
+ Player Movement 
+[0mConservative Banker moves from Square 29 to Square 37
+Conservative Banker lands on NuwaraEliya
 
 ================ PROPERTY DETAILS ================
 Status          : Unowned (Available to Buy)
 Purcase Price   : LKR 10000.00
-[0;33m
-Aggressive Investor decided to not to buy
+[0;33m###############8[0m[0;33m
+Conservative Banker decided to not to buy
 [0m[1;33m
 ================== Property Auction ==================
 [0mBase Purchase Price: LKR 5000.00
@@ -648,273 +310,641 @@ Aggressive Investor decided to not to buy
 [0m[0;32mConservative Banker bids LKR 6250
 [0m[0;32mAggressive Investor bids LKR 6500
 [0m[0;32mOpportunistic Trader bids LKR 6750
-[0m[0;31mRisk Taker is dropped out of the auction!
-[0m[0;32mConservative Banker bids LKR 7000
-[0m[0;32mAggressive Investor bids LKR 7250
-[0m[0;32mOpportunistic Trader bids LKR 7500
-[0m[0;32mConservative Banker bids LKR 7750
-[0m[0;32mAggressive Investor bids LKR 8000
-[0m[0;32mOpportunistic Trader bids LKR 8250
-[0m[0;32mConservative Banker bids LKR 8500
-[0m[0;31mAggressive Investor is dropped out of the auction!
+[0m[0;32mRisk Taker bids LKR 7000
+[0m[0;32mConservative Banker bids LKR 7250
+[0m[0;32mAggressive Investor bids LKR 7500
+[0m[0;32mOpportunistic Trader bids LKR 7750
+[0m[0;32mRisk Taker bids LKR 8000
+[0m[0;32mConservative Banker bids LKR 8250
+[0m[0;32mAggressive Investor bids LKR 8500
 [0m[0;32mOpportunistic Trader bids LKR 8750
-[0m[0;32mConservative Banker bids LKR 9000
-[0m[0;32mOpportunistic Trader bids LKR 9250
-[0m[0;32mConservative Banker bids LKR 9500
+[0m[0;32mRisk Taker bids LKR 9000
+[0m[0;32mConservative Banker bids LKR 9250
+[0m[0;32mAggressive Investor bids LKR 9500
 [0m[0;32mOpportunistic Trader bids LKR 9750
-[0m[0;32mConservative Banker bids LKR 10000
-[0m[0;32mOpportunistic Trader bids LKR 10250
-[0m[0;32mConservative Banker bids LKR 10500
+[0m[0;32mRisk Taker bids LKR 10000
+[0m[0;32mConservative Banker bids LKR 10250
+[0m[0;32mAggressive Investor bids LKR 10500
 [0m[0;32mOpportunistic Trader bids LKR 10750
-[0m[0;32mConservative Banker bids LKR 11000
-[0m[0;32mOpportunistic Trader bids LKR 11250
-[0m[0;32mConservative Banker bids LKR 11500
+[0m[0;32mRisk Taker bids LKR 11000
+[0m[0;32mConservative Banker bids LKR 11250
+[0m[0;32mAggressive Investor bids LKR 11500
 [0m[0;32mOpportunistic Trader bids LKR 11750
-[0m[0;31mConservative Banker is dropped out of the auction!
+[0m[0;31mRisk Taker is dropped out of the auction!
+[0m[0;32mConservative Banker bids LKR 12000
+[0m[0;31mAggressive Investor is dropped out of the auction!
+[0m[0;31mOpportunistic Trader is dropped out of the auction!
 [0m[0;34m
-14250.000000 #######cash of the winner before auction
+16930.000000 #######cash of the winner before auction
 [0m[1;32m
 --------------------------------------------------------
 [0m[0;32m
 
-Opportunistic Trader wins the auction
-[0m[0;32mOpportunistic Trader bought NuwaraEliya for LKR : 11750
+Conservative Banker wins the auction
+[0m[0;32mConservative Banker bought NuwaraEliya for LKR : 12000
 [0m[0;34m
-2500.000000 #######remain cash of the winner 
+4930.000000 #######remain cash of the winner 
 [0m[1;32m
 --------------------------------------------------------
-[0m[0;34m#############balance 8430.000000
+[0m[0;34m#############balance 4930.000000
 [0m[1;32m
  Dice Roll 
-[0mOpportunistic Trader rolled 9
+[0mAggressive Investor rolled 9
 [1;32m
  Player Movement 
-[0mOpportunistic Trader moves from Square 31 to Square 0
-Opportunistic Trader lands on Go
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 2500.000000
-[0m[1;32m
- Passing GO 
-[0m
-Opportunistic Trader is passed GO.
-Collected LKR 2000.00
-Current Balance : LKR 4500.00
-[1;31m##########player round 2
-[0m[1;33m
-		DICE ROLL ROUND 11
-[0m[1;32m
- Dice Roll 
-[0mRisk Taker rolled 12
-[1;32m
- Player Movement 
-[0mRisk Taker moves from Square 24 to Square 36
-Risk Taker lands on National Event Card
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 6340.000000
-[0m[1;32m
- Dice Roll 
-[0mConservative Banker rolled 9
-[1;32m
- Player Movement 
-[0mConservative Banker moves from Square 34 to Square 3
-Conservative Banker lands on Maradhana
+[0mAggressive Investor moves from Square 34 to Square 3
+Aggressive Investor lands on Maradhana
 
 ================ PROPERTY DETAILS ================
 Status          : Unowned (Available to Buy)
 Purcase Price   : LKR 1800.00
-[1;32m
+[0;33m###############9[0m[1;32m
  Purchasing Property 
 [0m[0;32m
-Conservative Banker purchased Maradhana for LKR 1800.00
-[0mRemaining Balance : LKR 9880.00
-[0;34m#############balance 9880.000000
-[0m[1;32m
- Passing GO 
-[0m
-Conservative Banker is passed GO.
-Collected LKR 2000.00
-Current Balance : LKR 11880.00
-[1;31m##########player round 2
-[0m[1;32m
- Dice Roll 
-[0mAggressive Investor rolled 8
-[1;32m
- Player Movement 
-[0mAggressive Investor moves from Square 37 to Square 5
-Aggressive Investor lands on Colombo Fort Railway
-
-================ PROPERTY DETAILS ================
-This property is belongs to you
-[0;34m#############balance 8430.000000
+Aggressive Investor purchased Maradhana for LKR 1800.00
+[0mRemaining Balance : LKR 18190.00
+[0;34m#############balance 18190.000000
 [0m[1;32m
  Passing GO 
 [0m
 Aggressive Investor is passed GO.
 Collected LKR 2000.00
-Current Balance : LKR 10430.00
-[1;31m##########player round 2
+Current Balance : LKR 20190.00
+[1;31m##########player round 1
 [0m[1;32m
  Dice Roll 
 [0mOpportunistic Trader rolled 5
 [1;32m
  Player Movement 
-[0mOpportunistic Trader moves from Square 0 to Square 5
-Opportunistic Trader lands on Colombo Fort Railway
+[0mOpportunistic Trader moves from Square 23 to Square 28
+Opportunistic Trader lands on National Water Board
 
 ================ PROPERTY DETAILS ================
 Status          : Owned by Aggressive Investor
-Current Rent    : LKR 1000.00
-[1;32m
+Current Rent    : LKR 50.00
+[0;33m###############5[0m[1;32m
  Paying Rent 
-[0mRent Paid to Aggressive Investor : LKR 1000.00
-Remaining Balance : LKR 3500.00
-[0;34m#############balance 3500.000000
+[0mRent Paid to Aggressive Investor : LKR 50.00
+Remaining Balance : LKR 24030.00
+[0;34m#############balance 24030.000000
 [0m[1;33m
-		DICE ROLL ROUND 12
-[0m[1;32m
- Dice Roll 
-[0mRisk Taker rolled 5
-[1;32m
- Player Movement 
-[0mRisk Taker moves from Square 36 to Square 1
-Risk Taker lands on Pettah
-
-================ PROPERTY DETAILS ================
-Status          : Unowned (Available to Buy)
-Purcase Price   : LKR 1500.00
-[1;32m
- Purchasing Property 
-[0m[0;32m
-Risk Taker purchased Pettah for LKR 1500.00
-[0mRemaining Balance : LKR 4840.00
-[0;34m#############balance 4840.000000
-[0m[1;32m
- Passing GO 
-[0m
-Risk Taker is passed GO.
-Collected LKR 2000.00
-Current Balance : LKR 6840.00
-[1;31m##########player round 2
-[0m[1;34m
-====================== ROUND 2 END ======================
+		DICE ROLL ROUND 6
+[0m[1;31m
+ Jail turn 1
+[0mRisk Taker rolled 2 and 3
+[0;31mRisk Taker failed to roll doubles and remains in Jail.
 [0m[1;32m
  Dice Roll 
 [0mConservative Banker rolled 7
 [1;32m
  Player Movement 
-[0mConservative Banker moves from Square 3 to Square 10
-Conservative Banker lands on Jail
-(Just visiting Jail)
+[0mConservative Banker moves from Square 37 to Square 4
+Conservative Banker lands on Income Tax
 
 ================ PROPERTY DETAILS ================
 Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 11880.000000
+[0;33m###############7[0m[0;34m#############balance 4930.000000
+[0m[1;32m
+ Passing GO 
+[0m
+Conservative Banker is passed GO.
+Collected LKR 2000.00
+Current Balance : LKR 6930.00
+[1;31m##########player round 1
 [0m[1;32m
  Dice Roll 
-[0mAggressive Investor rolled 7
+[0mAggressive Investor rolled 5
 [1;32m
  Player Movement 
-[0mAggressive Investor moves from Square 5 to Square 12
-Aggressive Investor lands on Ceylon Electricity Board
-
-================ PROPERTY DETAILS ================
-Status          : Owned by Opportunistic Trader
-Current Rent    : LKR 0.00
-[1;32m
- Paying Rent 
-[0mRent Paid to Opportunistic Trader : LKR 0.00
-Remaining Balance : LKR 11430.00
-[0;34m#############balance 11430.000000
-[0m[1;32m
- Dice Roll 
-[0mOpportunistic Trader rolled 7
-[1;32m
- Player Movement 
-[0mOpportunistic Trader moves from Square 5 to Square 12
-Opportunistic Trader lands on Ceylon Electricity Board
+[0mAggressive Investor moves from Square 3 to Square 8
+Aggressive Investor lands on Wellawatta
 
 ================ PROPERTY DETAILS ================
 This property is belongs to you
-[0;34m#############balance 3500.000000
-[0m[1;33m
-		DICE ROLL ROUND 13
+[0;33m###############5[0m[0;34m#############balance 20240.000000
 [0m[1;32m
  Dice Roll 
-[0mRisk Taker rolled 8
+[0mOpportunistic Trader rolled 9
 [1;32m
  Player Movement 
-[0mRisk Taker moves from Square 1 to Square 9
-Risk Taker lands on MountLavinia
+[0mOpportunistic Trader moves from Square 28 to Square 37
+Opportunistic Trader lands on NuwaraEliya
+
+================ PROPERTY DETAILS ================
+Status          : Owned by Conservative Banker
+Current Rent    : LKR 1000.00
+[0;33m###############9[0m[1;32m
+ Paying Rent 
+[0mRent Paid to Conservative Banker : LKR 1000.00
+Remaining Balance : LKR 23030.00
+[0;34m#############balance 23030.000000
+[0m[1;33m
+		DICE ROLL ROUND 7
+[0m[1;31m
+ Jail turn 2
+[0mRisk Taker rolled 6 and 3
+[0;31mRisk Taker failed to roll doubles and remains in Jail.
+[0m[1;32m
+ Dice Roll 
+[0mConservative Banker rolled 3
+[1;32m
+ Player Movement 
+[0mConservative Banker moves from Square 4 to Square 7
+Conservative Banker lands on National Event Card
+
+================ PROPERTY DETAILS ================
+Status          : Non-purchasable Property (Cannot be bought)
+[0;33m###############3[0m[0;34m#############balance 7930.000000
+[0m[1;32m
+ Dice Roll 
+[0mAggressive Investor rolled 10
+[1;32m
+ Player Movement 
+[0mAggressive Investor moves from Square 8 to Square 18
+Aggressive Investor lands on Katunayake
 
 ================ PROPERTY DETAILS ================
 Status          : Unowned (Available to Buy)
-Purcase Price   : LKR 3000.00
-[1;32m
+Purcase Price   : LKR 4700.00
+[0;33m###############10[0m[1;32m
  Purchasing Property 
 [0m[0;32m
-Risk Taker purchased MountLavinia for LKR 3000.00
-[0mRemaining Balance : LKR 3840.00
-[0;34m#############balance 3840.000000
+Aggressive Investor purchased Katunayake for LKR 4700.00
+[0mRemaining Balance : LKR 15540.00
+[0;34m#############balance 15540.000000
+[0m[1;32m
+ Dice Roll 
+[0mOpportunistic Trader rolled 11
+[1;32m
+ Player Movement 
+[0mOpportunistic Trader moves from Square 37 to Square 8
+Opportunistic Trader lands on Wellawatta
+
+================ PROPERTY DETAILS ================
+Status          : Owned by Aggressive Investor
+Current Rent    : LKR 200.00
+[0;33m###############11[0m[1;32m
+ Paying Rent 
+[0mRent Paid to Aggressive Investor : LKR 200.00
+Remaining Balance : LKR 22830.00
+[0;34m#############balance 22830.000000
+[0m[1;32m
+ Passing GO 
+[0m
+Opportunistic Trader is passed GO.
+Collected LKR 2000.00
+Current Balance : LKR 24830.00
+[1;31m##########player round 1
+[0m[1;34m
+====================== ROUND 1 END ======================
+[0m[1;33m
+		DICE ROLL ROUND 8
+[0m[1;31m
+ Jail turn 3
+[0mRisk Taker rolled 1 and 3
+[0;31mRisk Taker failed to roll doubles and remains in Jail.
+[0m[1;32m
+ Dice Roll 
+[0mConservative Banker rolled 8
+[1;32m
+ Player Movement 
+[0mConservative Banker moves from Square 7 to Square 15
+Conservative Banker lands on Kandy Railway Station
+
+================ PROPERTY DETAILS ================
+Status          : Owned by Aggressive Investor
+Current Rent    : LKR 1000.00
+[0;33m###############8[0m[1;32m
+ Paying Rent 
+[0mRent Paid to Aggressive Investor : LKR 1000.00
+Remaining Balance : LKR 6930.00
+[0;34m#############balance 6930.000000
+[0m[1;32m
+ Dice Roll 
+[0mAggressive Investor rolled 8
+[1;32m
+ Player Movement 
+[0mAggressive Investor moves from Square 18 to Square 26
+Aggressive Investor lands on Galle Fort
+
+================ PROPERTY DETAILS ================
+Status          : Owned by Risk Taker
+Current Rent    : LKR 600.00
+[0;33m###############8[0m[1;32m
+ Paying Rent 
+[0mRent Paid to Risk Taker : LKR 600.00
+Remaining Balance : LKR 16140.00
+[0;34m#############balance 16140.000000
+[0m[1;32m
+ Dice Roll 
+[0mOpportunistic Trader rolled 9
+[1;32m
+ Player Movement 
+[0mOpportunistic Trader moves from Square 8 to Square 17
+Opportunistic Trader lands on Sri Lanka Insuarance
+
+================ PROPERTY DETAILS ================
+Status          : Non-purchasable Property (Cannot be bought)
+[0;33m###############9[0m[0;34m#############balance 24830.000000
+[0m[1;33m
+		DICE ROLL ROUND 9
+[0m[1;33m
+ Free From Jail 
+[0mRisk Taker rolled 4 and 1
+[0;33mRisk Taker completed 3 turns in Jail and has beed released from Jail
+[0m[1;32m
+ Player Movement 
+[0mRisk Taker moves from Square 10 to Square 15
+Risk Taker lands on Kandy Railway Station
+
+================ PROPERTY DETAILS ================
+Status          : Owned by Aggressive Investor
+Current Rent    : LKR 1000.00
+[0;33m###############5[0m[1;32m
+ Paying Rent 
+[0mRent Paid to Aggressive Investor : LKR 1000.00
+Remaining Balance : LKR 10800.00
+[0;34m#############balance 10800.000000
+[0m[1;32m
+ Dice Roll 
+[0mConservative Banker rolled 8
+[1;32m
+ Player Movement 
+[0mConservative Banker moves from Square 15 to Square 23
+Conservative Banker lands on Peradeniya
+
+================ PROPERTY DETAILS ================
+Status          : Owned by Opportunistic Trader
+Current Rent    : LKR 480.00
+[0;33m###############8[0m[1;32m
+ Paying Rent 
+[0mRent Paid to Opportunistic Trader : LKR 480.00
+Remaining Balance : LKR 6450.00
+[0;34m#############balance 6450.000000
+[0m[1;32m
+ Dice Roll 
+[0mAggressive Investor rolled 9
+[1;32m
+ Player Movement 
+[0mAggressive Investor moves from Square 26 to Square 35
+Aggressive Investor lands on Jaffna Railway Station
+
+================ PROPERTY DETAILS ================
+Status          : Non-purchasable Property (Cannot be bought)
+[0;33m###############9[0m[0;34m#############balance 17140.000000
+[0m[1;32m
+ Dice Roll 
+[0mOpportunistic Trader rolled 8
+[1;32m
+ Player Movement 
+[0mOpportunistic Trader moves from Square 17 to Square 25
+Opportunistic Trader lands on Galle Railway Station
+
+================ PROPERTY DETAILS ================
+Status          : Owned by Aggressive Investor
+Current Rent    : LKR 1000.00
+[0;33m###############8[0m[1;32m
+ Paying Rent 
+[0mRent Paid to Aggressive Investor : LKR 1000.00
+Remaining Balance : LKR 24310.00
+[0;34m#############balance 24310.000000
+[0m[1;33m
+		DICE ROLL ROUND 10
+[0m[1;32m
+ Dice Roll 
+[0mRisk Taker rolled 11
+[1;32m
+ Player Movement 
+[0mRisk Taker moves from Square 15 to Square 26
+Risk Taker lands on Galle Fort
+
+================ PROPERTY DETAILS ================
+This property is belongs to you
+[0;33m###############11[0m[0;34m#############balance 10800.000000
 [0m[1;32m
  Dice Roll 
 [0mConservative Banker rolled 10
 [1;32m
  Player Movement 
-[0mConservative Banker moves from Square 10 to Square 20
-Conservative Banker lands on Free Parking
+[0mConservative Banker moves from Square 23 to Square 33
+Conservative Banker lands on Ceylinco Insuarance
 
 ================ PROPERTY DETAILS ================
 Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 11880.000000
+[0;33m###############10[0m[0;34m#############balance 6450.000000
+[0m[1;32m
+ Dice Roll 
+[0mAggressive Investor rolled 5
+[1;32m
+ Player Movement 
+[0mAggressive Investor moves from Square 35 to Square 0
+Aggressive Investor lands on Go
+
+================ PROPERTY DETAILS ================
+Status          : Non-purchasable Property (Cannot be bought)
+[0;33m###############5[0m[0;34m#############balance 18140.000000
+[0m[1;32m
+ Passing GO 
+[0m
+Aggressive Investor is passed GO.
+Collected LKR 2000.00
+Current Balance : LKR 20140.00
+[1;31m##########player round 2
+[0m[1;32m
+ Dice Roll 
+[0mOpportunistic Trader rolled 4
+[1;32m
+ Player Movement 
+[0mOpportunistic Trader moves from Square 25 to Square 29
+Opportunistic Trader lands on Hikkaduwa
+
+================ PROPERTY DETAILS ================
+Status          : Owned by Conservative Banker
+Current Rent    : LKR 650.00
+[0;33m###############4[0m[1;32m
+ Paying Rent 
+[0mRent Paid to Conservative Banker : LKR 650.00
+Remaining Balance : LKR 23660.00
+[0;34m#############balance 23660.000000
+[0m[1;33m
+		DICE ROLL ROUND 11
+[0m[1;32m
+ Dice Roll 
+[0mRisk Taker rolled 2
+[1;32m
+ Player Movement 
+[0mRisk Taker moves from Square 26 to Square 28
+Risk Taker lands on National Water Board
+
+================ PROPERTY DETAILS ================
+Status          : Owned by Aggressive Investor
+Current Rent    : LKR 20.00
+[0;33m###############2[0m[1;32m
+ Paying Rent 
+[0mRent Paid to Aggressive Investor : LKR 20.00
+Remaining Balance : LKR 10780.00
+[0;34m#############balance 10780.000000
+[0m[1;32m
+ Dice Roll 
+[0mConservative Banker rolled 7
+[1;32m
+ Player Movement 
+[0mConservative Banker moves from Square 33 to Square 0
+Conservative Banker lands on Go
+
+================ PROPERTY DETAILS ================
+Status          : Non-purchasable Property (Cannot be bought)
+[0;33m###############7[0m[0;34m#############balance 7100.000000
+[0m[1;32m
+ Passing GO 
+[0m
+Conservative Banker is passed GO.
+Collected LKR 2000.00
+Current Balance : LKR 9100.00
+[1;31m##########player round 2
 [0m[1;32m
  Dice Roll 
 [0mAggressive Investor rolled 3
 [1;32m
  Player Movement 
-[0mAggressive Investor moves from Square 12 to Square 15
-Aggressive Investor lands on Kandy Railway Station
+[0mAggressive Investor moves from Square 0 to Square 3
+Aggressive Investor lands on Maradhana
 
 ================ PROPERTY DETAILS ================
 This property is belongs to you
-[0;34m#############balance 11430.000000
+[0;33m###############3[0m[0;34m#############balance 20160.000000
 [0m[1;32m
  Dice Roll 
-[0mOpportunistic Trader rolled 6
+[0mOpportunistic Trader rolled 8
 [1;32m
  Player Movement 
-[0mOpportunistic Trader moves from Square 12 to Square 18
-Opportunistic Trader lands on Katunayake
+[0mOpportunistic Trader moves from Square 29 to Square 37
+Opportunistic Trader lands on NuwaraEliya
 
 ================ PROPERTY DETAILS ================
 Status          : Owned by Conservative Banker
-Current Rent    : LKR 370.00
-[1;32m
+Current Rent    : LKR 1000.00
+[0;33m###############8[0m[1;32m
  Paying Rent 
-[0mRent Paid to Conservative Banker : LKR 370.00
-Remaining Balance : LKR 3130.00
-[0;34m#############balance 3130.000000
+[0mRent Paid to Conservative Banker : LKR 1000.00
+Remaining Balance : LKR 22660.00
+[0;34m#############balance 22660.000000
+[0m[1;33m
+		DICE ROLL ROUND 12
+[0m[1;32m
+ Dice Roll 
+[0mRisk Taker rolled 6
+[1;32m
+ Player Movement 
+[0mRisk Taker moves from Square 28 to Square 34
+Risk Taker lands on Trincomalee
+
+================ PROPERTY DETAILS ================
+Status          : Owned by Aggressive Investor
+Current Rent    : LKR 800.00
+[0;33m###############6[0m[1;32m
+ Paying Rent 
+[0mRent Paid to Aggressive Investor : LKR 800.00
+Remaining Balance : LKR 9980.00
+[0;34m#############balance 9980.000000
+[0m[1;32m
+ Dice Roll 
+[0mConservative Banker rolled 5
+[1;32m
+ Player Movement 
+[0mConservative Banker moves from Square 0 to Square 5
+Conservative Banker lands on Colombo Fort Railway
+
+================ PROPERTY DETAILS ================
+Status          : Owned by Aggressive Investor
+Current Rent    : LKR 1000.00
+[0;33m###############5[0m[1;32m
+ Paying Rent 
+[0mRent Paid to Aggressive Investor : LKR 1000.00
+Remaining Balance : LKR 9100.00
+[0;34m#############balance 9100.000000
+[0m[1;32m
+ Dice Roll 
+[0mAggressive Investor rolled 8
+[1;32m
+ Player Movement 
+[0mAggressive Investor moves from Square 3 to Square 11
+Aggressive Investor lands on Nugegoda
+
+================ PROPERTY DETAILS ================
+Status          : Unowned (Available to Buy)
+Purcase Price   : LKR 3500.00
+[0;33m###############8[0m[1;32m
+ Purchasing Property 
+[0m[0;32m
+Aggressive Investor purchased Nugegoda for LKR 3500.00
+[0mRemaining Balance : LKR 18460.00
+[0;34m#############balance 18460.000000
+[0m[1;32m
+ Dice Roll 
+[0mOpportunistic Trader rolled 8
+[1;32m
+ Player Movement 
+[0mOpportunistic Trader moves from Square 37 to Square 5
+Opportunistic Trader lands on Colombo Fort Railway
+
+================ PROPERTY DETAILS ================
+Status          : Owned by Aggressive Investor
+Current Rent    : LKR 1000.00
+[0;33m###############8[0m[1;32m
+ Paying Rent 
+[0mRent Paid to Aggressive Investor : LKR 1000.00
+Remaining Balance : LKR 21660.00
+[0;34m#############balance 21660.000000
+[0m[1;32m
+ Passing GO 
+[0m
+Opportunistic Trader is passed GO.
+Collected LKR 2000.00
+Current Balance : LKR 23660.00
+[1;31m##########player round 2
+[0m[1;33m
+		DICE ROLL ROUND 13
+[0m[1;32m
+ Dice Roll 
+[0mRisk Taker rolled 7
+[1;32m
+ Player Movement 
+[0mRisk Taker moves from Square 34 to Square 1
+Risk Taker lands on Pettah
+
+================ PROPERTY DETAILS ================
+Status          : Unowned (Available to Buy)
+Purcase Price   : LKR 1500.00
+[0;33m###############7[0m[1;32m
+ Purchasing Property 
+[0m[0;32m
+Risk Taker purchased Pettah for LKR 1500.00
+[0mRemaining Balance : LKR 8480.00
+[0;34m#############balance 8480.000000
+[0m[1;32m
+ Passing GO 
+[0m
+Risk Taker is passed GO.
+Collected LKR 2000.00
+Current Balance : LKR 10480.00
+[1;31m##########player round 2
+[0m[1;34m
+====================== ROUND 2 END ======================
+[0m[1;32m
+ Dice Roll 
+[0mConservative Banker rolled 12
+[1;32m
+ Player Movement 
+[0mConservative Banker moves from Square 5 to Square 17
+Conservative Banker lands on Sri Lanka Insuarance
+
+================ PROPERTY DETAILS ================
+Status          : Non-purchasable Property (Cannot be bought)
+[0;33m###############12[0m[0;34m#############balance 9100.000000
+[0m[1;32m
+ Dice Roll 
+[0mAggressive Investor rolled 7
+[1;32m
+ Player Movement 
+[0mAggressive Investor moves from Square 11 to Square 18
+Aggressive Investor lands on Katunayake
+
+================ PROPERTY DETAILS ================
+This property is belongs to you
+[0;33m###############7[0m[0;34m#############balance 19460.000000
+[0m[1;32m
+ Dice Roll 
+[0mOpportunistic Trader rolled 5
+[1;32m
+ Player Movement 
+[0mOpportunistic Trader moves from Square 5 to Square 10
+Opportunistic Trader lands on Jail
+(Just visiting Jail)
+
+================ PROPERTY DETAILS ================
+Status          : Non-purchasable Property (Cannot be bought)
+[0;33m###############5[0m[0;34m#############balance 23660.000000
 [0m[1;33m
 		DICE ROLL ROUND 14
 [0m[1;32m
  Dice Roll 
-[0mRisk Taker rolled 3
+[0mRisk Taker rolled 7
 [1;32m
  Player Movement 
-[0mRisk Taker moves from Square 9 to Square 12
-Risk Taker lands on Ceylon Electricity Board
+[0mRisk Taker moves from Square 1 to Square 8
+Risk Taker lands on Wellawatta
 
 ================ PROPERTY DETAILS ================
-Status          : Owned by Opportunistic Trader
-Current Rent    : LKR 0.00
-[1;32m
+Status          : Owned by Aggressive Investor
+Current Rent    : LKR 200.00
+[0;33m###############7[0m[1;32m
  Paying Rent 
-[0mRent Paid to Opportunistic Trader : LKR 0.00
-Remaining Balance : LKR 3840.00
-[0;34m#############balance 3840.000000
+[0mRent Paid to Aggressive Investor : LKR 200.00
+Remaining Balance : LKR 10280.00
+[0;34m#############balance 10280.000000
+[0m[1;32m
+ Dice Roll 
+[0mConservative Banker rolled 3
+[1;32m
+ Player Movement 
+[0mConservative Banker moves from Square 17 to Square 20
+Conservative Banker lands on Free Parking
+
+================ PROPERTY DETAILS ================
+Status          : Non-purchasable Property (Cannot be bought)
+[0;33m###############3[0m[0;34m#############balance 9100.000000
+[0m[1;32m
+ Dice Roll 
+[0mAggressive Investor rolled 11
+[1;32m
+ Player Movement 
+[0mAggressive Investor moves from Square 18 to Square 29
+Aggressive Investor lands on Hikkaduwa
+
+================ PROPERTY DETAILS ================
+Status          : Owned by Conservative Banker
+Current Rent    : LKR 650.00
+[0;33m###############11[0m[1;32m
+ Paying Rent 
+[0mRent Paid to Conservative Banker : LKR 650.00
+Remaining Balance : LKR 19010.00
+[0;34m#############balance 19010.000000
+[0m[1;32m
+ Dice Roll 
+[0mOpportunistic Trader rolled 5
+[1;32m
+ Player Movement 
+[0mOpportunistic Trader moves from Square 10 to Square 15
+Opportunistic Trader lands on Kandy Railway Station
+
+================ PROPERTY DETAILS ================
+Status          : Owned by Aggressive Investor
+Current Rent    : LKR 1000.00
+[0;33m###############5[0m[1;32m
+ Paying Rent 
+[0mRent Paid to Aggressive Investor : LKR 1000.00
+Remaining Balance : LKR 22660.00
+[0;34m#############balance 22660.000000
+[0m[1;33m
+		DICE ROLL ROUND 15
+[0m[1;32m
+ Dice Roll 
+[0mRisk Taker rolled 8
+[1;32m
+ Player Movement 
+[0mRisk Taker moves from Square 8 to Square 16
+Risk Taker lands on Negombo
+
+================ PROPERTY DETAILS ================
+Status          : Unowned (Available to Buy)
+Purcase Price   : LKR 4500.00
+[0;33m###############8[0m[1;32m
+ Purchasing Property 
+[0m[0;32m
+Risk Taker purchased Negombo for LKR 4500.00
+[0mRemaining Balance : LKR 5780.00
+[0;34m#############balance 5780.000000
 [0m[1;32m
  Dice Roll 
 [0mConservative Banker rolled 6
@@ -924,20 +954,495 @@ Remaining Balance : LKR 3840.00
 Conservative Banker lands on Galle Fort
 
 ================ PROPERTY DETAILS ================
+Status          : Owned by Risk Taker
+Current Rent    : LKR 600.00
+[0;33m###############6[0m[1;32m
+ Paying Rent 
+[0mRent Paid to Risk Taker : LKR 600.00
+Remaining Balance : LKR 9150.00
+[0;34m#############balance 9150.000000
+[0m[1;32m
+ Dice Roll 
+[0mAggressive Investor rolled 5
+[1;32m
+ Player Movement 
+[0mAggressive Investor moves from Square 29 to Square 34
+Aggressive Investor lands on Trincomalee
+
+================ PROPERTY DETAILS ================
+This property is belongs to you
+[0;33m###############5[0m[0;34m#############balance 20010.000000
+[0m[1;32m
+ Dice Roll 
+[0mOpportunistic Trader rolled 6
+[1;32m
+ Player Movement 
+[0mOpportunistic Trader moves from Square 15 to Square 21
+Opportunistic Trader lands on Kandy
+
+================ PROPERTY DETAILS ================
+Status          : Owned by Risk Taker
+Current Rent    : LKR 450.00
+[0;33m###############6[0m[1;32m
+ Paying Rent 
+[0mRent Paid to Risk Taker : LKR 450.00
+Remaining Balance : LKR 22210.00
+[0;34m#############balance 22210.000000
+[0m[1;33m
+		DICE ROLL ROUND 16
+[0m[1;32m
+ Dice Roll 
+[0mRisk Taker rolled 8
+[1;32m
+ Player Movement 
+[0mRisk Taker moves from Square 16 to Square 24
+Risk Taker lands on Katugasthota
+
+================ PROPERTY DETAILS ================
+Status          : Unowned (Available to Buy)
+Purcase Price   : LKR 6000.00
+[0;33m###############8[0m[1;32m
+ Purchasing Property 
+[0m[0;32m
+Risk Taker purchased Katugasthota for LKR 6000.00
+[0mRemaining Balance : LKR 830.00
+[0;34m#############balance 830.000000
+[0m[1;32m
+ Dice Roll 
+[0mConservative Banker rolled 11
+[1;32m
+ Player Movement 
+[0mConservative Banker moves from Square 26 to Square 37
+Conservative Banker lands on NuwaraEliya
+
+================ PROPERTY DETAILS ================
+This property is belongs to you
+[0;33m###############11[0m[0;34m#############balance 9150.000000
+[0m[1;32m
+ Dice Roll 
+[0mAggressive Investor rolled 6
+[1;32m
+ Player Movement 
+[0mAggressive Investor moves from Square 34 to Square 0
+Aggressive Investor lands on Go
+
+================ PROPERTY DETAILS ================
+Status          : Non-purchasable Property (Cannot be bought)
+[0;33m###############6[0m[0;34m#############balance 20010.000000
+[0m[1;32m
+ Passing GO 
+[0m
+Aggressive Investor is passed GO.
+Collected LKR 2000.00
+Current Balance : LKR 22010.00
+[1;31m##########player round 3
+[0m[1;32m
+ Dice Roll 
+[0mOpportunistic Trader rolled 10
+[1;32m
+ Player Movement 
+[0mOpportunistic Trader moves from Square 21 to Square 31
+Opportunistic Trader lands on Jaffna
+
+================ PROPERTY DETAILS ================
+Status          : Unowned (Available to Buy)
+Purcase Price   : LKR 8000.00
+[0;33m###############10[0m[1;32m
+ Purchasing Property 
+[0m[0;32m
+Opportunistic Trader purchased Jaffna for LKR 8000.00
+[0mRemaining Balance : LKR 14210.00
+[0;34m#############balance 14210.000000
+[0m[1;33m
+		DICE ROLL ROUND 17
+[0m[1;32m
+ Dice Roll 
+[0mRisk Taker rolled 2
+[1;32m
+ Player Movement 
+[0mRisk Taker moves from Square 24 to Square 26
+Risk Taker lands on Galle Fort
+
+================ PROPERTY DETAILS ================
+This property is belongs to you
+[0;33m###############2[0m[0;34m#############balance 830.000000
+[0m[1;32m
+ Dice Roll 
+[0mConservative Banker rolled 11
+[1;32m
+ Player Movement 
+[0mConservative Banker moves from Square 37 to Square 8
+Conservative Banker lands on Wellawatta
+
+================ PROPERTY DETAILS ================
+Status          : Owned by Aggressive Investor
+Current Rent    : LKR 200.00
+[0;33m###############11[0m[1;32m
+ Paying Rent 
+[0mRent Paid to Aggressive Investor : LKR 200.00
+Remaining Balance : LKR 8950.00
+[0;34m#############balance 8950.000000
+[0m[1;32m
+ Passing GO 
+[0m
+Conservative Banker is passed GO.
+Collected LKR 2000.00
+Current Balance : LKR 10950.00
+[1;31m##########player round 3
+[0m[1;32m
+ Dice Roll 
+[0mAggressive Investor rolled 8
+[1;32m
+ Player Movement 
+[0mAggressive Investor moves from Square 0 to Square 8
+Aggressive Investor lands on Wellawatta
+
+================ PROPERTY DETAILS ================
+This property is belongs to you
+[0;33m###############8[0m[0;34m#############balance 22210.000000
+[0m[1;32m
+ Dice Roll 
+[0mOpportunistic Trader rolled 8
+[1;32m
+ Player Movement 
+[0mOpportunistic Trader moves from Square 31 to Square 39
+Opportunistic Trader lands on Galle Face
+
+================ PROPERTY DETAILS ================
+Status          : Unowned (Available to Buy)
+Purcase Price   : LKR 12000.00
+[0;33m###############8[0m[1;32m
+ Purchasing Property 
+[0m[0;32m
+Opportunistic Trader purchased Galle Face for LKR 12000.00
+[0mRemaining Balance : LKR 2210.00
+[0;34m#############balance 2210.000000
+[0m[1;33m
+		DICE ROLL ROUND 18
+[0m[1;32m
+ Dice Roll 
+[0mRisk Taker rolled 7
+[1;32m
+ Player Movement 
+[0mRisk Taker moves from Square 26 to Square 33
+Risk Taker lands on Ceylinco Insuarance
+
+================ PROPERTY DETAILS ================
+Status          : Non-purchasable Property (Cannot be bought)
+[0;33m###############7[0m[0;34m#############balance 830.000000
+[0m[1;32m
+ Dice Roll 
+[0mConservative Banker rolled 3
+[1;32m
+ Player Movement 
+[0mConservative Banker moves from Square 8 to Square 11
+Conservative Banker lands on Nugegoda
+
+================ PROPERTY DETAILS ================
+Status          : Owned by Aggressive Investor
+Current Rent    : LKR 260.00
+[0;33m###############3[0m[1;32m
+ Paying Rent 
+[0mRent Paid to Aggressive Investor : LKR 260.00
+Remaining Balance : LKR 10690.00
+[0;34m#############balance 10690.000000
+[0m[1;32m
+ Dice Roll 
+[0mAggressive Investor rolled 4
+[1;32m
+ Player Movement 
+[0mAggressive Investor moves from Square 8 to Square 12
+Aggressive Investor lands on Ceylon Electricity Board
+
+================ PROPERTY DETAILS ================
+This property is belongs to you
+[0;33m###############4[0m[0;34m#############balance 22470.000000
+[0m[1;32m
+ Dice Roll 
+[0mOpportunistic Trader rolled 12
+[1;32m
+ Player Movement 
+[0mOpportunistic Trader moves from Square 39 to Square 11
+Opportunistic Trader lands on Nugegoda
+
+================ PROPERTY DETAILS ================
+Status          : Owned by Aggressive Investor
+Current Rent    : LKR 260.00
+[0;33m###############12[0m[1;32m
+ Paying Rent 
+[0mRent Paid to Aggressive Investor : LKR 260.00
+Remaining Balance : LKR 1950.00
+[0;34m#############balance 1950.000000
+[0m[1;32m
+ Passing GO 
+[0m
+Opportunistic Trader is passed GO.
+Collected LKR 2000.00
+Current Balance : LKR 3950.00
+[1;31m##########player round 3
+[0m[1;33m
+		DICE ROLL ROUND 19
+[0m[1;32m
+ Dice Roll 
+[0mRisk Taker rolled 6
+[1;32m
+ Player Movement 
+[0mRisk Taker moves from Square 33 to Square 39
+Risk Taker lands on Galle Face
+
+================ PROPERTY DETAILS ================
+Status          : Owned by Opportunistic Trader
+Current Rent    : LKR 1200.00
+[0;33m###############6[0m[1;32m
+ Paying Rent 
+[0m[0;31m
+Risk Taker doesn't have enough money to pay! Bankrupt Risk!
+[0m[0;31m
+Risk Taker is BANKRUPT and eliminated form the game!
+[0m[0;32m
+Pettah trasferred to the bank and all buildings have been removed
+[0m[0;32m
+MountLavinia trasferred to the bank and all buildings have been removed
+[0m[0;32m
+Maharagama trasferred to the bank and all buildings have been removed
+[0m[0;32m
+Negombo trasferred to the bank and all buildings have been removed
+[0m[0;32m
+Kandy trasferred to the bank and all buildings have been removed
+[0m[0;32m
+Katugasthota trasferred to the bank and all buildings have been removed
+[0m[0;32m
+Galle Fort trasferred to the bank and all buildings have been removed
+[0m[0;34m#############balance 830.000000
+[0m[1;34m
+====================== ROUND 3 END ======================
+[0m[1;32m
+ Dice Roll 
+[0mConservative Banker rolled 9
+[1;32m
+ Player Movement 
+[0mConservative Banker moves from Square 11 to Square 20
+Conservative Banker lands on Free Parking
+
+================ PROPERTY DETAILS ================
+Status          : Non-purchasable Property (Cannot be bought)
+[0;33m###############9[0m[0;34m#############balance 10690.000000
+[0m[1;32m
+ Dice Roll 
+[0mAggressive Investor rolled 4
+[1;32m
+ Player Movement 
+[0mAggressive Investor moves from Square 12 to Square 16
+Aggressive Investor lands on Negombo
+
+================ PROPERTY DETAILS ================
+Status          : Unowned (Available to Buy)
+Purcase Price   : LKR 4500.00
+[0;33m###############4[0m[1;32m
+ Purchasing Property 
+[0m[0;32m
+Aggressive Investor purchased Negombo for LKR 4500.00
+[0mRemaining Balance : LKR 18230.00
+[0;34m#############balance 18230.000000
+[0m[1;32m
+ Dice Roll 
+[0mOpportunistic Trader rolled 5
+[1;32m
+ Player Movement 
+[0mOpportunistic Trader moves from Square 11 to Square 16
+Opportunistic Trader lands on Negombo
+
+================ PROPERTY DETAILS ================
+Status          : Owned by Aggressive Investor
+Current Rent    : LKR 350.00
+[0;33m###############5[0m[1;32m
+ Paying Rent 
+[0mRent Paid to Aggressive Investor : LKR 350.00
+Remaining Balance : LKR 3600.00
+[0;34m#############balance 3600.000000
+[0m[1;33m
+		DICE ROLL ROUND 20
+[0m[1;32m
+ Dice Roll 
+[0mConservative Banker rolled 8
+[1;32m
+ Player Movement 
+[0mConservative Banker moves from Square 20 to Square 28
+Conservative Banker lands on National Water Board
+
+================ PROPERTY DETAILS ================
+Status          : Owned by Aggressive Investor
+Current Rent    : LKR 80.00
+[0;33m###############8[0m[1;32m
+ Paying Rent 
+[0mRent Paid to Aggressive Investor : LKR 80.00
+Remaining Balance : LKR 10610.00
+[0;34m#############balance 10610.000000
+[0m[1;32m
+ Dice Roll 
+[0mAggressive Investor rolled 7
+[1;32m
+ Player Movement 
+[0mAggressive Investor moves from Square 16 to Square 23
+Aggressive Investor lands on Peradeniya
+
+================ PROPERTY DETAILS ================
+Status          : Owned by Opportunistic Trader
+Current Rent    : LKR 480.00
+[0;33m###############7[0m[1;32m
+ Paying Rent 
+[0mRent Paid to Opportunistic Trader : LKR 480.00
+Remaining Balance : LKR 18180.00
+[0;34m#############balance 18180.000000
+[0m[1;32m
+ Dice Roll 
+[0mOpportunistic Trader rolled 7
+[1;32m
+ Player Movement 
+[0mOpportunistic Trader moves from Square 16 to Square 23
+Opportunistic Trader lands on Peradeniya
+
+================ PROPERTY DETAILS ================
+This property is belongs to you
+[0;33m###############7[0m[0;34m#############balance 4080.000000
+[0m[1;33m
+		DICE ROLL ROUND 21
+[0m[1;32m
+ Dice Roll 
+[0mConservative Banker rolled 10
+[1;32m
+ Player Movement 
+[0mConservative Banker moves from Square 28 to Square 38
+Conservative Banker lands on Bank of Ceylon
+
+================ PROPERTY DETAILS ================
+Status          : Non-purchasable Property (Cannot be bought)
+[0;33m###############10[0m[0;34m#############balance 10610.000000
+[0m[1;32m
+ Dice Roll 
+[0mAggressive Investor rolled 4
+[1;32m
+ Player Movement 
+[0mAggressive Investor moves from Square 23 to Square 27
+Aggressive Investor lands on Unawatuna
+
+================ PROPERTY DETAILS ================
+Status          : Unowned (Available to Buy)
+Purcase Price   : LKR 6800.00
+[0;33m###############4[0m[1;32m
+ Purchasing Property 
+[0m[0;32m
+Aggressive Investor purchased Unawatuna for LKR 6800.00
+[0mRemaining Balance : LKR 11380.00
+[0;34m#############balance 11380.000000
+[0m[1;32m
+ Dice Roll 
+[0mOpportunistic Trader rolled 7
+[1;32m
+ Player Movement 
+[0mOpportunistic Trader moves from Square 23 to Square 30
+[0;31mBusted! Opportunistic Trader was caught and sent straight to Jail!
+[0m[1;33m
+		DICE ROLL ROUND 22
+[0m[1;32m
+ Dice Roll 
+[0mConservative Banker rolled 6
+[1;32m
+ Player Movement 
+[0mConservative Banker moves from Square 38 to Square 4
+Conservative Banker lands on Income Tax
+
+================ PROPERTY DETAILS ================
+Status          : Non-purchasable Property (Cannot be bought)
+[0;33m###############6[0m[0;34m#############balance 10610.000000
+[0m[1;32m
+ Passing GO 
+[0m
+Conservative Banker is passed GO.
+Collected LKR 2000.00
+Current Balance : LKR 12610.00
+[1;31m##########player round 4
+[0m[1;32m
+ Dice Roll 
+[0mAggressive Investor rolled 9
+[1;32m
+ Player Movement 
+[0mAggressive Investor moves from Square 27 to Square 36
+Aggressive Investor lands on National Event Card
+
+================ PROPERTY DETAILS ================
+Status          : Non-purchasable Property (Cannot be bought)
+[0;33m###############9[0m[0;34m#############balance 11380.000000
+[0m[1;31m
+ Jail turn 1
+[0mOpportunistic Trader rolled 5 and 3
+[0;31mOpportunistic Trader failed to roll doubles and remains in Jail.
+[0m[1;33m
+		DICE ROLL ROUND 23
+[0m[1;32m
+ Dice Roll 
+[0mConservative Banker rolled 12
+[1;32m
+ Player Movement 
+[0mConservative Banker moves from Square 4 to Square 16
+Conservative Banker lands on Negombo
+
+================ PROPERTY DETAILS ================
+Status          : Owned by Aggressive Investor
+Current Rent    : LKR 350.00
+[0;33m###############12[0m[1;32m
+ Paying Rent 
+[0mRent Paid to Aggressive Investor : LKR 350.00
+Remaining Balance : LKR 12260.00
+[0;34m#############balance 12260.000000
+[0m[1;32m
+ Dice Roll 
+[0mAggressive Investor rolled 9
+[1;32m
+ Player Movement 
+[0mAggressive Investor moves from Square 36 to Square 5
+Aggressive Investor lands on Colombo Fort Railway
+
+================ PROPERTY DETAILS ================
+This property is belongs to you
+[0;33m###############9[0m[0;34m#############balance 11730.000000
+[0m[1;32m
+ Passing GO 
+[0m
+Aggressive Investor is passed GO.
+Collected LKR 2000.00
+Current Balance : LKR 13730.00
+[1;31m##########player round 4
+[0m[1;34m
+====================== ROUND 4 END ======================
+[0m[1;31m
+ Jail turn 2
+[0mOpportunistic Trader rolled 3 and 5
+[0;31mOpportunistic Trader failed to roll doubles and remains in Jail.
+[0m[1;33m
+		DICE ROLL ROUND 24
+[0m[1;32m
+ Dice Roll 
+[0mConservative Banker rolled 10
+[1;32m
+ Player Movement 
+[0mConservative Banker moves from Square 16 to Square 26
+Conservative Banker lands on Galle Fort
+
+================ PROPERTY DETAILS ================
 Status          : Unowned (Available to Buy)
 Purcase Price   : LKR 6500.00
-[0;33m
+[0;33m###############10[0m[0;33m
 Conservative Banker decided to not to buy
 [0m[1;33m
 ================== Property Auction ==================
 [0mBase Purchase Price: LKR 3250.00
-[0;32mRisk Taker bids LKR 3250
-[0m[0;32mConservative Banker bids LKR 3500
-[0m[0;32mAggressive Investor bids LKR 3750
-[0m[0;31mOpportunistic Trader is dropped out of the auction!
-[0m[0;31mRisk Taker is dropped out of the auction!
+[0;32mConservative Banker bids LKR 3250
+[0m[0;32mAggressive Investor bids LKR 3500
+[0m[0;32mOpportunistic Trader bids LKR 3750
 [0m[0;32mConservative Banker bids LKR 4000
 [0m[0;32mAggressive Investor bids LKR 4250
+[0m[0;31mOpportunistic Trader is dropped out of the auction!
 [0m[0;32mConservative Banker bids LKR 4500
 [0m[0;32mAggressive Investor bids LKR 4750
 [0m[0;32mConservative Banker bids LKR 5000
@@ -954,7 +1459,7 @@ Conservative Banker decided to not to buy
 [0m[0;32mAggressive Investor bids LKR 7750
 [0m[0;31mConservative Banker is dropped out of the auction!
 [0m[0;34m
-11430.000000 #######cash of the winner before auction
+13730.000000 #######cash of the winner before auction
 [0m[1;32m
 --------------------------------------------------------
 [0m[0;32m
@@ -962,863 +1467,179 @@ Conservative Banker decided to not to buy
 Aggressive Investor wins the auction
 [0m[0;32mAggressive Investor bought Galle Fort for LKR : 7750
 [0m[0;34m
-3680.000000 #######remain cash of the winner 
+5980.000000 #######remain cash of the winner 
 [0m[1;32m
 --------------------------------------------------------
-[0m[0;34m#############balance 12250.000000
+[0m[0;34m#############balance 12260.000000
 [0m[1;32m
  Dice Roll 
-[0mAggressive Investor rolled 6
+[0mAggressive Investor rolled 10
 [1;32m
  Player Movement 
-[0mAggressive Investor moves from Square 15 to Square 21
-Aggressive Investor lands on Kandy
+[0mAggressive Investor moves from Square 5 to Square 15
+Aggressive Investor lands on Kandy Railway Station
 
 ================ PROPERTY DETAILS ================
 This property is belongs to you
-[0;34m#############balance 3680.000000
-[0m[1;32m
- Dice Roll 
-[0mOpportunistic Trader rolled 12
-[1;32m
- Player Movement 
-[0mOpportunistic Trader moves from Square 18 to Square 30
-[0;31mBusted! Opportunistic Trader was caught and sent straight to Jail!
-[0m[1;33m
-		DICE ROLL ROUND 15
-[0m[1;32m
- Dice Roll 
-[0mRisk Taker rolled 8
-[1;32m
- Player Movement 
-[0mRisk Taker moves from Square 12 to Square 20
-Risk Taker lands on Free Parking
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 3840.000000
-[0m[1;32m
- Dice Roll 
-[0mConservative Banker rolled 9
-[1;32m
- Player Movement 
-[0mConservative Banker moves from Square 26 to Square 35
-Conservative Banker lands on Jaffna Railway Station
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 12250.000000
-[0m[1;32m
- Dice Roll 
-[0mAggressive Investor rolled 6
-[1;32m
- Player Movement 
-[0mAggressive Investor moves from Square 21 to Square 27
-Aggressive Investor lands on Unawatuna
-
-================ PROPERTY DETAILS ================
-Status          : Owned by Risk Taker
-Current Rent    : LKR 620.00
-[1;32m
- Paying Rent 
-[0mRent Paid to Risk Taker : LKR 620.00
-Remaining Balance : LKR 3060.00
-[0;34m#############balance 3060.000000
+[0;33m###############10[0m[0;34m#############balance 5980.000000
 [0m[1;31m
- Jail turn 1
-[0mOpportunistic Trader rolled 6 and 6
+ Jail turn 3
+[0mOpportunistic Trader rolled 4 and 4
 [0;33mOpportunistic Trader rolled DOUBLES and free from JAIL!
 [0m[1;32m
  Player Movement 
-[0mOpportunistic Trader moves from Square 10 to Square 22
-Opportunistic Trader lands on National Event Card
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 3130.000000
-[0m[1;33m
-		DICE ROLL ROUND 16
-[0m[1;32m
- Dice Roll 
-[0mRisk Taker rolled 2
-[1;32m
- Player Movement 
-[0mRisk Taker moves from Square 20 to Square 22
-Risk Taker lands on National Event Card
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 4460.000000
-[0m[1;32m
- Dice Roll 
-[0mConservative Banker rolled 7
-[1;32m
- Player Movement 
-[0mConservative Banker moves from Square 35 to Square 2
-Conservative Banker lands on Community Development Fund
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 12250.000000
-[0m[1;32m
- Passing GO 
-[0m
-Conservative Banker is passed GO.
-Collected LKR 2000.00
-Current Balance : LKR 14250.00
-[1;31m##########player round 3
-[0m[1;32m
- Dice Roll 
-[0mAggressive Investor rolled 4
-[1;32m
- Player Movement 
-[0mAggressive Investor moves from Square 27 to Square 31
-Aggressive Investor lands on Jaffna
-
-================ PROPERTY DETAILS ================
-This property is belongs to you
-[0;34m#############balance 3060.000000
-[0m[1;32m
- Dice Roll 
-[0mOpportunistic Trader rolled 5
-[1;32m
- Player Movement 
-[0mOpportunistic Trader moves from Square 22 to Square 27
-Opportunistic Trader lands on Unawatuna
-
-================ PROPERTY DETAILS ================
-Status          : Owned by Risk Taker
-Current Rent    : LKR 620.00
-[1;32m
- Paying Rent 
-[0mRent Paid to Risk Taker : LKR 620.00
-Remaining Balance : LKR 2510.00
-[0;34m#############balance 2510.000000
-[0m[1;33m
-		DICE ROLL ROUND 17
-[0m[1;32m
- Dice Roll 
-[0mRisk Taker rolled 10
-[1;32m
- Player Movement 
-[0mRisk Taker moves from Square 22 to Square 32
-Risk Taker lands on Nallur
-
-================ PROPERTY DETAILS ================
-Status          : Owned by Opportunistic Trader
-Current Rent    : LKR 780.00
-[1;32m
- Paying Rent 
-[0mRent Paid to Opportunistic Trader : LKR 780.00
-Remaining Balance : LKR 4300.00
-[0;34m#############balance 4300.000000
-[0m[1;32m
- Dice Roll 
-[0mConservative Banker rolled 7
-[1;32m
- Player Movement 
-[0mConservative Banker moves from Square 2 to Square 9
-Conservative Banker lands on MountLavinia
-
-================ PROPERTY DETAILS ================
-Status          : Owned by Risk Taker
-Current Rent    : LKR 220.00
-[1;32m
- Paying Rent 
-[0mRent Paid to Risk Taker : LKR 220.00
-Remaining Balance : LKR 14030.00
-[0;34m#############balance 14030.000000
-[0m[1;32m
- Dice Roll 
-[0mAggressive Investor rolled 4
-[1;32m
- Player Movement 
-[0mAggressive Investor moves from Square 31 to Square 35
-Aggressive Investor lands on Jaffna Railway Station
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 3060.000000
-[0m[1;32m
- Dice Roll 
-[0mOpportunistic Trader rolled 7
-[1;32m
- Player Movement 
-[0mOpportunistic Trader moves from Square 27 to Square 34
-Opportunistic Trader lands on Trincomalee
-
-================ PROPERTY DETAILS ================
-Status          : Owned by Conservative Banker
-Current Rent    : LKR 800.00
-[1;32m
- Paying Rent 
-[0mRent Paid to Conservative Banker : LKR 800.00
-Remaining Balance : LKR 2490.00
-[0;34m#############balance 2490.000000
-[0m[1;33m
-		DICE ROLL ROUND 18
-[0m[1;32m
- Dice Roll 
-[0mRisk Taker rolled 6
-[1;32m
- Player Movement 
-[0mRisk Taker moves from Square 32 to Square 38
-Risk Taker lands on Bank of Ceylon
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 4520.000000
-[0m[1;32m
- Dice Roll 
-[0mConservative Banker rolled 3
-[1;32m
- Player Movement 
-[0mConservative Banker moves from Square 9 to Square 12
-Conservative Banker lands on Ceylon Electricity Board
-
-================ PROPERTY DETAILS ================
-Status          : Owned by Opportunistic Trader
-Current Rent    : LKR 0.00
-[1;32m
- Paying Rent 
-[0mRent Paid to Opportunistic Trader : LKR 0.00
-Remaining Balance : LKR 14830.00
-[0;34m#############balance 14830.000000
-[0m[1;32m
- Dice Roll 
-[0mAggressive Investor rolled 3
-[1;32m
- Player Movement 
-[0mAggressive Investor moves from Square 35 to Square 38
-Aggressive Investor lands on Bank of Ceylon
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 3060.000000
-[0m[1;32m
- Dice Roll 
-[0mOpportunistic Trader rolled 7
-[1;32m
- Player Movement 
-[0mOpportunistic Trader moves from Square 34 to Square 1
-Opportunistic Trader lands on Pettah
-
-================ PROPERTY DETAILS ================
-Status          : Owned by Risk Taker
-Current Rent    : LKR 100.00
-[1;32m
- Paying Rent 
-[0mRent Paid to Risk Taker : LKR 100.00
-Remaining Balance : LKR 2390.00
-[0;34m#############balance 2390.000000
-[0m[1;32m
- Passing GO 
-[0m
-Opportunistic Trader is passed GO.
-Collected LKR 2000.00
-Current Balance : LKR 4390.00
-[1;31m##########player round 3
-[0m[1;33m
-		DICE ROLL ROUND 19
-[0m[1;32m
- Dice Roll 
-[0mRisk Taker rolled 10
-[1;32m
- Player Movement 
-[0mRisk Taker moves from Square 38 to Square 8
-Risk Taker lands on Wellawatta
-
-================ PROPERTY DETAILS ================
-Status          : Owned by Opportunistic Trader
-Current Rent    : LKR 200.00
-[1;32m
- Paying Rent 
-[0mRent Paid to Opportunistic Trader : LKR 200.00
-Remaining Balance : LKR 4420.00
-[0;34m#############balance 4420.000000
-[0m[1;32m
- Passing GO 
-[0m
-Risk Taker is passed GO.
-Collected LKR 2000.00
-Current Balance : LKR 6420.00
-[1;31m##########player round 3
-[0m[1;32m
- Dice Roll 
-[0mConservative Banker rolled 4
-[1;32m
- Player Movement 
-[0mConservative Banker moves from Square 12 to Square 16
-Conservative Banker lands on Negombo
-
-================ PROPERTY DETAILS ================
-Status          : Owned by Opportunistic Trader
-Current Rent    : LKR 350.00
-[1;32m
- Paying Rent 
-[0mRent Paid to Opportunistic Trader : LKR 350.00
-Remaining Balance : LKR 14480.00
-[0;34m#############balance 14480.000000
-[0m[1;32m
- Dice Roll 
-[0mAggressive Investor rolled 12
-[1;32m
- Player Movement 
-[0mAggressive Investor moves from Square 38 to Square 10
-Aggressive Investor lands on Jail
-(Just visiting Jail)
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 3060.000000
-[0m[1;32m
- Passing GO 
-[0m
-Aggressive Investor is passed GO.
-Collected LKR 2000.00
-Current Balance : LKR 5060.00
-[1;31m##########player round 3
-[0m[1;34m
-====================== ROUND 3 END ======================
-[0m[1;32m
- Dice Roll 
-[0mOpportunistic Trader rolled 7
-[1;32m
- Player Movement 
-[0mOpportunistic Trader moves from Square 1 to Square 8
-Opportunistic Trader lands on Wellawatta
-
-================ PROPERTY DETAILS ================
-This property is belongs to you
-[0;34m#############balance 4940.000000
-[0m[1;33m
-		DICE ROLL ROUND 20
-[0m[1;32m
- Dice Roll 
-[0mRisk Taker rolled 7
-[1;32m
- Player Movement 
-[0mRisk Taker moves from Square 8 to Square 15
-Risk Taker lands on Kandy Railway Station
+[0mOpportunistic Trader moves from Square 10 to Square 18
+Opportunistic Trader lands on Katunayake
 
 ================ PROPERTY DETAILS ================
 Status          : Owned by Aggressive Investor
-Current Rent    : LKR 1000.00
-[1;32m
+Current Rent    : LKR 370.00
+[0;33m###############8[0m[1;32m
  Paying Rent 
-[0mRent Paid to Aggressive Investor : LKR 1000.00
-Remaining Balance : LKR 5420.00
-[0;34m#############balance 5420.000000
+[0mRent Paid to Aggressive Investor : LKR 370.00
+Remaining Balance : LKR 3710.00
+[0;34m#############balance 3710.000000
+[0m[1;33m
+		DICE ROLL ROUND 25
 [0m[1;32m
  Dice Roll 
-[0mConservative Banker rolled 6
+[0mConservative Banker rolled 11
 [1;32m
  Player Movement 
-[0mConservative Banker moves from Square 16 to Square 22
-Conservative Banker lands on National Event Card
+[0mConservative Banker moves from Square 26 to Square 37
+Conservative Banker lands on NuwaraEliya
 
 ================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 14480.000000
+This property is belongs to you
+[0;33m###############11[0m[0;34m#############balance 12260.000000
 [0m[1;32m
  Dice Roll 
 [0mAggressive Investor rolled 7
 [1;32m
  Player Movement 
-[0mAggressive Investor moves from Square 10 to Square 17
-Aggressive Investor lands on Sri Lanka Insuarance
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 6060.000000
-[0m[1;32m
- Dice Roll 
-[0mOpportunistic Trader rolled 9
-[1;32m
- Player Movement 
-[0mOpportunistic Trader moves from Square 8 to Square 17
-Opportunistic Trader lands on Sri Lanka Insuarance
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 4940.000000
-[0m[1;33m
-		DICE ROLL ROUND 21
-[0m[1;32m
- Dice Roll 
-[0mRisk Taker rolled 5
-[1;32m
- Player Movement 
-[0mRisk Taker moves from Square 15 to Square 20
-Risk Taker lands on Free Parking
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 5420.000000
-[0m[1;32m
- Dice Roll 
-[0mConservative Banker rolled 3
-[1;32m
- Player Movement 
-[0mConservative Banker moves from Square 22 to Square 25
-Conservative Banker lands on Galle Railway Station
-
-================ PROPERTY DETAILS ================
-Status          : Owned by Aggressive Investor
-Current Rent    : LKR 1000.00
-[1;32m
- Paying Rent 
-[0mRent Paid to Aggressive Investor : LKR 1000.00
-Remaining Balance : LKR 13480.00
-[0;34m#############balance 13480.000000
-[0m[1;32m
- Dice Roll 
-[0mAggressive Investor rolled 8
-[1;32m
- Player Movement 
-[0mAggressive Investor moves from Square 17 to Square 25
-Aggressive Investor lands on Galle Railway Station
-
-================ PROPERTY DETAILS ================
-This property is belongs to you
-[0;34m#############balance 7060.000000
-[0m[1;32m
- Dice Roll 
-[0mOpportunistic Trader rolled 12
-[1;32m
- Player Movement 
-[0mOpportunistic Trader moves from Square 17 to Square 29
-Opportunistic Trader lands on Hikkaduwa
-
-================ PROPERTY DETAILS ================
-Status          : Unowned (Available to Buy)
-Purcase Price   : LKR 7000.00
-[0;33m
-Opportunistic Trader decided to not to buy
-[0m[1;33m
-================== Property Auction ==================
-[0mBase Purchase Price: LKR 3500.00
-[0;32mRisk Taker bids LKR 3500
-[0m[0;32mConservative Banker bids LKR 3750
-[0m[0;32mAggressive Investor bids LKR 4000
-[0m[0;32mOpportunistic Trader bids LKR 4250
-[0m[0;32mRisk Taker bids LKR 4500
-[0m[0;32mConservative Banker bids LKR 4750
-[0m[0;32mAggressive Investor bids LKR 5000
-[0m[0;31mOpportunistic Trader is dropped out of the auction!
-[0m[0;32mRisk Taker bids LKR 5250
-[0m[0;32mConservative Banker bids LKR 5500
-[0m[0;32mAggressive Investor bids LKR 5750
-[0m[0;31mRisk Taker is dropped out of the auction!
-[0m[0;32mConservative Banker bids LKR 6000
-[0m[0;32mAggressive Investor bids LKR 6250
-[0m[0;32mConservative Banker bids LKR 6500
-[0m[0;32mAggressive Investor bids LKR 6750
-[0m[0;32mConservative Banker bids LKR 7000
-[0m[0;31mAggressive Investor is dropped out of the auction!
-[0m[0;34m
-13480.000000 #######cash of the winner before auction
-[0m[1;32m
---------------------------------------------------------
-[0m[0;32m
-
-Conservative Banker wins the auction
-[0m[0;32mConservative Banker bought Hikkaduwa for LKR : 7000
-[0m[0;34m
-6480.000000 #######remain cash of the winner 
-[0m[1;32m
---------------------------------------------------------
-[0m[0;34m#############balance 4940.000000
-[0m[1;33m
-		DICE ROLL ROUND 22
-[0m[1;32m
- Dice Roll 
-[0mRisk Taker rolled 10
-[1;32m
- Player Movement 
-[0mRisk Taker moves from Square 20 to Square 30
-[0;31mBusted! Risk Taker was caught and sent straight to Jail!
-[0m[1;32m
- Dice Roll 
-[0mConservative Banker rolled 9
-[1;32m
- Player Movement 
-[0mConservative Banker moves from Square 25 to Square 34
-Conservative Banker lands on Trincomalee
-
-================ PROPERTY DETAILS ================
-This property is belongs to you
-[0;34m#############balance 6480.000000
-[0m[1;32m
- Dice Roll 
-[0mAggressive Investor rolled 11
-[1;32m
- Player Movement 
-[0mAggressive Investor moves from Square 25 to Square 36
+[0mAggressive Investor moves from Square 15 to Square 22
 Aggressive Investor lands on National Event Card
 
 ================ PROPERTY DETAILS ================
 Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 7060.000000
+[0;33m###############7[0m[0;34m#############balance 6350.000000
 [0m[1;32m
  Dice Roll 
 [0mOpportunistic Trader rolled 4
 [1;32m
  Player Movement 
-[0mOpportunistic Trader moves from Square 29 to Square 33
-Opportunistic Trader lands on Ceylinco Insuarance
+[0mOpportunistic Trader moves from Square 18 to Square 22
+Opportunistic Trader lands on National Event Card
 
 ================ PROPERTY DETAILS ================
 Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 4940.000000
-[0m[1;33m
-		DICE ROLL ROUND 23
-[0m[1;31m
- Jail turn 1
-[0mRisk Taker rolled 4 and 5
-[0;31mRisk Taker failed to roll doubles and remains in Jail.
-[0m[1;32m
- Dice Roll 
-[0mConservative Banker rolled 7
-[1;32m
- Player Movement 
-[0mConservative Banker moves from Square 34 to Square 1
-Conservative Banker lands on Pettah
-
-================ PROPERTY DETAILS ================
-Status          : Owned by Risk Taker
-Current Rent    : LKR 100.00
-[1;32m
- Paying Rent 
-[0mRent Paid to Risk Taker : LKR 100.00
-Remaining Balance : LKR 6380.00
-[0;34m#############balance 6380.000000
-[0m[1;32m
- Passing GO 
-[0m
-Conservative Banker is passed GO.
-Collected LKR 2000.00
-Current Balance : LKR 8380.00
-[1;31m##########player round 4
-[0m[1;32m
- Dice Roll 
-[0mAggressive Investor rolled 9
-[1;32m
- Player Movement 
-[0mAggressive Investor moves from Square 36 to Square 5
-Aggressive Investor lands on Colombo Fort Railway
-
-================ PROPERTY DETAILS ================
-This property is belongs to you
-[0;34m#############balance 7060.000000
-[0m[1;32m
- Passing GO 
-[0m
-Aggressive Investor is passed GO.
-Collected LKR 2000.00
-Current Balance : LKR 9060.00
-[1;31m##########player round 4
-[0m[1;32m
- Dice Roll 
-[0mOpportunistic Trader rolled 12
-[1;32m
- Player Movement 
-[0mOpportunistic Trader moves from Square 33 to Square 5
-Opportunistic Trader lands on Colombo Fort Railway
-
-================ PROPERTY DETAILS ================
-Status          : Owned by Aggressive Investor
-Current Rent    : LKR 1000.00
-[1;32m
- Paying Rent 
-[0mRent Paid to Aggressive Investor : LKR 1000.00
-Remaining Balance : LKR 3940.00
-[0;34m#############balance 3940.000000
-[0m[1;32m
- Passing GO 
-[0m
-Opportunistic Trader is passed GO.
-Collected LKR 2000.00
-Current Balance : LKR 5940.00
-[1;31m##########player round 4
-[0m[1;34m
-====================== ROUND 4 END ======================
-[0m[1;33m
-		DICE ROLL ROUND 24
-[0m[1;31m
- Jail turn 2
-[0mRisk Taker rolled 6 and 6
-[0;33mRisk Taker rolled DOUBLES and free from JAIL!
-[0m[1;32m
- Player Movement 
-[0mRisk Taker moves from Square 10 to Square 22
-Risk Taker lands on National Event Card
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 5520.000000
-[0m[1;32m
- Dice Roll 
-[0mConservative Banker rolled 3
-[1;32m
- Player Movement 
-[0mConservative Banker moves from Square 1 to Square 4
-Conservative Banker lands on Income Tax
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 8380.000000
-[0m[1;32m
- Dice Roll 
-[0mAggressive Investor rolled 8
-[1;32m
- Player Movement 
-[0mAggressive Investor moves from Square 5 to Square 13
-Aggressive Investor lands on Maharagama
-
-================ PROPERTY DETAILS ================
-Status          : Unowned (Available to Buy)
-Purcase Price   : LKR 3800.00
-[1;32m
- Purchasing Property 
-[0m[0;32m
-Aggressive Investor purchased Maharagama for LKR 3800.00
-[0mRemaining Balance : LKR 6260.00
-[0;34m#############balance 6260.000000
-[0m[1;32m
- Dice Roll 
-[0mOpportunistic Trader rolled 8
-[1;32m
- Player Movement 
-[0mOpportunistic Trader moves from Square 5 to Square 13
-Opportunistic Trader lands on Maharagama
-
-================ PROPERTY DETAILS ================
-Status          : Owned by Aggressive Investor
-Current Rent    : LKR 280.00
-[1;32m
- Paying Rent 
-[0mRent Paid to Aggressive Investor : LKR 280.00
-Remaining Balance : LKR 5660.00
-[0;34m#############balance 5660.000000
-[0m[1;33m
-		DICE ROLL ROUND 25
-[0m[1;32m
- Dice Roll 
-[0mRisk Taker rolled 10
-[1;32m
- Player Movement 
-[0mRisk Taker moves from Square 22 to Square 32
-Risk Taker lands on Nallur
-
-================ PROPERTY DETAILS ================
-Status          : Owned by Opportunistic Trader
-Current Rent    : LKR 780.00
-[1;32m
- Paying Rent 
-[0mRent Paid to Opportunistic Trader : LKR 780.00
-Remaining Balance : LKR 4740.00
-[0;34m#############balance 4740.000000
-[0m[1;32m
- Dice Roll 
-[0mConservative Banker rolled 9
-[1;32m
- Player Movement 
-[0mConservative Banker moves from Square 4 to Square 13
-Conservative Banker lands on Maharagama
-
-================ PROPERTY DETAILS ================
-Status          : Owned by Aggressive Investor
-Current Rent    : LKR 280.00
-[1;32m
- Paying Rent 
-[0mRent Paid to Aggressive Investor : LKR 280.00
-Remaining Balance : LKR 8100.00
-[0;34m#############balance 8100.000000
-[0m[1;32m
- Dice Roll 
-[0mAggressive Investor rolled 6
-[1;32m
- Player Movement 
-[0mAggressive Investor moves from Square 13 to Square 19
-Aggressive Investor lands on Ja-Ela
-
-================ PROPERTY DETAILS ================
-Status          : Owned by Conservative Banker
-Current Rent    : LKR 400.00
-[1;32m
- Paying Rent 
-[0mRent Paid to Conservative Banker : LKR 400.00
-Remaining Balance : LKR 6420.00
-[0;34m#############balance 6420.000000
-[0m[1;32m
- Dice Roll 
-[0mOpportunistic Trader rolled 12
-[1;32m
- Player Movement 
-[0mOpportunistic Trader moves from Square 13 to Square 25
-Opportunistic Trader lands on Galle Railway Station
-
-================ PROPERTY DETAILS ================
-Status          : Owned by Aggressive Investor
-Current Rent    : LKR 1000.00
-[1;32m
- Paying Rent 
-[0mRent Paid to Aggressive Investor : LKR 1000.00
-Remaining Balance : LKR 5440.00
-[0;34m#############balance 5440.000000
+[0;33m###############4[0m[0;34m#############balance 3710.000000
 [0m[1;33m
 		DICE ROLL ROUND 26
-[0m[1;32m
- Dice Roll 
-[0mRisk Taker rolled 4
-[1;32m
- Player Movement 
-[0mRisk Taker moves from Square 32 to Square 36
-Risk Taker lands on National Event Card
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 4740.000000
-[0m[1;32m
- Dice Roll 
-[0mConservative Banker rolled 7
-[1;32m
- Player Movement 
-[0mConservative Banker moves from Square 13 to Square 20
-Conservative Banker lands on Free Parking
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 8500.000000
-[0m[1;32m
- Dice Roll 
-[0mAggressive Investor rolled 8
-[1;32m
- Player Movement 
-[0mAggressive Investor moves from Square 19 to Square 27
-Aggressive Investor lands on Unawatuna
-
-================ PROPERTY DETAILS ================
-Status          : Owned by Risk Taker
-Current Rent    : LKR 620.00
-[1;32m
- Paying Rent 
-[0mRent Paid to Risk Taker : LKR 620.00
-Remaining Balance : LKR 6800.00
-[0;34m#############balance 6800.000000
-[0m[1;32m
- Dice Roll 
-[0mOpportunistic Trader rolled 10
-[1;32m
- Player Movement 
-[0mOpportunistic Trader moves from Square 25 to Square 35
-Opportunistic Trader lands on Jaffna Railway Station
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 5440.000000
-[0m[1;33m
-		DICE ROLL ROUND 27
-[0m[1;32m
- Dice Roll 
-[0mRisk Taker rolled 8
-[1;32m
- Player Movement 
-[0mRisk Taker moves from Square 36 to Square 4
-Risk Taker lands on Income Tax
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 5360.000000
-[0m[1;32m
- Passing GO 
-[0m
-Risk Taker is passed GO.
-Collected LKR 2000.00
-Current Balance : LKR 7360.00
-[1;31m##########player round 5
 [0m[1;32m
  Dice Roll 
 [0mConservative Banker rolled 10
 [1;32m
  Player Movement 
-[0mConservative Banker moves from Square 20 to Square 30
-[0;31mBusted! Conservative Banker was caught and sent straight to Jail!
-[0m[1;32m
- Dice Roll 
-[0mAggressive Investor rolled 4
-[1;32m
- Player Movement 
-[0mAggressive Investor moves from Square 27 to Square 31
-Aggressive Investor lands on Jaffna
+[0mConservative Banker moves from Square 37 to Square 7
+Conservative Banker lands on National Event Card
 
 ================ PROPERTY DETAILS ================
-This property is belongs to you
-[0;34m#############balance 6800.000000
+Status          : Non-purchasable Property (Cannot be bought)
+[0;33m###############10[0m[0;34m#############balance 12260.000000
+[0m[1;32m
+ Passing GO 
+[0m
+Conservative Banker is passed GO.
+Collected LKR 2000.00
+Current Balance : LKR 14260.00
+[1;31m##########player round 5
 [0m[1;32m
  Dice Roll 
-[0mOpportunistic Trader rolled 10
+[0mAggressive Investor rolled 8
 [1;32m
  Player Movement 
-[0mOpportunistic Trader moves from Square 35 to Square 5
-Opportunistic Trader lands on Colombo Fort Railway
+[0mAggressive Investor moves from Square 22 to Square 30
+[0;31mBusted! Aggressive Investor was caught and sent straight to Jail!
+[0m[1;32m
+ Dice Roll 
+[0mOpportunistic Trader rolled 11
+[1;32m
+ Player Movement 
+[0mOpportunistic Trader moves from Square 22 to Square 33
+Opportunistic Trader lands on Ceylinco Insuarance
+
+================ PROPERTY DETAILS ================
+Status          : Non-purchasable Property (Cannot be bought)
+[0;33m###############11[0m[0;34m#############balance 3710.000000
+[0m[1;33m
+		DICE ROLL ROUND 27
+[0m[1;32m
+ Dice Roll 
+[0mConservative Banker rolled 3
+[1;32m
+ Player Movement 
+[0mConservative Banker moves from Square 7 to Square 10
+Conservative Banker lands on Jail
+(Just visiting Jail)
+
+================ PROPERTY DETAILS ================
+Status          : Non-purchasable Property (Cannot be bought)
+[0;33m###############3[0m[0;34m#############balance 14260.000000
+[0m[1;31m
+ Jail turn 1
+[0mAggressive Investor rolled 6 and 2
+[0;31mAggressive Investor failed to roll doubles and remains in Jail.
+[0m[1;32m
+ Dice Roll 
+[0mOpportunistic Trader rolled 5
+[1;32m
+ Player Movement 
+[0mOpportunistic Trader moves from Square 33 to Square 38
+Opportunistic Trader lands on Bank of Ceylon
+
+================ PROPERTY DETAILS ================
+Status          : Non-purchasable Property (Cannot be bought)
+[0;33m###############5[0m[0;34m#############balance 3710.000000
+[0m[1;33m
+		DICE ROLL ROUND 28
+[0m[1;32m
+ Dice Roll 
+[0mConservative Banker rolled 8
+[1;32m
+ Player Movement 
+[0mConservative Banker moves from Square 10 to Square 18
+Conservative Banker lands on Katunayake
 
 ================ PROPERTY DETAILS ================
 Status          : Owned by Aggressive Investor
-Current Rent    : LKR 1000.00
-[1;32m
+Current Rent    : LKR 370.00
+[0;33m###############8[0m[1;32m
  Paying Rent 
-[0mRent Paid to Aggressive Investor : LKR 1000.00
-Remaining Balance : LKR 4440.00
-[0;34m#############balance 4440.000000
+[0mRent Paid to Aggressive Investor : LKR 370.00
+Remaining Balance : LKR 13890.00
+[0;34m#############balance 13890.000000
+[0m[1;31m
+ Jail turn 2
+[0mAggressive Investor rolled 1 and 3
+[0;31mAggressive Investor failed to roll doubles and remains in Jail.
+[0m[1;32m
+ Dice Roll 
+[0mOpportunistic Trader rolled 6
+[1;32m
+ Player Movement 
+[0mOpportunistic Trader moves from Square 38 to Square 4
+Opportunistic Trader lands on Income Tax
+
+================ PROPERTY DETAILS ================
+Status          : Non-purchasable Property (Cannot be bought)
+[0;33m###############6[0m[0;34m#############balance 3710.000000
 [0m[1;32m
  Passing GO 
 [0m
 Opportunistic Trader is passed GO.
 Collected LKR 2000.00
-Current Balance : LKR 6440.00
-[1;31m##########player round 5
-[0m[1;33m
-		DICE ROLL ROUND 28
-[0m[1;32m
- Dice Roll 
-[0mRisk Taker rolled 7
-[1;32m
- Player Movement 
-[0mRisk Taker moves from Square 4 to Square 11
-Risk Taker lands on Nugegoda
-
-================ PROPERTY DETAILS ================
-Status          : Unowned (Available to Buy)
-Purcase Price   : LKR 3500.00
-[1;32m
- Purchasing Property 
-[0m[0;32m
-Risk Taker purchased Nugegoda for LKR 3500.00
-[0mRemaining Balance : LKR 3860.00
-[0;34m#############balance 3860.000000
-[0m[1;31m
- Jail turn 1
-[0mConservative Banker rolled 3 and 1
-[0;31mConservative Banker failed to roll doubles and remains in Jail.
-[0m[1;32m
- Dice Roll 
-[0mAggressive Investor rolled 9
-[1;32m
- Player Movement 
-[0mAggressive Investor moves from Square 31 to Square 0
-Aggressive Investor lands on Go
-
-================ PROPERTY DETAILS ================
-Status          : Non-purchasable Property (Cannot be bought)
-[0;34m#############balance 7800.000000
-[0m[1;32m
- Passing GO 
-[0m
-Aggressive Investor is passed GO.
-Collected LKR 2000.00
-Current Balance : LKR 9800.00
+Current Balance : LKR 5710.00
 [1;31m##########player round 5
 [0m[1;34m
 ====================== ROUND 5 END ======================
