@@ -51,12 +51,12 @@ landProperties *initializeBoard()
     board[GalleFace]=(landProperties){.name="Galle Face",.type=land,.purchasePrice=purchasePrice[21],.baseRental=baseRents[21],.currentOwner=-1,.cGroup=G_DARK_BLUE};
 
     //special properties
-    board[ColomboFortRailway]=(landProperties){.name="Colombo Fort Railway",.type=railway ,.purchasePrice=2000.0,.mortgagePrice=1000.0,.baseRental=0,.currentOwner=1};
-    board[CEB]=(landProperties){.name="Ceylon Electricity Board",.type=utility ,.purchasePrice=1500.0,.mortgagePrice=750.0,.baseRental=0,.currentOwner=1};
-    board[KandyRailway]=(landProperties){.name="Kandy Railway Station",.type=railway ,.purchasePrice=2000.0,.mortgagePrice=1000.0,.baseRental=0,.currentOwner=1};
-    board[GalleRailway]=(landProperties){.name="Galle Railway Station",.type=railway ,.purchasePrice=2000.0,.mortgagePrice=1000.0,.baseRental=0,.currentOwner=1};
-    board[WaterBoard]=(landProperties){.name="National Water Board",.type=utility ,.purchasePrice=1500.0,.mortgagePrice=750.0,.baseRental=0,.currentOwner=1};
-    board[JaffnaRailway]=(landProperties){.name="Jaffna Railway Station",.type=railway ,.purchasePrice=2000.0,.mortgagePrice=1000.0,.baseRental=0,.currentOwner=0};
+    board[ColomboFortRailway]=(landProperties){.name="Colombo Fort Railway",.type=railway ,.purchasePrice=2000.0,.mortgagePrice=1000.0,.baseRental=0,.currentOwner=-1};
+    board[CEB]=(landProperties){.name="Ceylon Electricity Board",.type=utility ,.purchasePrice=1500.0,.mortgagePrice=750.0,.baseRental=0,.currentOwner=-1};
+    board[KandyRailway]=(landProperties){.name="Kandy Railway Station",.type=railway ,.purchasePrice=2000.0,.mortgagePrice=1000.0,.baseRental=0,.currentOwner=-1};
+    board[GalleRailway]=(landProperties){.name="Galle Railway Station",.type=railway ,.purchasePrice=2000.0,.mortgagePrice=1000.0,.baseRental=0,.currentOwner=-1};
+    board[WaterBoard]=(landProperties){.name="National Water Board",.type=utility ,.purchasePrice=1500.0,.mortgagePrice=750.0,.baseRental=0,.currentOwner=-1};
+    board[JaffnaRailway]=(landProperties){.name="Jaffna Railway Station",.type=railway ,.purchasePrice=2000.0,.mortgagePrice=1000.0,.baseRental=0,.currentOwner=-1};
 
     //special tiles
 
@@ -92,7 +92,7 @@ void gameCountCounter(Player *players,int *currentRound,int *activePlayersList,i
     if(minRound>*currentRound)
     {
         *currentRound=minRound;
-        printf(BOLD_BLUE"\n====================== ROUND %d END ======================\n"RESET,*currentRound);
+        endOfTheRounds(players,*currentRound);
     }
 }
 void handleLandLanding(Player *player, landProperties *property, Player *playerlist,landProperties *board)
@@ -100,7 +100,7 @@ void handleLandLanding(Player *player, landProperties *property, Player *playerl
     updateRailwayRent(property,board);
     updateUtilityRent(property,board,player->dieRollValue);
     displayLandDetails(player,property);
-    printf(YELLOW"###############dice roll : %d"RESET,player->dieRollValue);
+    printf(YELLOW"###############dice roll : %d\n"RESET,player->dieRollValue);
     if(property->currentOwner>0)
     {
         payRent(player,property,playerlist,board);
@@ -113,7 +113,6 @@ void handleLandLanding(Player *player, landProperties *property, Player *playerl
     {
 
     }
-    printf(BLUE"#############balance %f\n"RESET,player->cash);
 }
 void playerMovement(Player *players,landProperties *board)
 {
@@ -170,10 +169,10 @@ void playerMovement(Player *players,landProperties *board)
                     {
                         printf(BOLD_GREEN"\n Passing GO \n"RESET);
                         printf("\n%s is passed GO.\n",players[j].name);
-                        printf("Collected LKR %.2f\n",GO_MONEY);
+                        printf("Collected LKR %'.f\n",GO_MONEY);
                         players[j].cash+=GO_MONEY;
                         players[j].roundCount++;
-                        printf("Current Balance : LKR %.2lf\n",players[j].cash);   
+                        printf("Current Balance : LKR %'.f\n",players[j].cash);   
                         printf(BOLD_RED"##########player round %d\n"RESET,players[j].roundCount); 
                     }                
                 }

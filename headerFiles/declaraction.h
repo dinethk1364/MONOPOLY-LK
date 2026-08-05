@@ -15,6 +15,8 @@ void gameOver(Player *playerlist);
 int landData(double purchasePrice[],double baseRents[]);
 void updateRailwayRent(landProperties *property, landProperties board[]);
 void updateUtilityRent(landProperties *property,landProperties board[],int diceRoll);
+void endOfTheRounds(Player* players, int roundCount);
+void displayGameOver(Player *player);
 
 //player decisions
 int aggInvDecisions(Player *players, landProperties property, int actionType, double futureRent);

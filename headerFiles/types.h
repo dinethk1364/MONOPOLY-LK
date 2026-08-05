@@ -4,7 +4,7 @@
 
 #define Maxplayers 4
 #define TileSize 40
-#define RoundCount 5
+#define RoundCount 500
 #define GO_MONEY 2000.0f
 #define PLAYER_STARTING_CASH 30000.0f
 #define MAX_ROWS 22
@@ -20,7 +20,7 @@
 #define RESET "\033[0m"
 
 typedef enum{
-    TRUE,FALSE
+    FALSE,TRUE
 }boolValue;
 
 typedef enum{
@@ -109,11 +109,11 @@ typedef struct{
     int id;
     char name[50];
     double cash;
+    double netWorth;
     int currentPosition;
     int dieRollValue;
     int roundCount;
     boolValue isBankrupt; //1 if bankrupt, 0 otherwise
-    boolValue hasPassedGo; // 1 if passed Go, 0 otherwise
     boolValue inJail; //1 if in jail, 0 otherwise
     int jailTurns;// turns of player who in jail
 }Player;
