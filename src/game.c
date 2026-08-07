@@ -20,7 +20,7 @@ int rollDice(int *die1,int *die2)
     *die2 = (rand()%6)+1;
     return (*die1) + (*die2);
 }
-void playersDieRoll(Player *players)
+void playersDieRoll(Player players[])
 {
     int playerRolls[Maxplayers];
     
@@ -32,7 +32,7 @@ void playersDieRoll(Player *players)
         players[i].dieRollValue=playerRolls[i];
     }
 }
-void tieBreaker(Player *players,int start,int end)
+void tieBreaker(Player players[],int start,int end)
 {
     if(start>=end)//base case(if exit only 1 player break the recursion)
     {
@@ -86,7 +86,7 @@ void tieBreaker(Player *players,int start,int end)
         nStart = nEnd+1;
     }
 }
-void detTurnOrder(Player *players)
+void detTurnOrder(Player players[])
 {
     for(int i=0;i<Maxplayers-1;i++)//bubble sort(sort max roll value to min)
     {
@@ -130,7 +130,7 @@ void detTurnOrder(Player *players)
         printf("%s\n",players[i].name);
     }
 }
-void auctionProperty(Player *playerlist,landProperties *property)
+void auctionProperty(Player playerlist[],landProperties *property)
 {
     printf(BOLD_YELLOW"\n================== Property Auction ==================\n"RESET);
     printf("Base Purchase Price: LKR %'.f\n",property->purchasePrice*0.5);
@@ -169,22 +169,22 @@ void auctionProperty(Player *playerlist,landProperties *property)
 
             switch(cuurentBidder->id)
             {
-                case 1:
+                case AGG_INVESTER:
                 {
                     shouldBid = aggInvDecisions(cuurentBidder,*property,AUCTION_MAX_BID_DECISION,proposedBid);
                     break;
                 }
-                case 2:
+                case CONS_BANKER:
                 {
                     shouldBid = aggInvDecisions(cuurentBidder,*property,AUCTION_MAX_BID_DECISION,proposedBid);
                     break;
                 }
-                case 3:
+                case RISK_TAKER:
                 {
                     shouldBid = aggInvDecisions(cuurentBidder,*property,AUCTION_MAX_BID_DECISION,proposedBid);
                     break;
                 }
-                case 4:
+                case OPP_TRADER:
                 {
                     shouldBid = aggInvDecisions(cuurentBidder,*property,AUCTION_MAX_BID_DECISION,proposedBid);
                     break;
@@ -223,35 +223,35 @@ void auctionProperty(Player *playerlist,landProperties *property)
         property->currentRent = property->baseRental;
 
         printf(BOLD_GREEN"\n--------------------------------------------------------\n"RESET);
-        printf(GREEN"\n\n%s wins the auction\n"RESET,playerlist[winningPlayer].name);
+        printf(GREEN"\n%s wins the auction\n"RESET,playerlist[winningPlayer].name);
         printf(GREEN"%s bought %s for LKR : %d\n"RESET,playerlist[winningPlayer].name,property->name,highestBid);
         printf(BOLD_GREEN"\n--------------------------------------------------------\n"RESET);
     }
 }
-void buyProperty(Player *player, landProperties *property,Player *playerList)
+void buyProperty(Player *player, landProperties *property,Player playerList[])
 {
     if(property->currentOwner==-1)
     {
         int shouldBuy = FALSE; //TRUE(1)=Buy , FALSE(0)= dont buy
         switch(player->id)
         {
-            case 1:
+            case AGG_INVESTER:
             {
                 double tempFutureRent = 50.00;////// tempary value
                 shouldBuy=aggInvDecisions(player,*property,BUY_PROPERTY_DECISION,tempFutureRent);
                 break;
             }
-            case 2:
+            case CONS_BANKER:
             {
                 shouldBuy=consBanDecisions(player,*property,BUY_PROPERTY_DECISION);
                 break;
             }
-            case 3:
+            case RISK_TAKER:
             {
                 shouldBuy=riskTakDecisions(player,*property,BUY_PROPERTY_DECISION);
                 break;
             }
-            case 4:
+            case OPP_TRADER:
             {
                 //uses agginv stratagies temraraly
                 double tempFutureRent = 250.00;////// tempary value
@@ -287,23 +287,224 @@ void buyProperty(Player *player, landProperties *property,Player *playerList)
         }
     }
 }
-void Bankrupt(Player *player,Player *playerlist,landProperties *properties)
+int hasMonopoly(landProperties board[],int playerId, int colorGroup)
+{
+    int landCountInCGroup=0;
+    int playerOwnedLands=0;
+
+    for (int i=0; i<TileSize; i++)
+    {
+        if(board[i].type==land && board[i].cGroup==colorGroup)
+        {
+            landCountInCGroup++;
+            
+            if(board[i].currentOwner==playerId)
+            {
+                playerOwnedLands++;
+            }      
+        }
+    }
+    if(landCountInCGroup>0 && landCountInCGroup==playerOwnedLands)
+    {
+        return TRUE;
+    }
+    return FALSE;
+}
+
+int getMinHouses(landProperties board[], int colorGroup)
+{
+    int minHouses = 4;
+    for (int i=0;i<TileSize;i++)
+    {
+        if(board[i].type==land && board[i].cGroup == colorGroup)
+        {
+            int currentHouses = 0;
+            if(board[i].noOfHotels>0)
+                currentHouses = 4;// if have hotel consider as 4 houses
+            else
+                currentHouses = board[i].noOfHouses;
+            
+            if(currentHouses<minHouses)
+                minHouses=currentHouses;            
+        }
+    }
+    return minHouses;
+}
+
+void updateLandRent(landProperties *property)
+{
+    if(property->type!=land) return;
+
+    if(property->currentOwner<=0)
+    {
+        property->currentRent=0;
+        return;
+    }
+
+    int multiplier = 1;
+
+    if(property->noOfHotels>0)
+    {
+        multiplier=10;
+    }
+    else
+    {
+        switch(property->noOfHouses)
+        {
+            case 0:
+                multiplier=1;
+                break;
+            case 1:
+                multiplier=2;
+                break;
+            case 2:
+                multiplier=3;
+                break;
+            case 3:
+                multiplier=5;
+                break;
+            case 4:
+                multiplier=7;
+                break;
+        }
+    }
+    property->currentRent=property->baseRental*multiplier;
+}
+
+void buildHouses(Player *player, landProperties board[])
+{
+    int header1Print =FALSE;// print header only once
+    int header2Print =FALSE;// print header only once
+
+    for(int colorGroup = G_BROWN; colorGroup<=G_DARK_BLUE;colorGroup++)//check all color groups
+    {
+        if(hasMonopoly(board,player->id,colorGroup)==TRUE)
+        {   
+            int controlLoop =TRUE;//run loop until out of money
+            while(controlLoop)
+            {
+                controlLoop=FALSE;
+                int minHouses = getMinHouses(board,colorGroup);
+
+                for(int i=0;i<TileSize;i++)//check all lands in color group
+                {
+                    if(board[i].type==land && board[i].cGroup==colorGroup && board[i].currentOwner==player->id)
+                    {
+                        if(board[i].noOfHotels==0 && board[i].noOfHouses<4 && board[i].noOfHouses==minHouses)
+                        {
+                            int buildDecision = FALSE;
+
+                            switch (player->id)
+                            {
+                            case AGG_INVESTER:
+                                buildDecision=aggInvDecisions(player,board[i],BUILD_HOUSE_DECISION,board[i].houseCost);
+                                break;
+                            case CONS_BANKER:
+                                buildDecision=aggInvDecisions(player,board[i],BUILD_HOUSE_DECISION,board[i].houseCost);
+                                break;
+                            case RISK_TAKER:
+                                buildDecision=aggInvDecisions(player,board[i],BUILD_HOUSE_DECISION,board[i].houseCost);
+                                break;
+                            case OPP_TRADER:
+                                buildDecision=aggInvDecisions(player,board[i],BUILD_HOUSE_DECISION,board[i].houseCost);
+                                break;                        
+                            default:
+                                break;
+                            }
+
+                            if(buildDecision==TRUE)
+                            {
+                                player->cash-= board[i].houseCost;
+                                board[i].noOfHouses++;
+                                
+                                updateLandRent(&board[i]);
+
+                                if(!header1Print)
+                                {
+                                    printf(BOLD_GREEN"\n Building Construction \n\n"RESET);
+                                    header1Print=TRUE;
+                                }
+                                printf(GREEN"%s is constructed one house on %s. \n"RESET,player->name,board[i].name);
+                                printf(GREEN"Construction cost: LKR %'.f\n"RESET,board[i].houseCost);
+
+                                controlLoop=TRUE;
+                                break;
+                                // minHouses = getMinHouses(board,colorGroup);//update minhouse after build house
+                            }
+                        }
+                        else if(board[i].noOfHouses==4 && board[i].noOfHotels==0 && minHouses==4)
+                        {
+                            int buildDecision = FALSE;
+                            switch (player->id)
+                            {
+                            case AGG_INVESTER:
+                                buildDecision=aggInvDecisions(player,board[i],BUILD_HOUSE_DECISION,board[i].hotelCost);
+                                break;
+                            case CONS_BANKER:
+                                buildDecision=aggInvDecisions(player,board[i],BUILD_HOUSE_DECISION,board[i].hotelCost);
+                                break;
+                            case RISK_TAKER:
+                                buildDecision=aggInvDecisions(player,board[i],BUILD_HOUSE_DECISION,board[i].hotelCost);
+                                break;
+                            case OPP_TRADER:
+                                buildDecision=aggInvDecisions(player,board[i],BUILD_HOUSE_DECISION,board[i].hotelCost);
+                                break;                        
+                            default:
+                                break;
+                            }
+
+                            if(buildDecision==TRUE)
+                            {
+                                player->cash-= board[i].hotelCost;
+                                board[i].noOfHouses=0;
+                                board[i].noOfHotels=1;
+
+                                updateLandRent(&board[i]);
+
+                                if(!header2Print)
+                                {
+                                    printf(BOLD_GREEN"\n HOTEL Construction \n\n"RESET);
+                                    header2Print=TRUE;
+                                }
+                                printf(YELLOW"%s upgraded %s to a Hotel.\n"RESET,player->name,board[i].name);
+                                printf(YELLOW"Construction cost: LKR %'.f\n"RESET,board[i].hotelCost);
+
+                                controlLoop=TRUE;
+                                break;
+                                // minHouses = getMinHouses(board,colorGroup);//update minhouse after build house
+                            }
+                        }
+                    }
+                }
+            }
+            if (header1Print == TRUE || header2Print==TRUE)
+            {
+                printf("\nRemaining Cash: LKR %'.f\n", player->cash);
+            }
+        }
+    }
+}
+
+void Bankrupt(Player *player,Player playerlist[],landProperties board[])
 {
     //sell properties or mortgage
+    //should add remaining rent to land owner
+
     player->isBankrupt=TRUE;
     
     printf(BOLD_GREEN"\n Bankruptcy \n"RESET);
 
     printf(RED"\n%s is BANKRUPT and eliminated form the game!\n"RESET,player->name);
     //Transferring the bankrupt players properties to the bank
+
     for(int i=0;i<TileSize;i++)
     {
-        if(properties[i].currentOwner==player->id)
+        if(board[i].currentOwner==player->id)
         {
-            properties[i].currentOwner = -1;
-            properties[i].noOfHouses= 0;
-            properties[i].noOfHotels=0;
-            printf(GREEN"\n%s trasferred to the bank and all buildings have been removed\n"RESET,properties[i].name);
+            board[i].currentOwner = -1;
+            board[i].noOfHouses= 0;
+            board[i].noOfHotels=0;
+            printf(GREEN"\n%s trasferred to the bank and all buildings have been removed\n"RESET,board[i].name);
         }
     }
     gameOver(playerlist);
@@ -375,7 +576,7 @@ void updateUtilityRent(landProperties *property,landProperties board[],int diceR
         }
     }
 }
-void payRent(Player *player,landProperties *property,Player *playerlist,landProperties *properties)
+void payRent(Player *player,landProperties *property,Player playerlist[],landProperties board[])
 {
     if(property->currentOwner>0 && property->currentOwner!=player->id)
     {
@@ -399,12 +600,12 @@ void payRent(Player *player,landProperties *property,Player *playerlist,landProp
         else
         {
             printf(RED"\n%s doesn't have enough money to pay! Bankrupt Risk!\n"RESET,player->name);
-            Bankrupt(player,playerlist,properties);
+            Bankrupt(player,playerlist,board);
         }
     }
 }
 
-int checkGameOver(Player *playerlist)
+int checkGameOver(Player playerlist[])
 {
     int bankruptCount = 0;
     for(int i=0;i<Maxplayers;i++)
@@ -420,7 +621,7 @@ int checkGameOver(Player *playerlist)
     }
     return FALSE;
 }
-void gameOver(Player *playerlist)
+void gameOver(Player playerlist[])
 {
     if(checkGameOver(playerlist)==TRUE)
     {

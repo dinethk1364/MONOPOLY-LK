@@ -1,5 +1,7 @@
 #include <stdio.h>
-#include "../headerFiles/types.h"
+#include "../headerFiles/declaraction.h"
+
+int hasMonopoly(landProperties board[],int playerId, int colorGroup);
 
 void printGameBegins()
 {
@@ -11,7 +13,7 @@ void printGameBegins()
     printf("Each player begins with LKR %'.f\n",PLAYER_STARTING_CASH);
 }
 
-void displayLandDetails(Player *player,landProperties *property)
+void displayLandDetails(Player *player,landProperties *property,landProperties board[])
 {
     printf("\n===================== PROPERTY DETAILS =====================\n\n");
 
@@ -29,6 +31,15 @@ void displayLandDetails(Player *player,landProperties *property)
         if(player->id==property->currentOwner)
         {
             printf("This property is belongs to you\n");
+            int x = hasMonopoly(board,player->id,property->cGroup);
+            if(x==TRUE)
+            {
+                printf(BOLD_BLUE"#########HAS MONOPOLY\n"RESET);
+            }
+            else
+            {
+                printf(RED"#########DOES NOT HAVE MONOPOLY\n"RESET);
+            }
         }
         else
         { 

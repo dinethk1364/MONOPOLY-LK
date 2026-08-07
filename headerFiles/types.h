@@ -4,7 +4,7 @@
 
 #define Maxplayers 4
 #define TileSize 40
-#define RoundCount 500
+#define RoundCount 5
 #define GO_MONEY 2000.0f
 #define PLAYER_STARTING_CASH 30000.0f
 #define MAX_ROWS 22
@@ -33,6 +33,10 @@ typedef enum{
     G_GREEN,
     G_DARK_BLUE
 }colorGroup;
+
+typedef enum{
+    AGG_INVESTER=1,CONS_BANKER,RISK_TAKER,OPP_TRADER
+}playerNames;
 
 typedef enum{
     GO,                 //0
