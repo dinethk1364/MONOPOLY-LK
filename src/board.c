@@ -27,9 +27,9 @@ landProperties *initializeBoard()
     board[Wellawatta]=(landProperties){.name="Wellawatta",.type=land,.purchasePrice=purchasePrice[3],.baseRental=baseRents[3],.currentOwner=-1,.cGroup=G_LIGHT_BLUE,.houseCost=750.0,.hotelCost=3000.0};
     board[MountLavinia]=(landProperties){.name="MountLavinia",.type=land,.purchasePrice=purchasePrice[4],.baseRental=baseRents[4],.currentOwner=-1,.cGroup=G_LIGHT_BLUE,.houseCost=750.0,.hotelCost=3000.0};
                         //pink
-    board[Nugegoda]=(landProperties){.name="Nugegoda",.type=land,.purchasePrice=purchasePrice[5],.baseRental=baseRents[5],.currentOwner=1,.cGroup=G_PINK,.houseCost=1000.0,.hotelCost=4000.0};
-    board[Maharagama]=(landProperties){.name="Maharagama",.type=land,.purchasePrice=purchasePrice[6],.baseRental=baseRents[6],.currentOwner=1,.cGroup=G_PINK,.houseCost=1000.0,.hotelCost=4000.0};
-    board[Kottawa]=(landProperties){.name="Kottawa",.type=land,.purchasePrice=purchasePrice[7],.baseRental=baseRents[7],.currentOwner=1,.cGroup=G_PINK,.houseCost=1000.0,.hotelCost=4000.0};
+    board[Nugegoda]=(landProperties){.name="Nugegoda",.type=land,.purchasePrice=purchasePrice[5],.baseRental=baseRents[5],.currentOwner=-1,.cGroup=G_PINK,.houseCost=1000.0,.hotelCost=4000.0};
+    board[Maharagama]=(landProperties){.name="Maharagama",.type=land,.purchasePrice=purchasePrice[6],.baseRental=baseRents[6],.currentOwner=-1,.cGroup=G_PINK,.houseCost=1000.0,.hotelCost=4000.0};
+    board[Kottawa]=(landProperties){.name="Kottawa",.type=land,.purchasePrice=purchasePrice[7],.baseRental=baseRents[7],.currentOwner=-1,.cGroup=G_PINK,.houseCost=1000.0,.hotelCost=4000.0};
                         //orange
     board[Negombo]=(landProperties){.name="Negombo",.type=land,.purchasePrice=purchasePrice[8],.baseRental=baseRents[8],.currentOwner=-1,.cGroup=G_ORANGE,.houseCost=1250.0,.hotelCost=5000.0};
     board[Katunayake]=(landProperties){.name="Katunayake",.type=land,.purchasePrice=purchasePrice[9],.baseRental=baseRents[9],.currentOwner=-1,.cGroup=G_ORANGE,.houseCost=1250.0,.hotelCost=5000.0};
@@ -111,7 +111,15 @@ void handleLandLanding(Player *player, landProperties *property, Player playerli
     }
     else
     {
-
+        //special tiles
+        if(player->currentPosition==Incometax)
+        {
+            incomeTax(player,1);
+        }
+        else if(player->currentPosition==CommunityDevFund)
+        {
+            communityDevFund(player,playerlist,board,1);
+        }
     }
     buildHouses(player,board);
 }

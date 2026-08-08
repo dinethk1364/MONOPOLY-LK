@@ -103,6 +103,7 @@ typedef struct{
     int noOfHouses;
     int noOfHotels;
     colorGroup cGroup;
+    double propertyValue;
 
 }landProperties;
 

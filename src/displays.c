@@ -31,15 +31,6 @@ void displayLandDetails(Player *player,landProperties *property,landProperties b
         if(player->id==property->currentOwner)
         {
             printf("This property is belongs to you\n");
-            int x = hasMonopoly(board,player->id,property->cGroup);
-            if(x==TRUE)
-            {
-                printf(BOLD_BLUE"#########HAS MONOPOLY\n"RESET);
-            }
-            else
-            {
-                printf(RED"#########DOES NOT HAVE MONOPOLY\n"RESET);
-            }
         }
         else
         { 

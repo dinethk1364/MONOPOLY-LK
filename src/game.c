@@ -376,7 +376,7 @@ void buildHouses(Player *player, landProperties board[])
     int header1Print =FALSE;// print header only once
     int header2Print =FALSE;// print header only once
 
-    for(int colorGroup = G_BROWN; colorGroup<=G_DARK_BLUE;colorGroup++)//check all color groups
+    for(int colorGroup =G_DARK_BLUE; colorGroup>=G_BROWN;colorGroup--)//check all color groups
     {
         if(hasMonopoly(board,player->id,colorGroup)==TRUE)
         {   
@@ -477,11 +477,11 @@ void buildHouses(Player *player, landProperties board[])
                     }
                 }
             }
-            if (header1Print == TRUE || header2Print==TRUE)
-            {
-                printf("\nRemaining Cash: LKR %'.f\n", player->cash);
-            }
         }
+    }
+    if (header1Print == TRUE || header2Print==TRUE)
+    {
+        printf("\nRemaining Cash: LKR %'.f\n", player->cash);
     }
 }
 

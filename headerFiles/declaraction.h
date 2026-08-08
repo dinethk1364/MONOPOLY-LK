@@ -9,6 +9,7 @@ landProperties *initializeBoard();
 void playerMovement(Player *players,landProperties *propery);
 void displayLandDetails(Player *player,landProperties *property,landProperties board[]);
 void buyProperty(Player *player, landProperties *property,Player playerlist[]);
+void Bankrupt(Player *player,Player playerlist[],landProperties board[]);
 void payRent(Player *player,landProperties *property,Player playerlist[],landProperties board[]);
 int checkGameOver(Player playerlist[]);
 void gameOver(Player playerlist[]);
@@ -19,6 +20,9 @@ void endOfTheRounds(Player* players, int roundCount);
 void displayGameOver(Player *player);
 int hasMonopoly(landProperties board[],int playerId, int colorGroup);
 void buildHouses(Player *player, landProperties board[]);
+
+void incomeTax(Player *player, double marketCondition);
+void communityDevFund(Player *player,Player playerlist[],landProperties board[],double marketCondition);
 
 //player decisions
 int aggInvDecisions(Player *players, landProperties property, int actionType, double value);
