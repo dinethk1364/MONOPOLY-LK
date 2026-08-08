@@ -485,30 +485,131 @@ void buildHouses(Player *player, landProperties board[])
     }
 }
 
-void Bankrupt(Player *player,Player playerlist[],landProperties board[])
+int hasBuildings(landProperties board[], int colorGroup)
 {
-    //sell properties or mortgage
-    //should add remaining rent to land owner
-
-    player->isBankrupt=TRUE;
-    
-    printf(BOLD_GREEN"\n Bankruptcy \n"RESET);
-
-    printf(RED"\n%s is BANKRUPT and eliminated form the game!\n"RESET,player->name);
-    //Transferring the bankrupt players properties to the bank
-
     for(int i=0;i<TileSize;i++)
     {
-        if(board[i].currentOwner==player->id)
+        if(board[i].type==land && board[i].cGroup==colorGroup)
         {
-            board[i].currentOwner = -1;
-            board[i].noOfHouses= 0;
-            board[i].noOfHotels=0;
-            printf(GREEN"\n%s trasferred to the bank and all buildings have been removed\n"RESET,board[i].name);
+            if(board[i].noOfHouses>0 || board[i].noOfHotels>0)
+            {
+                return TRUE;// cannot mortgage if have houses of hotels
+            }
         }
     }
-    gameOver(playerlist);
+    return FALSE;
 }
+
+void mortgageProperty(Player *player,landProperties board[],landProperties *property,double marketcondition)
+{
+    if(property->currentOwner == player->id && property->mortgageStatus==FALSE)
+    {
+        if(property->type == land && hasBuildings(board,property->cGroup)==TRUE)
+        {
+            printf(RED"Cannot mortgage %s! property has buildings.\n"RESET,property->name);
+        }
+        else
+        {
+            calMortgageValue(property,marketcondition);//update property value
+            property->mortgageStatus=TRUE;
+            property->currentRent=0;//mortgage properties cannot collect rent
+            player->cash+=property->mortgagePrice;
+
+            printf(BOLD_GREEN "\n Property Mortgaged \n" RESET);
+            printf(GREEN "%s mortgaged %s for LKR %'.f\n" RESET, player->name, property->name, property->mortgagePrice);
+            printf("Updated Cash Balance: LKR %'.f\n", player->cash);
+        }
+    }
+}
+
+int propertiesCountofGroup(landProperties board[],int colorGroup, int playerId)// get count of owned lands i color group
+{
+    int count =0;
+    for(int i=0;i<TileSize;i++)
+    {
+        if(board[i].type== land && board[i].cGroup==colorGroup && board[i].currentOwner==playerId)
+        {
+            count++;
+        }
+    }
+    return count;
+}
+
+void Bankrupt(Player *player,Player playerlist[],landProperties board[],double marketConsition)
+{
+    if(player->cash <0)
+    {
+        printf(YELLOW "\nLow on cash! mortgaging properties\n" RESET);
+
+        while(player->cash<0)
+        {
+            int best=-1;
+            int priority = 999;
+            double price = 999999999.0;
+
+            for(int i=0;i<TileSize;i++)
+            {
+                if(board[i].currentOwner==player->id && board[i].mortgageStatus==FALSE)
+                {
+                    if(board[i].type==land && hasBuildings(board,board[i].cGroup)==TRUE)//skip constructed lands
+                    {
+                        continue;
+                    }
+                    int groupCount = propertiesCountofGroup(board,board[i].cGroup,player->id);
+                    int isMonopoly = hasMonopoly(board,player->id,board[i].cGroup);
+
+                    int currentpriority=3;
+                    if(isMonopoly==FALSE && groupCount==1)//mortgage first single land in colog group
+                        currentpriority=1;
+                    else if(isMonopoly==FALSE&& groupCount>1)
+                        currentpriority=2;
+
+                    if(currentpriority<priority || (currentpriority==priority&& board[i].propertyValue < price))
+                    {
+                        priority = currentpriority;
+                        price = board[i].propertyValue;
+                        best = i;
+                    }
+                }
+            }
+            if(best == -1)//repeat untill not have property to morgage
+            {
+                break;;
+            }
+
+            mortgageProperty(player,board,&board[best],marketConsition);
+            printf(RED"\n%s is mortgaged and receive LKR %'.f\n"RESET,board[best].name,board[best].mortgagePrice);
+        }
+    }
+
+    if(player->cash<0)
+    {
+        player->isBankrupt=TRUE;
+        
+        printf(BOLD_GREEN"\n Bankruptcy \n"RESET);
+
+        printf(RED"\n%s is BANKRUPT and eliminated form the game!\n"RESET,player->name);
+        //Transferring the bankrupt players properties to the bank
+
+        for(int i=0;i<TileSize;i++)
+        {
+            if(board[i].currentOwner==player->id)
+            {
+                board[i].currentOwner = -1;
+                board[i].noOfHouses= 0;
+                board[i].noOfHotels=0;
+                board[i].mortgageStatus=FALSE;
+                printf(GREEN"\n%s trasferred to the bank and all buildings have been removed\n"RESET,board[i].name);
+            }
+        }
+        gameOver(playerlist);
+    }
+    else
+    {
+        printf("Remaining Balance: LKR %'.f\n",player->cash);
+    }
+}
+
 int countOwnedRailway(int ownerId, landProperties board[])
 {
     int count = 0;
@@ -580,27 +681,35 @@ void payRent(Player *player,landProperties *property,Player playerlist[],landPro
 {
     if(property->currentOwner>0 && property->currentOwner!=player->id)
     {
+        if(property->mortgageStatus==TRUE)
+        {
+            printf(YELLOW "\n%s is MORTGAGED! No rent collected.\n" RESET, property->name);
+            return;
+        }
+
         double rentAmount = property->currentRent; 
         printf(BOLD_GREEN"\n Paying Rent \n"RESET);
-        if(player->cash >= rentAmount)
+
+        player->cash -= rentAmount;
+        for(int i=0;i<Maxplayers;i++)
         {
-            player->cash -= rentAmount;
-            for(int i=0;i<Maxplayers;i++)
+            if(playerlist[i].id==property->currentOwner)
             {
-                if(playerlist[i].id==property->currentOwner)
-                {
-                    //printf("Reciver cash before: %'.f\n",playerlist[i].cash);// for testing
-                    playerlist[i].cash += rentAmount;
-                    printf("Rent Paid to %s : LKR %'.f\n",playerlist[i].name,property->currentRent);
-                    // printf("Reciver cash after: %'.f\n",playerlist[i].cash);// for testing
-                }
+                //printf("Receiver cash before: %'.f\n",playerlist[i].cash);// for testing
+                playerlist[i].cash += rentAmount;
+                printf("Rent Paid to %s : LKR %'.f\n",playerlist[i].name,property->currentRent);
+                // printf("Receiver cash after: %'.f\n",playerlist[i].cash);// for testing
             }
+        }
+        
+        if(player->cash >= 0)
+        {
             printf("Remaining Balance : LKR %'.f\n",player->cash);
         }
         else
         {
-            printf(RED"\n%s doesn't have enough money to pay! Bankrupt Risk!\n"RESET,player->name);
-            Bankrupt(player,playerlist,board);
+            printf(RED "\n%s doesn't have enough money to pay RENT! Bankrupt Risk!\n" RESET, player->name);
+            Bankrupt(player, playerlist, board,1);//martket condition is 1 temapryily
         }
     }
 }

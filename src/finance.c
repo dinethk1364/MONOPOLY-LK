@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include"../headerFiles/declaraction.h"
 
-void calculatePropertyValue(landProperties *property,double marketCondition)
+void calPropertyValue(landProperties *property,double marketCondition)
 {
     if(property->type!=nonProperty)
     {
@@ -10,6 +10,11 @@ void calculatePropertyValue(landProperties *property,double marketCondition)
     else{
         property->propertyValue=0;
     }
+}
+void calMortgageValue(landProperties *property,double marketcondition)
+{
+    calPropertyValue(property,marketcondition);
+    property->mortgagePrice = property->propertyValue*0.5;
 }
 
 void incomeTax(Player *player, double marketCondition)
@@ -30,7 +35,7 @@ void communityDevFund(Player *player,Player playerlist[],landProperties board[],
     {
         if(board[i].currentOwner==player->id && board[i].type != nonProperty)
         {
-            calculatePropertyValue(&board[i],marketCondition);
+            calPropertyValue(&board[i],marketCondition);
             totalAssets+=board[i].propertyValue;
         }
     }
@@ -41,11 +46,15 @@ void communityDevFund(Player *player,Player playerlist[],landProperties board[],
     printf(BOLD_GREEN"\n Tax Payment\n"RESET);
     printf(RED"%s paid Community Development Fund Tax: LKR %'.f (Rate: %.1f%%)\n"RESET,player->name,taxAmount,taxRate*100);
     printf("Total Assets: LKR %'.f\n",totalAssets);
-    printf("Remaining Balance: LKR %'.f\n", player->cash);
 
     //check bankrupt
-    if(player->cash < 0)
+    if(player->cash >= 0)
     {
-        Bankrupt(player,playerlist,board);
+        printf("Remaining Balance: LKR %'.f\n", player->cash);
+    }
+    else
+    {
+        printf(RED"\n%s doesn't have enough money to pay TAX! Bankrupt Risk!\n"RESET,player->name);
+        Bankrupt(player,playerlist,board,marketCondition);
     }
 }

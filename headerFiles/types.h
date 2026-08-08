@@ -56,7 +56,7 @@ typedef enum{
     Kottawa,            //14
     KandyRailway,       //15
     Negombo,            //16
-    SrilankaInsuarance, //17
+    SrilankaInsurance, //17
     Katunayake,         //18
     JaEla,              //19
     FreeParking,        //20
@@ -72,7 +72,7 @@ typedef enum{
     GoToJail,           //30
     Jaffna,             //31
     Nallur,             //32
-    CeylincoInsuarance, //33
+    CeylincoInsurance, //33
     Trincomalee,        //34
     JaffnaRailway,      //35
     NationalEvent3,     //36
@@ -99,7 +99,7 @@ typedef struct{
     int currentOwner;//-1:no owner  //0:cannot be own //1,2,3,4: belongs to player ID
     double currentRent;
     boolValue mortgageStatus;// 1 is true 0 is false
-    boolValue InsuaranceStatus;// 1 is true 0 is false
+    boolValue InsuranceStatus;// 1 is true 0 is false
     int noOfHouses;
     int noOfHotels;
     colorGroup cGroup;

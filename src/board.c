@@ -65,11 +65,11 @@ landProperties *initializeBoard()
     board[Incometax]=(landProperties){.name="Income Tax",.type=nonProperty ,.currentOwner=0};      
     board[NationalEvent1]=(landProperties){.name="National Event Card",.type=nonProperty ,.currentOwner=0};    
     board[Jail]=(landProperties){.name="Jail",.type=nonProperty ,.currentOwner=0}; 
-    board[SrilankaInsuarance]=(landProperties){.name="Sri Lanka Insuarance",.type=nonProperty ,.currentOwner=0};    
+    board[SrilankaInsurance]=(landProperties){.name="Sri Lanka Insurance",.type=nonProperty ,.currentOwner=0};    
     board[FreeParking]=(landProperties){.name="Free Parking",.type=nonProperty ,.currentOwner=0};    
     board[NationalEvent2]=(landProperties){.name="National Event Card",.type=nonProperty ,.currentOwner=0};
     board[GoToJail]=(landProperties){.name="Go to Jail",.type=nonProperty ,.currentOwner=0};
-    board[CeylincoInsuarance]=(landProperties){.name="Ceylinco Insuarance",.type=nonProperty ,.currentOwner=0};
+    board[CeylincoInsurance]=(landProperties){.name="Ceylinco Insurance",.type=nonProperty ,.currentOwner=0};
     board[NationalEvent3]=(landProperties){.name="National Event Card",.type=nonProperty ,.currentOwner=0};
     board[BOC]=(landProperties){.name="Bank of Ceylon",.type=nonProperty ,.currentOwner=0}; 
 /*
@@ -216,7 +216,7 @@ void playerMovement(Player players[],landProperties board[])
                     }
                     else if(players[j].jailTurns>3)//if remain imprisoned for 3 turns
                     {
-                        printf(YELLOW"%s completed 3 turns in Jail and has beed released from Jail\n"RESET,players[j].name);
+                        printf(YELLOW"%s completed 3 turns in Jail and has been released from Jail\n"RESET,players[j].name);
                         players[j].inJail = FALSE ;
                         players[j].jailTurns = 0; 
                         //move player
