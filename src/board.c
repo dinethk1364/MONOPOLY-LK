@@ -142,6 +142,7 @@ void playerMovement(Player players[],landProperties board[])
         {
             if(players[j].isBankrupt==FALSE)// check player bankrupt
             {
+                unmortgageProperty(&players[j],board);
                 int d1,d2;
                 int diceTotal = rollDice(&d1,&d2);
                 players[j].dieRollValue = diceTotal;//for utility

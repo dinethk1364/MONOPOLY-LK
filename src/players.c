@@ -39,6 +39,21 @@ int aggInvDecisions(Player *player, landProperties property, int actionType, dou
             }
             return FALSE;
         }
+        case UNMORTGAGE:
+        {
+            double unmortgageCost = property.mortgagePrice * 1.10;
+            double reservedCash = value;//one future rent
+            if(player->cash >= unmortgageCost)
+            {
+                double remainingCash = player->cash - unmortgageCost;
+                if(remainingCash >= reservedCash)
+                {
+                    return TRUE;
+                }
+            }
+            return FALSE;
+        }
+
         default:
             return FALSE;
     }

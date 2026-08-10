@@ -500,28 +500,6 @@ int hasBuildings(landProperties board[], int colorGroup)
     return FALSE;
 }
 
-void mortgageProperty(Player *player,landProperties board[],landProperties *property,double marketcondition)
-{
-    if(property->currentOwner == player->id && property->mortgageStatus==FALSE)
-    {
-        if(property->type == land && hasBuildings(board,property->cGroup)==TRUE)
-        {
-            printf(RED"Cannot mortgage %s! property has buildings.\n"RESET,property->name);
-        }
-        else
-        {
-            calMortgageValue(property,marketcondition);//update property value
-            property->mortgageStatus=TRUE;
-            property->currentRent=0;//mortgage properties cannot collect rent
-            player->cash+=property->mortgagePrice;
-
-            printf(BOLD_GREEN "\n Property Mortgaged \n" RESET);
-            printf(GREEN "%s mortgaged %s for LKR %'.f\n" RESET, player->name, property->name, property->mortgagePrice);
-            printf("Updated Cash Balance: LKR %'.f\n", player->cash);
-        }
-    }
-}
-
 int propertiesCountofGroup(landProperties board[],int colorGroup, int playerId)// get count of owned lands i color group
 {
     int count =0;

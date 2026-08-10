@@ -17,6 +17,70 @@ void calMortgageValue(landProperties *property,double marketcondition)
     property->mortgagePrice = property->propertyValue*0.5;
 }
 
+void mortgageProperty(Player *player,landProperties board[],landProperties *property,double marketcondition)
+{
+    if(property->currentOwner == player->id && property->mortgageStatus==FALSE)
+    {
+        if(property->type == land && hasBuildings(board,property->cGroup)==TRUE)
+        {
+            printf(RED"Cannot mortgage %s! property has buildings.\n"RESET,property->name);
+        }
+        else
+        {
+            calMortgageValue(property,marketcondition);//update property value
+            property->mortgageStatus=TRUE;
+            property->currentRent=0;//mortgage properties cannot collect rent
+            player->cash+=property->mortgagePrice;
+
+            printf(BOLD_GREEN "\n Property Mortgaged \n" RESET);
+            printf(GREEN "%s mortgaged %s for LKR %'.f\n" RESET, player->name, property->name, property->mortgagePrice);
+            printf("Updated Cash Balance: LKR %'.f\n", player->cash);
+        }
+    }
+}
+
+void unmortgageProperty(Player *player, landProperties board[])
+{   
+    for(int i=0;i<TileSize;i++)
+    {        
+        if(board[i].currentOwner==player->id && board[i].mortgageStatus==TRUE)
+        {
+            int shouldUnmortgage = FALSE;
+
+            switch(player->id)
+            {
+                case AGG_INVESTER:
+                    shouldUnmortgage = aggInvDecisions(player, board[i],UNMORTGAGE,2000);
+                    break;
+                case CONS_BANKER:
+                    shouldUnmortgage = aggInvDecisions(player, board[i],UNMORTGAGE,2000);
+                    break;
+                case RISK_TAKER:
+                    shouldUnmortgage = aggInvDecisions(player, board[i],UNMORTGAGE,2000);
+                    break;
+                case OPP_TRADER:
+                    shouldUnmortgage = aggInvDecisions(player, board[i],UNMORTGAGE,2000);
+                    break;
+                default:
+                    shouldUnmortgage = FALSE;
+                    break;
+            }
+
+            if(shouldUnmortgage==TRUE)
+            {
+                double unmortgageCost = board[i].mortgagePrice*1.10;//10% interest
+                player->cash -= unmortgageCost;
+                board[i].mortgageStatus = FALSE;
+                updateLandRent(&board[i]);
+
+                printf(BOLD_GREEN"\n Property is Unmortgaged\n"RESET);
+                printf(YELLOW"%s unmortgaged %s for LKR %.f\n"RESET, player->name, board[i].name, unmortgageCost);
+                printf("Remaining Balance : LKR %.f\n", player->cash);
+            }
+        }
+    }
+}
+
 void incomeTax(Player *player, double marketCondition)
 {
     double taxRate = 0.15*marketCondition;

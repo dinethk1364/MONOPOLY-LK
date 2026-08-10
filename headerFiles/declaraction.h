@@ -6,7 +6,7 @@ void printGameBegins();
 void gameRun();
 int rollDice(int *, int*);
 landProperties *initializeBoard();
-void playerMovement(Player *players,landProperties *propery);
+void playerMovement(Player players[],landProperties board[]);
 void displayLandDetails(Player *player,landProperties *property,landProperties board[]);
 void buyProperty(Player *player, landProperties *property,Player playerlist[]);
 void Bankrupt(Player *player,Player playerlist[],landProperties board[],double marketConsition);
@@ -23,6 +23,10 @@ void buildHouses(Player *player, landProperties board[]);
 
 void calPropertyValue(landProperties *property,double marketCondition);
 void calMortgageValue(landProperties *property,double marketcondition);
+int hasBuildings(landProperties board[], int colorGroup);
+void updateLandRent(landProperties *property);
+void mortgageProperty(Player *player,landProperties board[],landProperties *property,double marketcondition);
+void unmortgageProperty(Player *player, landProperties board[]);
 void incomeTax(Player *player, double marketCondition);
 void communityDevFund(Player *player,Player playerlist[],landProperties board[],double marketCondition);
 

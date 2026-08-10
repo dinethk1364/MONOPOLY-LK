@@ -4,7 +4,7 @@
 
 #define Maxplayers 4
 #define TileSize 40
-#define RoundCount 5
+#define RoundCount 500
 #define GO_MONEY 2000.0f
 #define PLAYER_STARTING_CASH 30000.0f
 #define MAX_ROWS 22
@@ -127,6 +127,7 @@ typedef enum {
     BUY_PROPERTY_DECISION,
     AUCTION_MAX_BID_DECISION,
     BUILD_HOUSE_DECISION,
+    UNMORTGAGE,
     TAKE_LOAN_DECISION,
     BUY_INSURANCE_DECISION
 } DecisionType;
