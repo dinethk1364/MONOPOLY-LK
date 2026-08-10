@@ -19,6 +19,8 @@
 #define YELLOW "\033[0;33m"
 #define RESET "\033[0m"
 
+#define marketComdition 1 //tempory
+
 typedef enum{
     FALSE,TRUE
 }boolValue;
@@ -121,6 +123,11 @@ typedef struct{
     boolValue isBankrupt; //1 if bankrupt, 0 otherwise
     boolValue inJail; //1 if in jail, 0 otherwise
     int jailTurns;// turns of player who in jail
+
+    //events
+    int eventExpiryRound;
+    double eventValueMultiplier;
+    int activeCard;
 }Player;
 
 typedef enum {
@@ -130,6 +137,36 @@ typedef enum {
     UNMORTGAGE,
     TAKE_LOAN_DECISION,
     BUY_INSURANCE_DECISION
-} DecisionType;
+}decisionType;
+
+typedef struct {
+    int cardId;
+    char name[50];
+    char description[100];
+}eventCard;
+
+typedef enum {
+    TOURISM_HYPE,         
+    FUEL_SHORTAGE,            
+    HEAVY_FLOODS,             
+    POLITICAL_RALLY,          
+    STOCK_MARKET_RISE,        
+    ECONOMIC_DOWNTURN,        
+    HOUSING_SUBSIDY,          
+    INTEREST_RATE_CUT,        
+    INTEREST_RATE_INCREASE,   
+    TAX_AMNESTY,              
+    POWER_FAILURE,            
+    FOREIGN_FUNDING,          
+    PORT_EXPANSION,           
+    FESTIVAL_SEASON,          
+    LABOUR_STRIKE,            
+    INSURANCE_DISCOUNT,       
+    PROPERTY_REVALUATION,     
+    CURRENCY_DEPRECIATION,    
+    GOVERNMENT_GRANT,         
+    NATIONAL_DISASTER         
+}NationalEventCardID;
+
 
 #endif // !TYPES_H

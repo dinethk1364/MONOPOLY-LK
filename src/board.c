@@ -112,13 +112,21 @@ void handleLandLanding(Player *player, landProperties *property, Player playerli
     else
     {
         //special tiles
-        if(player->currentPosition==Incometax)
+        switch (player->currentPosition)
         {
-            incomeTax(player,1);
-        }
-        else if(player->currentPosition==CommunityDevFund)
-        {
-            communityDevFund(player,playerlist,board,1);
+            case Incometax:
+                incomeTax(player,1);
+                break;
+            case CommunityDevFund:
+                communityDevFund(player,playerlist,board,marketComdition);  
+                break; 
+            case NationalEvent1:            
+            case NationalEvent2:
+            case NationalEvent3:
+                nationalEventCardProcess(playerlist,player,board);
+                break;
+            default:
+                break;
         }
     }
     buildHouses(player,board);
@@ -177,11 +185,14 @@ void playerMovement(Player players[],landProperties board[])
                     if (players[j].currentPosition < oldPosition)
                     {
                         printf(BOLD_GREEN"\n Passing GO \n"RESET);
-                        printf("\n%s is passed GO.\n",players[j].name);
+                        printf("\n%s passed GO.\n",players[j].name);
                         printf("Collected LKR %'.f\n",GO_MONEY);
                         players[j].cash+=GO_MONEY;
                         players[j].roundCount++;
                         printf("Current Balance : LKR %'.f\n",players[j].cash);   
+
+                        checkEventExpiry(&players[j],board);
+
                         printf(BOLD_RED"##########player round %d\n"RESET,players[j].roundCount); 
                     }   
                     handleLandLanding(&players[j],&board[players[j].currentPosition],players,board);

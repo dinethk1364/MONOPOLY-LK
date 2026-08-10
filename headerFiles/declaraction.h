@@ -30,6 +30,11 @@ void unmortgageProperty(Player *player, landProperties board[]);
 void incomeTax(Player *player, double marketCondition);
 void communityDevFund(Player *player,Player playerlist[],landProperties board[],double marketCondition);
 
+void executeNationalEvents(Player playerlist[],Player *player,landProperties board[],int cardId);
+void nationalEventCardProcess(Player playerlist[], Player *player, landProperties board[]);
+void checkEventExpiry(Player *player,landProperties board[]);
+void clearPlayerEvent(Player *player, landProperties board[]);
+
 //player decisions
 int aggInvDecisions(Player *players, landProperties property, int actionType, double value);
 int consBanDecisions(Player *players, landProperties property, int actionType);
