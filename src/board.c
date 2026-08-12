@@ -95,6 +95,8 @@ void gameCountCounter(Player players[],int *currentRound,int *activePlayersList,
         endOfTheRounds(players,*currentRound);
         propertyDepreciation(board);// property age and 1% depreciation process
         buildingCondition(board);// building condition(-2% every round) and structural damage check
+        economicEventProcess(*currentRound,board);
+        randomDisaster(board,players,*currentRound);
     }
 }
 void handleLandLanding(Player *player, landProperties *property, Player playerlist[],landProperties board[])
@@ -277,7 +279,6 @@ void playerMovement(Player players[],landProperties board[])
             if(activePlayersCount>0)
             {
                 gameCountCounter(players,&currentRound,activePlayerList,&activePlayersCount,board);
-                economicEventProcess(currentRound,board);
 
                 if(currentRound>=RoundCount)
                 {

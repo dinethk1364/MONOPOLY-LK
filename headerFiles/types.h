@@ -192,4 +192,12 @@ typedef struct {
     double railwayRentMult;
 }GlobalEconomy;
 
+typedef enum{
+    DISASTER_FIRE,
+    DISASTER_FLOOD,
+    DISASTER_RIOT,
+    DISASTER_BUILDING_COLLAPSE,
+    DISASTER_ELECTRICAL_FAILURE
+}RandomDisaster;
+
 #endif 

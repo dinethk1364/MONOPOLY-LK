@@ -729,7 +729,7 @@ void renovateProperty(Player *player,landProperties *property)
             player->cash-=renovationCost;
             property->age=0;
             property->propertyValue = property->purchasePrice;
-            printf(BOLD_GREEN"PROPERTY RENOVATION\n" RESET);
+            printf(BOLD_GREEN"\n PROPERTY RENOVATION\n" RESET);
             printf(YELLOW"%s renovated %s for LKR %'.f!\n"RESET, player->name, property->name, renovationCost);
         }
     }

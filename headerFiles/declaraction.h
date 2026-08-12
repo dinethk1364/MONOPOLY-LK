@@ -37,6 +37,7 @@ void clearPlayerEvent(Player *player, landProperties board[]);
 void economicEventProcess(int currentRound, landProperties board[]);
 void executeEconomicEvents(landProperties board[], EconomicEvent eventId, int currentRound);
 void clearEconEvents(landProperties board[]);
+void randomDisaster(landProperties board[],Player playerlist[],int currentRound);
 
 void propertyDepreciation(landProperties board[]);
 void renovateProperty(Player *player,landProperties *property);

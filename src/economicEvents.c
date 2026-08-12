@@ -10,11 +10,8 @@ GlobalEconomy *initGlobalEco()
 
 void economicEventProcess(int currentRound, landProperties board[])
 {
-    static int lastTriggeredRound = 0;//stops call event in same round
-
-    if((currentRound>0) && currentRound % 15==0 && currentRound!=lastTriggeredRound)
+    if((currentRound>0) && currentRound % 15==0)
     {
-        lastTriggeredRound=currentRound;
         EconomicEvent randomEvent=(EconomicEvent)(rand()%8);
         executeEconomicEvents(board,randomEvent,currentRound);
     }
