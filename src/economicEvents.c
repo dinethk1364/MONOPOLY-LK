@@ -189,6 +189,7 @@ void executeEconomicEvents(landProperties board[], EconomicEvent eventId, int cu
         default:
             break;
     }
+    printf(BOLD_RED "\n===========================================================\n" RESET);
 }
 
 void clearEconEvents(landProperties board[])

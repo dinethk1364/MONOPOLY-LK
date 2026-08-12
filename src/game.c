@@ -665,7 +665,15 @@ void payRent(Player *player,landProperties *property,Player playerlist[],landPro
             return;
         }
 
-        double rentAmount = property->currentRent; 
+        double multiplier = rentMultiplier(property);//acording to building condition
+
+        if(multiplier == 0.0)
+        {
+            printf(RED "\nBuilding on is CLOSED due to severe condition (<25%%)! No rent collected.\n" RESET);
+            return;
+        }
+
+        double rentAmount = property->currentRent * multiplier; 
         printf(BOLD_GREEN"\n Paying Rent \n"RESET);
 
         player->cash -= rentAmount;
@@ -675,7 +683,7 @@ void payRent(Player *player,landProperties *property,Player playerlist[],landPro
             {
                 //printf("Receiver cash before: %'.f\n",playerlist[i].cash);// for testing
                 playerlist[i].cash += rentAmount;
-                printf("Rent Paid to %s : LKR %'.f\n",playerlist[i].name,property->currentRent);
+                printf("Rent Paid to %s : LKR %'.f\n",playerlist[i].name,rentAmount);
                 // printf("Receiver cash after: %'.f\n",playerlist[i].cash);// for testing
             }
         }
@@ -688,6 +696,162 @@ void payRent(Player *player,landProperties *property,Player playerlist[],landPro
         {
             printf(RED "\n%s doesn't have enough money to pay RENT! Bankrupt Risk!\n" RESET, player->name);
             Bankrupt(player, playerlist, board,1);//martket condition is 1 temapryily
+        }
+    }
+}
+void propertyDepreciation(landProperties board[])
+{
+    for(int i=0;i<TileSize;i++)
+    {
+        if(board[i].type==land)
+        {
+            board[i].age++;
+            if(board[i].age>50 && board[i].age%5==0)
+            {
+                double minPropertyValue =board[i].purchasePrice*0.70;
+                if(board[i].propertyValue>minPropertyValue)
+                {
+                    board[i].propertyValue *= 0.99;//depreciate by 1%
+                }
+            }
+        }
+    }
+}
+
+void renovateProperty(Player *player,landProperties *property)
+{
+    if(property->currentOwner == player->id && property->age>50)
+    {
+        double renovationCost = property->propertyValue*0.10;
+
+        if(player->cash >= renovationCost)
+        {
+            player->cash-=renovationCost;
+            property->age=0;
+            property->propertyValue = property->purchasePrice;
+            printf(BOLD_GREEN"PROPERTY RENOVATION\n" RESET);
+            printf(YELLOW"%s renovated %s for LKR %'.f!\n"RESET, player->name, property->name, renovationCost);
+        }
+    }
+}
+void buildingCondition(landProperties board[])
+{
+    for(int i=0;i<TileSize;i++)
+    {
+        if(board[i].type==land && (board[i].noOfHouses>0 || board[i].noOfHotels>0))
+        {
+            if(board[i].buildingCondition>0)
+            {
+                board[i].buildingCondition-=2.0;
+                if(board[i].buildingCondition<0) board[i].buildingCondition=0;
+            }
+            board[i].unmaintaindRounds++;
+
+            //in maintainance ignored for more than 20 rounds
+            if(board[i].unmaintaindRounds>20 && board[i].isStucturalDamaged==FALSE)
+            {
+                board[i].isStucturalDamaged=TRUE;
+                board[i].propertyValue*=0.85;
+                board[i].currentRent*=0.75;
+
+                printf("Buildings on %s suffered structural damage due to 20 rounds of neglect!\n", board[i].name);
+                printf("Property Value decreased by 15%% and Max Rent reduced by 25%%.\n");
+            }
+        }
+    }
+}
+
+double rentMultiplier(landProperties *property)
+{
+    if(property->noOfHouses>0 || property->noOfHotels>0)
+    {
+        if(property->buildingCondition>=90.0)
+            return 1.0;
+        else if(property->buildingCondition>=75.0)
+            return 0.90;
+        else if(property->buildingCondition>=50.0)
+            return 0.75;
+        else if(property->buildingCondition>=25.0)
+            return 0.50;
+        else return 0.0;
+    }
+    return 1.0;
+}
+
+void buildingMaintenance(Player *player,landProperties board[])
+{
+    for(int i=0;i<TileSize;i++)
+    {
+        if(board[i].currentOwner ==player->id && (board[i].noOfHouses>0 || board[i].noOfHotels>0))
+        {
+            double maintenceCost =0;
+
+            if(board[i].isStucturalDamaged==TRUE)
+            {
+                double replacementValue;
+                if(board[i].noOfHotels>0)
+                    replacementValue=board[i].hotelCost;
+                else
+                    replacementValue=board[i].houseCost*board[i].noOfHouses;
+                    
+                maintenceCost = replacementValue*0.25;
+            }
+            else
+            {
+                if(board[i].noOfHotels>0)
+                {
+                    maintenceCost=board[i].hotelCost *0.08;
+                }
+                else
+                {
+                    maintenceCost = board[i].houseCost * board[i].noOfHouses*0.05;
+                }
+            }
+            int shouldMaintenace =FALSE;
+            switch (player->id)
+            {
+            case AGG_INVESTER:
+                shouldMaintenace=aggInvDecisions(player,board[i],BUILD_HOUSE_DECISION,maintenceCost);
+                break;
+            case CONS_BANKER:
+                shouldMaintenace=aggInvDecisions(player,board[i],BUILD_HOUSE_DECISION,maintenceCost);
+                break;
+            case RISK_TAKER:
+                shouldMaintenace=aggInvDecisions(player,board[i],BUILD_HOUSE_DECISION,maintenceCost);
+                break;
+            case OPP_TRADER:
+                shouldMaintenace=aggInvDecisions(player,board[i],BUILD_HOUSE_DECISION,maintenceCost);
+                break;                        
+            default:
+                break;
+            }
+
+            if(shouldMaintenace==TRUE)
+            {
+                if(board[i].isStucturalDamaged==TRUE)
+                {
+                    if(player->cash >= maintenceCost)
+                    {
+                        player->cash-= maintenceCost;
+                        board[i].buildingCondition = 100.0;
+                        board[i].unmaintaindRounds = 0;
+                        board[i].isStucturalDamaged = FALSE;
+                        board[i].propertyValue /= 0.85; 
+                        board[i].currentRent /= 0.75;
+                        printf("%s renovated structural damage on %s for LKR %'.f!\n", player->name, board[i].name, maintenceCost);
+                    }
+                }
+                else
+                {
+                    if(player->cash >= maintenceCost)
+                    {
+                        player->cash -= maintenceCost;
+                        board[i].buildingCondition = 100.0;
+                        board[i].unmaintaindRounds = 0;
+                        printf("%s performed building maintenance on %s for LKR %'.f!\n", player->name, board[i].name, maintenceCost);
+                    }
+                }
+            }
         }
     }
 }

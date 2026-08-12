@@ -4,7 +4,7 @@
 
 #define Maxplayers 4
 #define TileSize 40
-#define RoundCount 5
+#define RoundCount 500
 #define GO_MONEY 2000.0f
 #define PLAYER_STARTING_CASH 30000.0f
 #define MAX_ROWS 22
@@ -102,10 +102,15 @@ typedef struct{
     double currentRent;
     boolValue mortgageStatus;// 1 is true 0 is false
     boolValue InsuranceStatus;// 1 is true 0 is false
+    boolValue isDamage;
     int noOfHouses;
     int noOfHotels;
     colorGroup cGroup;
     double propertyValue;
+    int age;
+    double buildingCondition;
+    int unmaintaindRounds;
+    boolValue isStucturalDamaged;
 
 }landProperties;
 
@@ -132,6 +137,7 @@ typedef enum {
     AUCTION_MAX_BID_DECISION,
     BUILD_HOUSE_DECISION,
     UNMORTGAGE,
+    MAINTENANCE_DECISION,
     TAKE_LOAN_DECISION,
     BUY_INSURANCE_DECISION
 }decisionType;
@@ -186,4 +192,4 @@ typedef struct {
     double railwayRentMult;
 }GlobalEconomy;
 
-#endif // !TYPES_H
+#endif 

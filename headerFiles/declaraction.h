@@ -38,10 +38,16 @@ void economicEventProcess(int currentRound, landProperties board[]);
 void executeEconomicEvents(landProperties board[], EconomicEvent eventId, int currentRound);
 void clearEconEvents(landProperties board[]);
 
+void propertyDepreciation(landProperties board[]);
+void renovateProperty(Player *player,landProperties *property);
+void buildingCondition(landProperties board[]);
+double rentMultiplier(landProperties *property);
+void buildingMaintenance(Player *player,landProperties board[]);
+
 //player decisions
 int aggInvDecisions(Player *players, landProperties property, int actionType, double value);
 int consBanDecisions(Player *players, landProperties property, int actionType);
 int riskTakDecisions(Player *players, landProperties property, int actionType);
 int oppTraDecisions(Player *players, landProperties property,double projectedAppreciation, int currentInflation, int currentSubsidies, int actionType);
 
-#endif // !DECLARATION
+#endif 

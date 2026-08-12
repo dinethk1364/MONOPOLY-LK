@@ -53,6 +53,15 @@ int aggInvDecisions(Player *player, landProperties property, int actionType, dou
             }
             return FALSE;
         }
+        case MAINTENANCE_DECISION:
+        {
+            //value = maintenance cost
+            if(property.buildingCondition<75.0 && player->cash >=value)
+            {
+                return TRUE;
+            }
+            return FALSE;
+        }
 
         default:
             return FALSE;

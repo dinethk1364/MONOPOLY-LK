@@ -82,8 +82,8 @@ void endOfTheRounds(Player* players, int roundCount)
             printf("\n%s\n",players[i].name);
             printf("\nCash : LKR %'.f\n",players[i].cash);
             printf("\nNet Worth : LKR %'.f\n",players[i].netWorth);
-            printf("\nProperties : LKR \n");
-            printf("\nHotels : LKR \n");
+            printf("\nProperties : \n");
+            printf("\nHotels : \n");
             printf("\nOutstanding Loan : LKR \n");
             printf(BOLD_YELLOW"\n-----------------------------------------------------------\n"RESET);
         }        

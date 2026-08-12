@@ -3,12 +3,6 @@
 #include<stdlib.h>
 #include "../headerFiles/declaraction.h"
 
-GlobalEconomy *intGloabalEco()
-{
-    static GlobalEconomy globalEco = {NO_EVENT,1.0,1.0,1.0,1.0,1.0};
-    return &globalEco;
-}
-
 void nationalEventCardProcess(Player playerlist[], Player *player, landProperties board[])
 {
     static int topIndex =0;
