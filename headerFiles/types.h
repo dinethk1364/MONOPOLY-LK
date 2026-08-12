@@ -4,7 +4,7 @@
 
 #define Maxplayers 4
 #define TileSize 40
-#define RoundCount 500
+#define RoundCount 5
 #define GO_MONEY 2000.0f
 #define PLAYER_STARTING_CASH 30000.0f
 #define MAX_ROWS 22
@@ -109,9 +109,6 @@ typedef struct{
 
 }landProperties;
 
-extern landProperties board[TileSize];//declare global array(Global Extern Declarations)
-
-
 typedef struct{
     int id;
     char name[50];
@@ -143,7 +140,7 @@ typedef struct {
     int cardId;
     char name[50];
     char description[100];
-}eventCard;
+}nationalEventCards;
 
 typedef enum {
     TOURISM_HYPE,         
@@ -168,5 +165,25 @@ typedef enum {
     NATIONAL_DISASTER         
 }NationalEventCardID;
 
+typedef enum {
+    TOURISM_BOOM,
+    FUEL_CRISIS,
+    HEAVY_MONSOON,
+    ECONOMIC_RECESSION,
+    STOCK_MARKET_BOOM,
+    GOVT_HOUSING_PROGRAMME,
+    FOREIGN_INVESTMENT,
+    POLITICAL_UNREST,
+    NO_EVENT
+}EconomicEvent;
+
+typedef struct {
+    EconomicEvent currentEvent;
+    double propertyValueMult;
+    double rentMultiplier;
+    double houseCostMult;
+    double hotelRentMult;
+    double railwayRentMult;
+}GlobalEconomy;
 
 #endif // !TYPES_H

@@ -3,11 +3,17 @@
 #include<stdlib.h>
 #include "../headerFiles/declaraction.h"
 
+GlobalEconomy *intGloabalEco()
+{
+    static GlobalEconomy globalEco = {NO_EVENT,1.0,1.0,1.0,1.0,1.0};
+    return &globalEco;
+}
+
 void nationalEventCardProcess(Player playerlist[], Player *player, landProperties board[])
 {
     static int topIndex =0;
 
-    static eventCard cards[20]=
+    static nationalEventCards cards[20]=
     {
         {0, "Tourism Hype", "Hotels earn double rent for 5 rounds"},
         {1, "Fuel Shortage", "Railway rent doubles for 5 rounds"},
@@ -31,7 +37,7 @@ void nationalEventCardProcess(Player playerlist[], Player *player, landPropertie
         {19, "National Disaster", "Random developed property damaged"}
     };
     
-    eventCard drawnCard = cards[topIndex];
+    nationalEventCards drawnCard = cards[topIndex];
     printf(BOLD_BLUE "\n National Event Card Drawn \n" RESET);
     printf(YELLOW "%s drew card: %s\n" RESET, player->name, drawnCard.name);
     printf("Effect: %s\n", drawnCard.description);
@@ -40,6 +46,7 @@ void nationalEventCardProcess(Player playerlist[], Player *player, landPropertie
 
     topIndex = (topIndex+1)%20;
 }
+
 void executeNationalEvents(Player playerlist[],Player *player,landProperties board[],int cardId)
 {
     //if player have active event clear it

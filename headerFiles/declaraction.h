@@ -34,6 +34,9 @@ void executeNationalEvents(Player playerlist[],Player *player,landProperties boa
 void nationalEventCardProcess(Player playerlist[], Player *player, landProperties board[]);
 void checkEventExpiry(Player *player,landProperties board[]);
 void clearPlayerEvent(Player *player, landProperties board[]);
+void economicEventProcess(int currentRound, landProperties board[]);
+void executeEconomicEvents(landProperties board[], EconomicEvent eventId, int currentRound);
+void clearEconEvents(landProperties board[]);
 
 //player decisions
 int aggInvDecisions(Player *players, landProperties property, int actionType, double value);

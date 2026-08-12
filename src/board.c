@@ -100,7 +100,7 @@ void handleLandLanding(Player *player, landProperties *property, Player playerli
     updateRailwayRent(property,board);
     updateUtilityRent(property,board,player->dieRollValue);
     displayLandDetails(player,property,board);
-    printf(YELLOW"###############dice roll : %d\n"RESET,player->dieRollValue);
+    // printf(YELLOW"###############dice roll : %d\n"RESET,player->dieRollValue);
     if(property->currentOwner>0)
     {
         payRent(player,property,playerlist,board);
@@ -193,7 +193,7 @@ void playerMovement(Player players[],landProperties board[])
 
                         checkEventExpiry(&players[j],board);
 
-                        printf(BOLD_RED"##########player round %d\n"RESET,players[j].roundCount); 
+                        // printf(BOLD_RED"##########player round %d\n"RESET,players[j].roundCount); 
                     }   
                     handleLandLanding(&players[j],&board[players[j].currentPosition],players,board);
                 }
@@ -267,6 +267,8 @@ void playerMovement(Player players[],landProperties board[])
             if(activePlayersCount>0)
             {
                 gameCountCounter(players,&currentRound,activePlayerList,&activePlayersCount);
+                economicEventProcess(currentRound,board);
+
                 if(currentRound>=RoundCount)
                 {
                     break;
