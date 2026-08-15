@@ -89,7 +89,7 @@ void incomeTax(Player *player, double marketCondition)
     economicState *reg = getActiveGovReg();
     if (reg->activeReg == REG_INCREASE_PROPERTY_TAX)
     {
-        taxRate *= 1.50;
+        taxRate *= 1.15;
     }
     double taxAmount = player->cash*taxRate;
 
@@ -273,13 +273,36 @@ void handleLoanDefault(Player *player, landProperties board[])
 
 void updateLoanInterest(Player playerlist[],landProperties board[])
 {
+    GlobalEconomy *eco = initGlobalEco();
+
     for(int i=0;i<Maxplayers;i++)
     {
         Player *player = &playerlist[i];
 
         if(player->isBankrupt==FALSE && player->activeLoan.isActive==TRUE)
         {
-            double interest = player->activeLoan.currentLoanAmount*player->activeLoan.intRate;
+            double currentRate = player->activeLoan.intRate;
+
+            //national event
+            if ((player->activeCard == INTEREST_RATE_CUT || player->activeCard == INTEREST_RATE_INCREASE) && player->roundCount < player->eventExpiryRound)
+            {
+                currentRate *= player->eventValueMultiplier;
+            }
+            //gov regulationa
+            economicState *reg = getActiveGovReg();
+            if (reg->activeReg == REG_REDUCE_LOAN_INTEREST)
+            {
+                currentRate -= 0.02;
+            }
+            //eco event
+            if (eco->loanIntMult != 1.0)
+            {
+                currentRate *= eco->loanIntMult;
+            }
+
+            if (currentRate < 0) currentRate = 0;
+
+            double interest = player->activeLoan.currentLoanAmount*currentRate;
             player->activeLoan.currentLoanAmount+=interest;
             player->activeLoan.remainingRounds--;
 

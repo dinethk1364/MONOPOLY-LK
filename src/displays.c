@@ -81,6 +81,7 @@ void endOfTheRounds(Player* players, int roundCount,landProperties board[])
         {
             int propCount = 0;
             int hotelCount = 0;
+            int houseCount = 0;
 
             for (int j = 0; j < TileSize; j++)
             {
@@ -91,6 +92,10 @@ void endOfTheRounds(Player* players, int roundCount,landProperties board[])
                     {
                         hotelCount += board[j].noOfHotels;
                     }
+                    if (board[j].noOfHouses > 0)
+                    {
+                        houseCount += board[j].noOfHouses;
+                    }
                 }
             }
             
@@ -100,9 +105,12 @@ void endOfTheRounds(Player* players, int roundCount,landProperties board[])
            
             printf("\n%s\n",players[i].name);
             printf("\nCash : LKR %'.f\n",players[i].cash);
+
+            calculateNetWorth(&players[i],board);
             printf("\nNet Worth : LKR %'.f\n",players[i].netWorth);
             printf("\nProperties : %d\n",propCount);
             printf("\nHotels : %d\n",hotelCount);
+            printf("\nHouses : %d\n",houseCount);
             printf("\nOutstanding Loan : LKR %'.f\n",loanValue);
             printf(BOLD_YELLOW"\n-----------------------------------------------------------\n"RESET);
         }        
@@ -126,14 +134,14 @@ const char *getColorGroupName(colorGroup group)
 
 void displayMarketConditions(double currentLoanInterest, double currentInflation)
 {
-    economicState *mkt = getDynamicMarketState();
+    economicState *mkt = getActiveGovReg();
 
-    printf(BOLD_YELLOW "\n=========================================\n" RESET);
-    printf(BOLD_YELLOW "        Current Market Conditions        \n" RESET);
-    printf(BOLD_YELLOW "=========================================\n" RESET);
+    printf(BOLD_GREEN "\n===========================================================\n" RESET);
+    printf(BOLD_GREEN "                Current Market Conditions        \n" RESET);
+    printf(BOLD_GREEN "===========================================================\n\n" RESET);
 
     printf("Market Boom\n-------------\n");
-    if (mkt->activeBoomGroup > 0)
+    if (mkt->activeBoomGroup > 0 && mkt->boomRoundsRemaining > 0)
     {
         printf("%s (+20%%)\n", getColorGroupName(mkt->activeBoomGroup));
         printf("Rounds Remaining : %d\n", mkt->boomRoundsRemaining);
@@ -144,7 +152,7 @@ void displayMarketConditions(double currentLoanInterest, double currentInflation
     }
 
     printf("\nMarket Decline\n----------------\n");
-    if (mkt->activeDeclineGroup > 0)
+    if (mkt->activeDeclineGroup > 0 && mkt->declineRoundsRemaining > 0)
     {
         printf("%s (-15%%)\n", getColorGroupName(mkt->activeDeclineGroup));
         printf("Rounds Remaining : %d\n", mkt->declineRoundsRemaining);
@@ -159,11 +167,29 @@ void displayMarketConditions(double currentLoanInterest, double currentInflation
 
     printf("\nCurrent Loan Interest\n-----------------------\n");
     printf("%.0f%%\n", currentLoanInterest * 100.0);
-    printf(BOLD_YELLOW "=========================================\n" RESET);
+    printf(BOLD_GREEN "===========================================================\n\n" RESET);
 }
 
-void displayGameOver(Player *player)
+void displayGameOver(Player *player,landProperties board[])
 {
+    double totalPropertyValue = 0.0;
+    for(int i=0;i<TileSize;i++)
+    {
+        if(board[i].currentOwner==player->id)
+        {
+            totalPropertyValue+=board[i].propertyValue;
+            if(board[i].noOfHouses>0)
+                totalPropertyValue += board[i].noOfHouses * board[i].houseCost;
+            if (board[i].noOfHotels > 0)
+                totalPropertyValue += board[i].hotelCost;
+        }
+    }
+    double outstandingLoan = 0.0;
+    if (player->activeLoan.isActive == TRUE)
+    {
+        outstandingLoan = player->activeLoan.currentLoanAmount;
+    }
+
     printf(BOLD_RED"\n===========================================================\n"RESET);
     printf(BOLD_RED"                         End of Game!                     "RESET);
     printf(BOLD_RED"\n===========================================================\n"RESET);
@@ -171,8 +197,8 @@ void displayGameOver(Player *player)
     printf("\nGAME OVER\n");
     printf("\nWinner                : %s\n",player->name);
     printf("\nTotal Cash            : LKR %'.f\n",player->cash);
-    printf("\nTotal Property Value  : LKR \n");
-    printf("\nOutstanding Loans     : LKR \n");
+    printf("\nTotal Property Value  : LKR %'.f\n",totalPropertyValue);
+    printf("\nOutstanding Loans     : LKR %'.f\n",outstandingLoan);
     printf("\nNet Worth             : LKR %'.f\n",player->netWorth);
 
     printf(BOLD_RED"\n===========================================================\n"RESET);

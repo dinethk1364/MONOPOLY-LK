@@ -373,6 +373,11 @@ void updateLandRent(landProperties *property)
 
 void buildHouses(Player *player, landProperties board[])
 {
+    if (player->activeCard == LABOUR_STRIKE && player->roundCount < player->eventExpiryRound)
+    {
+        printf(RED "Construction suspended due to active Labour Strike!\n" RESET);
+        return;
+    }
     int header1Print =FALSE;// print header only once
     int header2Print =FALSE;// print header only once
 
@@ -551,7 +556,7 @@ void Bankrupt(Player *player,Player playerlist[],landProperties board[],double m
 
             for(int i=0;i<TileSize;i++)
             {
-                if(board[i].currentOwner==player->id && board[i].mortgageStatus==FALSE)
+                if(board[i].currentOwner==player->id && board[i].mortgageStatus==FALSE && board[i].isLoanLocked==FALSE)
                 {
                     if(board[i].type==land && hasBuildings(board,board[i].cGroup)==TRUE)//skip constructed lands
                     {
@@ -595,7 +600,7 @@ void Bankrupt(Player *player,Player playerlist[],landProperties board[],double m
         //Transferring the bankrupt players properties to the bank
         transferPlayerAssetsToBank(player,board);
 
-        gameOver(playerlist);
+        gameOver(playerlist,board);
     }
     else
     {
@@ -813,6 +818,7 @@ double rentMultiplier(landProperties *property)
 
 void buildingMaintenance(Player *player,landProperties board[])
 {
+    int headerprint=FALSE;
     for(int i=0;i<TileSize;i++)
     {
         if(board[i].currentOwner ==player->id && (board[i].noOfHouses>0 || board[i].noOfHotels>0))
@@ -861,6 +867,11 @@ void buildingMaintenance(Player *player,landProperties board[])
 
             if(shouldMaintenace==TRUE)
             {
+                if(headerprint==FALSE)
+                {
+                    printf(BOLD_GREEN"\n BUILDING RENOVATION\n" RESET);
+                    headerprint=TRUE;
+                }
                 if(board[i].isStucturalDamaged==TRUE)
                 {
                     if(player->cash >= maintenceCost)
@@ -972,6 +983,39 @@ void handleBanking(Player *player,landProperties board[],double currentIntRate)
     }
 }
 
+void calculateNetWorth(Player *player, landProperties board[])
+{
+    double total = player->cash;
+
+    for (int i = 0; i < TileSize; i++)
+    {
+        if (board[i].currentOwner == player->id)
+        {
+            if (board[i].mortgageStatus == FALSE)
+            {
+                total += board[i].propertyValue;
+
+                if (board[i].noOfHouses > 0)
+                {
+                    total += board[i].noOfHouses * board[i].houseCost;
+                }
+                if (board[i].noOfHotels > 0)
+                {
+                    total += board[i].hotelCost;
+                }
+            }
+        }
+    }
+
+    //loans
+    if (player->activeLoan.isActive == TRUE)
+    {
+        total -= player->activeLoan.currentLoanAmount;
+    }
+
+    player->netWorth = total;
+}
+
 int checkGameOver(Player playerlist[])
 {
     int bankruptCount = 0;
@@ -988,7 +1032,7 @@ int checkGameOver(Player playerlist[])
     }
     return FALSE;
 }
-void gameOver(Player playerlist[])
+void gameOver(Player playerlist[],landProperties board[])
 {
     if(checkGameOver(playerlist)==TRUE)
     {
@@ -998,7 +1042,7 @@ void gameOver(Player playerlist[])
         {
             if(playerlist[i].isBankrupt==FALSE)
             {
-                displayGameOver(&playerlist[i]);
+                displayGameOver(&playerlist[i],board);
             }
         }
         exit(0);//exit the game

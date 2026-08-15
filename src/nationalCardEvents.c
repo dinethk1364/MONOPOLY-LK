@@ -80,11 +80,62 @@ void executeNationalEvents(Player playerlist[],Player *player,landProperties boa
         case HEAVY_FLOODS:
         {
             player->activeCard = cardId;
+
+            int coastalIndices[] = {8, 9, 16, 26, 27, 29, 31, 34, 39}; 
+            int coastalCount = sizeof(coastalIndices) / sizeof(coastalIndices[0]);
+
+            int validTargets[TileSize];
+            int count = 0;
+            for (int j = 0; j < coastalCount; j++)
+            {
+                int idx = coastalIndices[j];
+                if (board[idx].currentOwner == player->id && board[idx].type == land)
+                {
+                    validTargets[count++] = idx;
+                }
+            }
+            
+            if (count > 0)
+            {
+                int target = validTargets[rand() % count];
+                printf(RED "Heavy Floods! Coastal property %s was damaged.\n" RESET, board[target].name);
+                
+                processDisaster(&board[target], playerlist); 
+            }
+            else
+            {
+                printf(YELLOW "Heavy Floods: No owned coastal properties to damage for %s.\n" RESET, player->name);
+            }
+            
             break;
         }
         case POLITICAL_RALLY:
         {
             player->activeCard = cardId;
+            player->eventExpiryRound =player->roundCount+2;
+
+            int ownedProperty[TileSize];
+            int count=0;
+            for(int i=0;i<TileSize;i++)
+            {
+                if(board[i].currentOwner==player->id && board[i].type==land)
+                {
+                    ownedProperty[count]=i;
+                    count++;
+                }
+            }
+            if(count>0)
+            {
+                int randIdx = rand()% count;
+                int target = ownedProperty[randIdx];
+                player->affectedPropIdx=target;
+                board[target].currentRent=0;
+                printf(RED "Political Rally: %s is closed for 2 rounds!\n" RESET, board[target].name);
+            }
+            else
+            {
+                player->affectedPropIdx = -1;
+            }
             break;
         }
         case STOCK_MARKET_RISE:
@@ -135,11 +186,15 @@ void executeNationalEvents(Player playerlist[],Player *player,landProperties boa
         case INTEREST_RATE_CUT:
         {
             player->activeCard = cardId;
+            player->eventValueMultiplier=0.98;
+            player->eventExpiryRound = player->roundCount+15;
             break;
         }
         case INTEREST_RATE_INCREASE:
         {
             player->activeCard = cardId;
+            player->eventValueMultiplier = 1.02; 
+            player->eventExpiryRound = player->roundCount + 15;
             break;
         }
         case TAX_AMNESTY:
@@ -219,16 +274,34 @@ void executeNationalEvents(Player playerlist[],Player *player,landProperties boa
         case LABOUR_STRIKE:
         {
             player->activeCard = cardId;
+            player->eventExpiryRound = player->roundCount + 2;
             break;
         }
         case INSURANCE_DISCOUNT:
         {
             player->activeCard = cardId;
+            player->eventValueMultiplier = 0.80; 
+            player->eventExpiryRound = player->roundCount + 15;
             break;
         }
         case PROPERTY_REVALUATION:
         {
             player->activeCard = cardId;
+            player->eventValueMultiplier = 1.15;
+            player->eventExpiryRound = player->roundCount + 15;
+
+            int randGroup = (rand() % 8) + 1;
+            player->revaluationGroup = randGroup;
+
+            for (int i = 0; i < TileSize; i++)
+            {
+                if (board[i].type == land && board[i].cGroup == randGroup && board[i].currentOwner == player->id)
+                {
+                    board[i].propertyValue *= player->eventValueMultiplier;
+                }
+            }
+            printf(GREEN "Property Revaluation: Group %s properties appreciated by 15%% for %s!\n" RESET, getColorGroupName(randGroup), player->name);
+        
             break;
         }
         case CURRENCY_DEPRECIATION:
@@ -263,6 +336,26 @@ void executeNationalEvents(Player playerlist[],Player *player,landProperties boa
         case NATIONAL_DISASTER:
         {
             player->activeCard = cardId;
+            int developedProperties[TileSize];
+            int count = 0;
+            for (int i = 0; i < TileSize; i++)
+            {
+                if (board[i].currentOwner == player->id && board[i].type == land && (board[i].noOfHouses > 0 || board[i].noOfHotels > 0))
+                {
+                    developedProperties[count++] = i;
+                }
+            }
+            if (count > 0)
+            {
+                int target = developedProperties[rand() % count];
+                printf(RED "National Disaster! Developed property %s has been damaged.\n" RESET, board[target].name);
+                
+                processDisaster(&board[target], playerlist); 
+            }
+            else
+            {
+                printf(YELLOW "National Disaster: No developed properties to damage for %s.\n" RESET, player->name);
+            }
             break;
         }
     }
@@ -301,6 +394,15 @@ void clearPlayerEvent(Player *player, landProperties board[])
                 {
                     board[i].currentRent /= player->eventValueMultiplier;
                 }
+            }
+            break;
+        }
+        case POLITICAL_RALLY:
+        {
+            if (player->affectedPropIdx != -1)
+            {
+                int idx = player->affectedPropIdx;
+                updateLandRent(&board[idx]); 
             }
             break;
         }
@@ -363,6 +465,18 @@ void clearPlayerEvent(Player *player, landProperties board[])
             }
             break;
         }
+        case PROPERTY_REVALUATION:
+        {
+            int grp = player->revaluationGroup;
+            for (int i = 0; i < TileSize; i++)
+            {
+                if (board[i].type == land && board[i].cGroup == grp && board[i].currentOwner == player->id)
+                {
+                    board[i].propertyValue /= player->eventValueMultiplier;
+                }
+            }
+            break;
+        }
         case CURRENCY_DEPRECIATION:
         {
             for(int i = 0; i < TileSize; i++)
@@ -380,5 +494,6 @@ void clearPlayerEvent(Player *player, landProperties board[])
     player->eventExpiryRound = 0;
     player->eventValueMultiplier = 1.0;
     player->activeCard = -1;
+    player->affectedPropIdx = -1;
 }
 

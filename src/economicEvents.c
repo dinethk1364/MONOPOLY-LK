@@ -4,7 +4,7 @@
 
 GlobalEconomy *initGlobalEco()
 {
-    static GlobalEconomy globalEco = {NO_EVENT,1.0,1.0,1.0,1.0,1.0};
+    static GlobalEconomy globalEco = {NO_EVENT,1.0,1.0,1.0,1.0,1.0,1.0};
     return &globalEco;
 }
 
@@ -99,6 +99,7 @@ void executeEconomicEvents(landProperties board[], EconomicEvent eventId, int cu
             printf(YELLOW"-Property values decrease by 15%%. \n-Rent decreases by 10%%.\n-Loan interest increases by 15%%.\n"RESET);
 
             //loan int increase
+            eco->loanIntMult = 1.15;
 
             eco->propertyValueMult = 0.85;
             eco->rentMultiplier = 0.90;
@@ -119,6 +120,7 @@ void executeEconomicEvents(landProperties board[], EconomicEvent eventId, int cu
             printf(YELLOW"-Property values increase by 10%%. \n-Loan interest decrease by 10%%.\n"RESET);
 
             //loan int decrease
+            eco->loanIntMult = 0.90;
 
             eco->propertyValueMult=1.10;
             

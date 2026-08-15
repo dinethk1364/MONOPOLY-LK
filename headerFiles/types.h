@@ -136,13 +136,13 @@ typedef struct{
     int unmaintaindRounds;
     boolValue isStucturalDamaged;//building depreciation
     boolValue isDamage;//for disaster
-
+    
     boolValue InsuranceStatus;// 1 is true 0 is false
     InsuaranceType insuaranceType;
     int insuaranceRounds;
-
+    
     boolValue isLoanLocked;
-
+    
 }landProperties;
 
 typedef struct{
@@ -156,11 +156,13 @@ typedef struct{
     boolValue isBankrupt; //1 if bankrupt, 0 otherwise
     boolValue inJail; //1 if in jail, 0 otherwise
     int jailTurns;// turns of player who in jail
-
+    
     //events
     int eventExpiryRound;
     double eventValueMultiplier;
     int activeCard;
+    int affectedPropIdx;//national event
+    int revaluationGroup;
 
     LoanInfo activeLoan;
 }Player;
@@ -225,6 +227,7 @@ typedef struct {
     double houseCostMult;
     double hotelRentMult;
     double railwayRentMult;
+    double loanIntMult;
 }GlobalEconomy;
 
 typedef enum{

@@ -12,12 +12,12 @@ void buyProperty(Player *player, landProperties *property,Player playerlist[]);
 void Bankrupt(Player *player,Player playerlist[],landProperties board[],double marketConsition);
 void payRent(Player *player,landProperties *property,Player playerlist[],landProperties board[]);
 int checkGameOver(Player playerlist[]);
-void gameOver(Player playerlist[]);
+void gameOver(Player playerlist[],landProperties board[]);
 int landData(double purchasePrice[],double baseRents[]);
 void updateRailwayRent(landProperties *property, landProperties board[]);
 void updateUtilityRent(landProperties *property,landProperties board[],int diceRoll);
 void endOfTheRounds(Player* players, int roundCount,landProperties board[]);
-void displayGameOver(Player *player);
+void displayGameOver(Player *player,landProperties board[]);
 int hasMonopoly(landProperties board[],int playerId, int colorGroup);
 void buildHouses(Player *player, landProperties board[]);
 
@@ -38,6 +38,7 @@ void economicEventProcess(int currentRound, landProperties board[]);
 void executeEconomicEvents(landProperties board[], EconomicEvent eventId, int currentRound);
 void clearEconEvents(landProperties board[]);
 void randomDisaster(landProperties board[],Player playerlist[],int currentRound);
+void processDisaster(landProperties *property,Player playerlist[]);
 
 void propertyDepreciation(landProperties board[]);
 void renovateProperty(Player *player,landProperties *property);
@@ -57,17 +58,19 @@ void extendLoan(Player *player);
 
 int needsLoanForMonopolyDevelopment(Player *player, landProperties board[]);
 
+GlobalEconomy *initGlobalEco();
 economicState *getActiveGovReg();
 void clearPreviousRegulation(landProperties board[]);
 void processGovernmentRegulations(int currentRound, landProperties board[], Player playerlist[]);
 double calculateCurrentInterestRate();
 void processInflation(int currentRound, landProperties board[]);
 
-economicState *getDynamicMarketState();
 void processDynamicMarket(int currentRound, landProperties board[]);
 void displayMarketConditions(double currentLoanInterest, double currentInflation);
 const char *getColorGroupName(colorGroup group);
 double calculateCurrentInterestRate();
+
+void calculateNetWorth(Player *player, landProperties board[]);
 
 //player decisions
 int aggInvDecisions(Player *players, landProperties property, int actionType, double value);

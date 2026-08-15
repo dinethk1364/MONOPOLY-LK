@@ -152,7 +152,7 @@ void processGovernmentRegulations(int currentRound, landProperties board[], Play
 }
 void clearDynamicMarket(landProperties board[])
 {
-    economicState *mkt = getDynamicMarketState();
+    economicState *mkt = getActiveGovReg();
     if (mkt->activeBoomGroup > 0)
     {
         for (int i = 0; i < TileSize; i++)
@@ -191,7 +191,7 @@ void processDynamicMarket(int currentRound, landProperties board[])
     {
         clearDynamicMarket(board);//clear last event
 
-        economicState *mkt = getDynamicMarketState();
+        economicState *mkt = getActiveGovReg();
 
         int eligibleGroups[8];//get groups which completed 30 round cool down
         int eligibleCount = 0;
@@ -257,13 +257,13 @@ void processDynamicMarket(int currentRound, landProperties board[])
         }
         printf(BOLD_BLUE "\n===========================================================\n" RESET);
         printf(BOLD_BLUE "              DYNAMIC PROPERTY MARKET REVIEW               \n" RESET);
-        printf(BOLD_BLUE "===========================================================\n" RESET);
+        printf(BOLD_BLUE "===========================================================\n\n" RESET);
         printf(BOLD_GREEN "Market Boom (+20%% Val, +25%% Rent, +10%% Build Cost):\n" RESET);
         printf("   Group: %s\n", getColorGroupName(boomGroup));
         printf(BOLD_RED "Market Decline (-15%% Val, -20%% Rent, -10%% Mortgage):\n" RESET);
         printf("   Group: %s\n", getColorGroupName(decGroup));
         printf("Duration: Active for the next 10 Rounds\n");
-        printf(BOLD_BLUE "===========================================================\n" RESET);
+        printf(BOLD_BLUE "===========================================================\n\n" RESET);
     }
 }
 
@@ -308,16 +308,16 @@ void processInflation(int currentRound, landProperties board[])
         double rate = inflationRates[randIdx];
         state->currentInflationRate=rate;
 
-        printf(BOLD_YELLOW "\n===========================================================\n" RESET);
+        printf(BOLD_YELLOW "\n====================================================================================\n" RESET);
         if (rate < 0)
         {
-            printf(BOLD_RED "              MACROECONOMIC SHIFT: DEFLATION (%.0f%%)       \n" RESET, rate * 100.0);
+            printf(BOLD_RED "                       MACROECONOMIC SHIFT: DEFLATION (%.0f%%)       \n" RESET, rate * 100.0);
         }
         else
         {
-            printf(BOLD_YELLOW "              MACROECONOMIC SHIFT: INFLATION (+%.0f%%)      \n" RESET, rate * 100.0);
+            printf(BOLD_YELLOW "                    MACROECONOMIC SHIFT: INFLATION (+%.0f%%)      \n" RESET, rate * 100.0);
         }
-        printf(BOLD_YELLOW "===========================================================\n" RESET);
+        printf(BOLD_YELLOW "====================================================================================\n" RESET);
 
         double multiplier = 1.0+rate;
 

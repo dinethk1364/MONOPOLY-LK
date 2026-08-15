@@ -41,6 +41,11 @@ void handleInsuarace(Player *player, landProperties board[],double marketConditi
             {
                 double premiumRate = calculateInsPremium(policyChoice);
 
+                if (player->activeCard == INSURANCE_DISCOUNT && player->roundCount < player->eventExpiryRound)
+                {
+                    premiumRate *= player->eventValueMultiplier;
+                }
+
                 //gove regulations
                 economicState *reg = getActiveGovReg();
                 if (reg->activeReg == REG_INSURANCE_REGULATION)

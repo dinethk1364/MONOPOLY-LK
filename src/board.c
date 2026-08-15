@@ -79,6 +79,10 @@ landProperties *initializeBoard()
 
     for(int i=0;i<TileSize;i++)
     {
+        if (board[i].type != nonProperty)
+        {
+            board[i].propertyValue = board[i].purchasePrice;
+        }
         if(board[i].type==land)
         {
             board[i].mortgagePrice=board[i].purchasePrice*0.5;
@@ -100,18 +104,21 @@ void gameCountCounter(Player players[],int *currentRound,int *activePlayersList,
     if(minRound>*currentRound)
     {
         *currentRound=minRound;
-        endOfTheRounds(players,*currentRound,board);
-
-        economicState *state = getActiveGovReg();
-        displayMarketConditions(state->currentBaseInterest, state->currentInflationRate);
-
         propertyDepreciation(board);// property age and 1% depreciation process
         buildingCondition(board);// building condition(-2% every round) and structural damage check
         
         processDynamicMarket(*currentRound, board);
         processInflation(*currentRound,board);
-        
         processGovernmentRegulations(*currentRound, board, players);
+        
+        endOfTheRounds(players,*currentRound,board);
+        
+        economicState *state = getActiveGovReg();
+
+        if (state->boomRoundsRemaining > 0) state->boomRoundsRemaining--;
+        if (state->declineRoundsRemaining > 0) state->declineRoundsRemaining--;
+
+        displayMarketConditions(state->currentBaseInterest, state->currentInflationRate);
 
         economicEventProcess(*currentRound,board);
         randomDisaster(board,players,*currentRound);
