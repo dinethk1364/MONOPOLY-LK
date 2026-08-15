@@ -20,7 +20,7 @@ landProperties *initializeBoard()
     static landProperties board[TileSize];
     //land Propeties
                         //brown
-    board[Pettah]=(landProperties){.name="Pettah",.type=land,.purchasePrice=purchasePrice[0],.baseRental=baseRents[0],.currentOwner=-1,.cGroup=G_BROWN,.houseCost=500.0,.hotelCost=2000.0,.age=0,.buildingCondition=100};
+    board[Pettah]=(landProperties){.name="Pettah",.type=land,.purchasePrice=purchasePrice[0],.baseRental=baseRents[0],.currentOwner=-1,.cGroup=G_BROWN,.houseCost=500.0,.hotelCost=2000.0,.age=0,.buildingCondition=-100};
     board[Maradhana]=(landProperties){.name="Maradhana",.type=land,.purchasePrice=purchasePrice[1],.baseRental=baseRents[1],.currentOwner=-1,.cGroup=G_BROWN,.houseCost=500.0,.hotelCost=2000.0,.age=0,.buildingCondition=100};
                         //light blue
     board[Bambalapitiya]=(landProperties){.name="Bambalapitiya",.type=land,.purchasePrice=purchasePrice[2],.baseRental=baseRents[2],.currentOwner=-1,.cGroup=G_LIGHT_BLUE,.houseCost=750.0,.hotelCost=3000.0,.age=0,.buildingCondition=100};
@@ -97,6 +97,7 @@ void gameCountCounter(Player players[],int *currentRound,int *activePlayersList,
         buildingCondition(board);// building condition(-2% every round) and structural damage check
         economicEventProcess(*currentRound,board);
         randomDisaster(board,players,*currentRound);
+        checkInsuaranceExpiry(board);
     }
 }
 void handleLandLanding(Player *player, landProperties *property, Player playerlist[],landProperties board[])
@@ -129,12 +130,16 @@ void handleLandLanding(Player *player, landProperties *property, Player playerli
                 incomeTax(player,1);
                 break;
             case CommunityDevFund:
-                communityDevFund(player,playerlist,board,marketComdition);  
+                communityDevFund(player,playerlist,board,mktCond);  
                 break; 
             case NationalEvent1:            
             case NationalEvent2:
             case NationalEvent3:
                 nationalEventCardProcess(playerlist,player,board);
+                break;
+            case SrilankaInsurance:
+            case CeylincoInsurance:
+                handleInsuarace(player,board,mktCond);
                 break;
             default:
                 break;

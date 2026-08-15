@@ -255,7 +255,7 @@ void buyProperty(Player *player, landProperties *property,Player playerList[])
             {
                 //uses agginv stratagies temraraly
                 double tempFutureRent = 250.00;////// tempary value
-                shouldBuy=aggInvDecisions(player,*property,BUY_PROPERTY_DECISION,tempFutureRent);
+                shouldBuy=oppTraDecisions(player,*property,0,0,0,BUY_PROPERTY_DECISION);
                 break;
             }
         }
@@ -512,6 +512,30 @@ int propertiesCountofGroup(landProperties board[],int colorGroup, int playerId)/
     }
     return count;
 }
+void transferPlayerAssetsToBank(Player *player , landProperties board[])
+{
+    for(int i=0;i<TileSize;i++)
+    {
+        if(board[i].currentOwner==player->id)
+        {
+            board[i].currentOwner = -1;
+            board[i].noOfHouses= 0;
+            board[i].noOfHotels=0;
+            board[i].buildingCondition = 100.0;
+            board[i].isDamage =FALSE;
+            board[i].isStucturalDamaged = FALSE;
+
+            board[i].mortgageStatus=FALSE;
+            board[i].insuaranceType=0;
+            board[i].InsuranceStatus=FALSE;
+            board[i].insuaranceRounds=0;
+
+            board[i].currentRent = board[i].baseRental;
+
+            printf(GREEN"\n%s trasferred to the bank and all developments have been removed\n"RESET,board[i].name);
+        }
+    }
+}
 
 void Bankrupt(Player *player,Player playerlist[],landProperties board[],double marketConsition)
 {
@@ -567,19 +591,10 @@ void Bankrupt(Player *player,Player playerlist[],landProperties board[],double m
         printf(BOLD_GREEN"\n Bankruptcy \n"RESET);
 
         printf(RED"\n%s is BANKRUPT and eliminated form the game!\n"RESET,player->name);
+        
         //Transferring the bankrupt players properties to the bank
+        transferPlayerAssetsToBank(player,board);
 
-        for(int i=0;i<TileSize;i++)
-        {
-            if(board[i].currentOwner==player->id)
-            {
-                board[i].currentOwner = -1;
-                board[i].noOfHouses= 0;
-                board[i].noOfHotels=0;
-                board[i].mortgageStatus=FALSE;
-                printf(GREEN"\n%s trasferred to the bank and all buildings have been removed\n"RESET,board[i].name);
-            }
-        }
         gameOver(playerlist);
     }
     else
@@ -664,6 +679,11 @@ void payRent(Player *player,landProperties *property,Player playerlist[],landPro
             printf(YELLOW "\n%s is MORTGAGED! No rent collected.\n" RESET, property->name);
             return;
         }
+        if(property->isDamage==TRUE)
+        {
+            printf(YELLOW "\n%s is DAMAGED! No rent collected.\n" RESET, property->name);
+            return;
+        }
 
         double multiplier = rentMultiplier(property);//acording to building condition
 
@@ -703,7 +723,7 @@ void propertyDepreciation(landProperties board[])
 {
     for(int i=0;i<TileSize;i++)
     {
-        if(board[i].type==land)
+        if(board[i].type!=nonProperty)
         {
             board[i].age++;
             if(board[i].age>50 && board[i].age%5==0)

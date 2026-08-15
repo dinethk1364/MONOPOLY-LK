@@ -62,6 +62,14 @@ int aggInvDecisions(Player *player, landProperties property, int actionType, dou
             }
             return FALSE;
         }
+        case BUY_INSURANCE_DECISION:
+        {
+            if(property.noOfHotels>0)
+                return INS_COMPREHENSIVE;
+            if(property.noOfHouses>0)
+                return INS_BASIC;
+            return FALSE;
+        }
 
         default:
             return FALSE;
@@ -80,6 +88,12 @@ int consBanDecisions(Player *players, landProperties property, int actionType)
             {
                 return TRUE;
             }
+            return FALSE;
+        }
+        case BUY_INSURANCE_DECISION:
+        {
+            if(property.noOfHotels>0||property.noOfHouses>0)
+                return INS_COMPREHENSIVE;
             return FALSE;
         }
 
@@ -102,7 +116,8 @@ int riskTakDecisions(Player *players, landProperties property, int actionType)
             }
             return FALSE;        
         }
-
+        case BUY_INSURANCE_DECISION:
+            return FALSE;
         default:
             return FALSE;
     }
@@ -115,8 +130,20 @@ int oppTraDecisions(Player *players, landProperties property,double projectedApp
         case BUY_PROPERTY_DECISION:
         {
             if(players->cash < property.purchasePrice) return FALSE;
+            if(property.type == railway || property.type == utility)
+            {
+                return TRUE;
+            }
+            return FALSE;
         }
-
+        case BUY_INSURANCE_DECISION:
+        {
+            if(property.noOfHotels > 0 && players->cash >= (property.propertyValue * 0.15))
+                return INS_BUISINESS_INTERUPTION;
+            else if(property.purchasePrice >= 6500 && property.noOfHouses > 0)
+                return INS_COMPREHENSIVE;
+            return FALSE;
+        }
         default:
             return FALSE;
     }

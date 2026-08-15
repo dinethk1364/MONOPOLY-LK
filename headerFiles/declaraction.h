@@ -45,6 +45,9 @@ void buildingCondition(landProperties board[]);
 double rentMultiplier(landProperties *property);
 void buildingMaintenance(Player *player,landProperties board[]);
 
+void handleInsuarace(Player *player, landProperties board[],double marketCondition);
+void checkInsuaranceExpiry(landProperties board[]);
+
 //player decisions
 int aggInvDecisions(Player *players, landProperties property, int actionType, double value);
 int consBanDecisions(Player *players, landProperties property, int actionType);

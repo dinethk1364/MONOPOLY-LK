@@ -19,7 +19,17 @@
 #define YELLOW "\033[0;33m"
 #define RESET "\033[0m"
 
-#define marketComdition 1 //tempory
+// #define BOLD_GREEN ""
+// #define GREEN ""
+// #define BOLD_RED ""
+// #define RED ""
+// #define BOLD_BLUE ""
+// #define BLUE ""
+// #define BOLD_YELLOW ""
+// #define YELLOW ""
+// #define RESET ""
+
+#define mktCond 1 //tempory
 
 typedef enum{
     FALSE,TRUE
@@ -90,6 +100,12 @@ typedef enum{
     nonProperty
 }tileTypes;
 
+typedef enum {
+    INS_BASIC=1,
+    INS_COMPREHENSIVE,
+    INS_BUISINESS_INTERUPTION
+} InsuaranceType;
+
 typedef struct{
     char name[50];
     double purchasePrice;
@@ -101,8 +117,6 @@ typedef struct{
     int currentOwner;//-1:no owner  //0:cannot be own //1,2,3,4: belongs to player ID
     double currentRent;
     boolValue mortgageStatus;// 1 is true 0 is false
-    boolValue InsuranceStatus;// 1 is true 0 is false
-    boolValue isDamage;
     int noOfHouses;
     int noOfHotels;
     colorGroup cGroup;
@@ -110,7 +124,12 @@ typedef struct{
     int age;
     double buildingCondition;
     int unmaintaindRounds;
-    boolValue isStucturalDamaged;
+    boolValue isStucturalDamaged;//building depreciation
+    boolValue isDamage;//for disaster
+
+    boolValue InsuranceStatus;// 1 is true 0 is false
+    InsuaranceType insuaranceType;
+    int insuaranceRounds;
 
 }landProperties;
 
