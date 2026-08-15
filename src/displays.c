@@ -108,6 +108,59 @@ void endOfTheRounds(Player* players, int roundCount,landProperties board[])
         }        
     } 
 }
+const char *getColorGroupName(colorGroup group)
+{
+    switch (group)
+    {
+        case G_BROWN: return "Brown (Pettah, Maradana)";
+        case G_LIGHT_BLUE: return "Light Blue (Bambalapitiya, Wellawatta, Mount Lavinia)";
+        case G_PINK: return "Pink (Maharagama, Nugegoda, Kottawa)";
+        case G_ORANGE: return "Orange (Negombo, Katunayake, Ja-Ela)";
+        case G_RED: return "Red (Kandy City, Peradeniya, Katugastota)";
+        case G_YELLOW: return "Yellow (Galle Fort, Unawatuna, Hikkaduwa)";
+        case G_GREEN: return "Green (Jaffna Town, Nallur, Trincomalee)";
+        case G_DARK_BLUE: return "Dark Blue (Nuwara Eliya, Galle Face)";
+        default: return "None";
+    }
+}
+
+void displayMarketConditions(double currentLoanInterest, double currentInflation)
+{
+    economicState *mkt = getDynamicMarketState();
+
+    printf(BOLD_YELLOW "\n=========================================\n" RESET);
+    printf(BOLD_YELLOW "        Current Market Conditions        \n" RESET);
+    printf(BOLD_YELLOW "=========================================\n" RESET);
+
+    printf("Market Boom\n-------------\n");
+    if (mkt->activeBoomGroup > 0)
+    {
+        printf("%s (+20%%)\n", getColorGroupName(mkt->activeBoomGroup));
+        printf("Rounds Remaining : %d\n", mkt->boomRoundsRemaining);
+    }
+    else
+    {
+        printf("None\n");
+    }
+
+    printf("\nMarket Decline\n----------------\n");
+    if (mkt->activeDeclineGroup > 0)
+    {
+        printf("%s (-15%%)\n", getColorGroupName(mkt->activeDeclineGroup));
+        printf("Rounds Remaining : %d\n", mkt->declineRoundsRemaining);
+    }
+    else
+    {
+        printf("None\n");
+    }
+
+    printf("\nInflation\n------------\n");
+    printf("%+.0f%%\n", currentInflation * 100.0);
+
+    printf("\nCurrent Loan Interest\n-----------------------\n");
+    printf("%.0f%%\n", currentLoanInterest * 100.0);
+    printf(BOLD_YELLOW "=========================================\n" RESET);
+}
 
 void displayGameOver(Player *player)
 {

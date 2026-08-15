@@ -247,10 +247,21 @@ typedef enum {
 } GovRegulation;
 
 typedef struct {
+    //gov regulations
     GovRegulation activeReg;
     int activeRound;
-} ActiveGovRegulation;
 
+    //dynamic prop market
+    colorGroup activeBoomGroup;
+    colorGroup activeDeclineGroup;
+    int boomRoundsRemaining;
+    int declineRoundsRemaining;
+    int lastAffectedRound[9]; 
+
+    //inflation & interest
+    double currentInflationRate;
+    double currentBaseInterest;
+} economicState;
 
 
 #endif 

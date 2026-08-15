@@ -101,10 +101,19 @@ void gameCountCounter(Player players[],int *currentRound,int *activePlayersList,
     {
         *currentRound=minRound;
         endOfTheRounds(players,*currentRound,board);
+
+        economicState *state = getActiveGovReg();
+        displayMarketConditions(state->currentBaseInterest, state->currentInflationRate);
+
         propertyDepreciation(board);// property age and 1% depreciation process
         buildingCondition(board);// building condition(-2% every round) and structural damage check
-        economicEventProcess(*currentRound,board);
+        
+        processDynamicMarket(*currentRound, board);
+        processInflation(*currentRound,board);
+        
         processGovernmentRegulations(*currentRound, board, players);
+
+        economicEventProcess(*currentRound,board);
         randomDisaster(board,players,*currentRound);
         checkInsuaranceExpiry(board);
         updateLoanInterest(players,board);
@@ -151,6 +160,11 @@ void handleLandLanding(Player *player, landProperties *property, Player playerli
             case CeylincoInsurance:
                 handleInsuarace(player,board,mktCond);
                 break;
+            case BOC:
+            {
+                double currentIntRate = calculateCurrentInterestRate();
+                handleBanking(player,board,currentIntRate);
+            }
             default:
                 break;
         }

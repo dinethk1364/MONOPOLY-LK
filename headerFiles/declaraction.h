@@ -57,9 +57,17 @@ void extendLoan(Player *player);
 
 int needsLoanForMonopolyDevelopment(Player *player, landProperties board[]);
 
-ActiveGovRegulation *getActiveGovReg();
+economicState *getActiveGovReg();
 void clearPreviousRegulation(landProperties board[]);
 void processGovernmentRegulations(int currentRound, landProperties board[], Player playerlist[]);
+double calculateCurrentInterestRate();
+void processInflation(int currentRound, landProperties board[]);
+
+economicState *getDynamicMarketState();
+void processDynamicMarket(int currentRound, landProperties board[]);
+void displayMarketConditions(double currentLoanInterest, double currentInflation);
+const char *getColorGroupName(colorGroup group);
+double calculateCurrentInterestRate();
 
 //player decisions
 int aggInvDecisions(Player *players, landProperties property, int actionType, double value);

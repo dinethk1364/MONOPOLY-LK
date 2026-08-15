@@ -86,7 +86,7 @@ void incomeTax(Player *player, double marketCondition)
     double taxRate = 0.15*marketCondition;
 
     //gov regulations
-    ActiveGovRegulation *reg = getActiveGovReg();
+    economicState *reg = getActiveGovReg();
     if (reg->activeReg == REG_INCREASE_PROPERTY_TAX)
     {
         taxRate *= 1.50;

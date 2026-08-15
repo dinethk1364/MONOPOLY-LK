@@ -42,12 +42,12 @@ void handleInsuarace(Player *player, landProperties board[],double marketConditi
                 double premiumRate = calculateInsPremium(policyChoice);
 
                 //gove regulations
-                ActiveGovRegulation *reg = getActiveGovReg();
+                economicState *reg = getActiveGovReg();
                 if (reg->activeReg == REG_INSURANCE_REGULATION)
                 {
                     premiumRate *= 0.85;
                 }
-                
+
                 calPropertyValue(&board[i],marketCondition);
                 double premiumCost = board[i].propertyValue * premiumRate;
                 

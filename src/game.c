@@ -649,6 +649,13 @@ void updateRailwayRent(landProperties *property, landProperties board[])
                 property->currentRent = 2000.0;
                 break;
         }
+
+        //gov regulations
+        economicState *reg = getActiveGovReg();
+        if (reg->activeReg == REG_RAILWAY_MODERNIZATION)
+        {
+            property->currentRent *= 1.25;
+        }
     }
 }
 void updateUtilityRent(landProperties *property,landProperties board[],int diceRoll)
@@ -667,6 +674,12 @@ void updateUtilityRent(landProperties *property,landProperties board[],int diceR
         case 2:
             property->currentRent = 10*diceRoll;
             break;
+        }
+        //gov regulations
+        economicState *reg = getActiveGovReg();
+        if (reg->activeReg == REG_ELECTRICITY_TARIFF)
+        {
+            property->currentRent *= 1.20;
         }
     }
 }
