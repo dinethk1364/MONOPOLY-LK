@@ -1,5 +1,5 @@
 //player decision-making algorithms
-#include "../headerFiles/types.h"
+#include "../headerFiles/declaraction.h"
 
 int aggInvDecisions(Player *player, landProperties property, int actionType, double value)
 {
@@ -70,6 +70,30 @@ int aggInvDecisions(Player *player, landProperties property, int actionType, dou
                 return INS_BASIC;
             return FALSE;
         }
+        case TAKE_LOAN_DECISION:
+        {
+            if((int)value==TRUE)
+            {
+                return TRUE;
+            }
+            return FALSE;
+        }
+        case REPAY_LOAN_DECISION:
+        {
+            if(player->cash >= (player->activeLoan.currentLoanAmount * 2.0))
+            {
+                return TRUE;
+            }
+            return FALSE;
+        }
+        case EXTEND_LOAN_DECISION:
+        {
+            if(player->activeLoan.remainingRounds <= 3)
+            {
+                return TRUE;
+            }
+            return FALSE;
+        }
 
         default:
             return FALSE;
@@ -96,6 +120,22 @@ int consBanDecisions(Player *players, landProperties property, int actionType)
                 return INS_COMPREHENSIVE;
             return FALSE;
         }
+        case TAKE_LOAN_DECISION:
+        {
+            if(players->cash<5000)
+            {
+                return TRUE;
+            }
+            return FALSE;
+        }
+        case REPAY_LOAN_DECISION:
+        {
+            if(players->activeLoan.currentLoanAmount<players->cash)
+            {
+                return TRUE;
+            }
+            return FALSE;
+        }
 
         default:
             return FALSE;
@@ -118,12 +158,27 @@ int riskTakDecisions(Player *players, landProperties property, int actionType)
         }
         case BUY_INSURANCE_DECISION:
             return FALSE;
+        case TAKE_LOAN_DECISION:
+        {
+            return TRUE;
+        }
+        case REPAY_LOAN_DECISION:
+        {
+            return FALSE;
+        }
+        case EXTEND_LOAN_DECISION:
+        {
+            if(players->activeLoan.remainingRounds <= 5)//extend if below 5 rounds
+                return TRUE;
+            return FALSE;
+        }
+
         default:
             return FALSE;
     }
 }
 
-int oppTraDecisions(Player *players, landProperties property,double projectedAppreciation, int currentInflation, int currentSubsidies, int actionType)
+int oppTraDecisions(Player *players, landProperties property,double value1, int value2, int value3, int actionType)
 {
     switch(actionType)
     {
@@ -144,7 +199,56 @@ int oppTraDecisions(Player *players, landProperties property,double projectedApp
                 return INS_COMPREHENSIVE;
             return FALSE;
         }
+        case TAKE_LOAN_DECISION:
+        {
+            //value1=current Int
+            if(value1<0.08)
+                return TRUE;
+            return FALSE;
+        }
+        case REPAY_LOAN_DECISION:
+        {
+            //value1=current int
+            if(value1 >= 0.10 || players->cash >= (players->activeLoan.currentLoanAmount * 1.5))
+                return TRUE;
+            return FALSE;
+        }
+        case EXTEND_LOAN_DECISION:
+        {
+            if(players->activeLoan.remainingRounds <= 3)
+                return TRUE;
+            return FALSE;
+        }
         default:
             return FALSE;
     }
+}
+
+int needsLoanForMonopolyDevelopment(Player *player, landProperties board[])
+{
+    for (int i = 0; i < TileSize; i++)
+    {
+        if (board[i].type == land && board[i].currentOwner == player->id)
+        {
+            int cGroup = board[i].cGroup;
+
+            if (hasMonopoly(board, player->id, cGroup) == TRUE)
+            {
+                for (int j = 0; j < TileSize; j++)
+                {
+                    if (board[j].type == land && board[j].cGroup == cGroup)
+                    {
+                        if (board[j].noOfHotels == 0) 
+                        {
+                            if (player->cash < board[j].hotelCost)
+                            {
+                                return TRUE; 
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return FALSE; 
 }

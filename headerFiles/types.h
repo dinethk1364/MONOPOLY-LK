@@ -106,6 +106,16 @@ typedef enum {
     INS_BUISINESS_INTERUPTION
 } InsuaranceType;
 
+typedef struct {
+    int isActive;
+    double currentLoanAmount;//current outstandint loan
+    double originalLoanAmount;
+    double intRate;
+    int remainingRounds;
+    int collateralProperties[TileSize];
+    int collateralCount;
+} LoanInfo;
+
 typedef struct{
     char name[50];
     double purchasePrice;
@@ -131,6 +141,8 @@ typedef struct{
     InsuaranceType insuaranceType;
     int insuaranceRounds;
 
+    boolValue isLoanLocked;
+
 }landProperties;
 
 typedef struct{
@@ -149,6 +161,8 @@ typedef struct{
     int eventExpiryRound;
     double eventValueMultiplier;
     int activeCard;
+
+    LoanInfo activeLoan;
 }Player;
 
 typedef enum {
@@ -157,8 +171,10 @@ typedef enum {
     BUILD_HOUSE_DECISION,
     UNMORTGAGE,
     MAINTENANCE_DECISION,
+    BUY_INSURANCE_DECISION,
     TAKE_LOAN_DECISION,
-    BUY_INSURANCE_DECISION
+    REPAY_LOAN_DECISION,
+    EXTEND_LOAN_DECISION
 }decisionType;
 
 typedef struct {
@@ -218,5 +234,23 @@ typedef enum{
     DISASTER_BUILDING_COLLAPSE,
     DISASTER_ELECTRICAL_FAILURE
 }RandomDisaster;
+typedef enum {
+    REG_INCREASE_PROPERTY_TAX,      
+    REG_REDUCE_LOAN_INTEREST,       
+    REG_HOUSING_SUBSIDY,            
+    REG_LUXURY_PROPERTY_TAX,         
+    REG_RAILWAY_MODERNIZATION,      
+    REG_ELECTRICITY_TARIFF,         
+    REG_INSURANCE_REGULATION,       
+    REG_ANTI_SPECULATION,           
+    NO_REGULATION = -1
+} GovRegulation;
+
+typedef struct {
+    GovRegulation activeReg;
+    int activeRound;
+} ActiveGovRegulation;
+
+
 
 #endif 

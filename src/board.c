@@ -77,6 +77,14 @@ landProperties *initializeBoard()
         printf("%d. Purchase Price: %lf | Base Rent: %lf\n", i, board[i].purchasePrice, board[i].baseRental);
     }*/
 
+    for(int i=0;i<TileSize;i++)
+    {
+        if(board[i].type==land)
+        {
+            board[i].mortgagePrice=board[i].purchasePrice*0.5;
+        }
+    }
+
     return board;
 }
 void gameCountCounter(Player players[],int *currentRound,int *activePlayersList,int *activePlayersCount,landProperties board[])
@@ -92,12 +100,14 @@ void gameCountCounter(Player players[],int *currentRound,int *activePlayersList,
     if(minRound>*currentRound)
     {
         *currentRound=minRound;
-        endOfTheRounds(players,*currentRound);
+        endOfTheRounds(players,*currentRound,board);
         propertyDepreciation(board);// property age and 1% depreciation process
         buildingCondition(board);// building condition(-2% every round) and structural damage check
         economicEventProcess(*currentRound,board);
+        processGovernmentRegulations(*currentRound, board, players);
         randomDisaster(board,players,*currentRound);
         checkInsuaranceExpiry(board);
+        updateLoanInterest(players,board);
     }
 }
 void handleLandLanding(Player *player, landProperties *property, Player playerlist[],landProperties board[])

@@ -63,7 +63,7 @@ void displayLandDetails(Player *player,landProperties *property,landProperties b
     printf("\n\n------------------------------------------------------------\n");
 }
 
-void endOfTheRounds(Player* players, int roundCount)
+void endOfTheRounds(Player* players, int roundCount,landProperties board[])
 {
     printf(BOLD_YELLOW"\n===========================================================\n"RESET);
     printf(BOLD_YELLOW"                       Round %d Summary"RESET,roundCount);
@@ -79,12 +79,31 @@ void endOfTheRounds(Player* players, int roundCount)
         }
         else
         {
+            int propCount = 0;
+            int hotelCount = 0;
+
+            for (int j = 0; j < TileSize; j++)
+            {
+                if (board[j].currentOwner == players[i].id)
+                {
+                    propCount++;
+                    if (board[j].noOfHotels > 0)
+                    {
+                        hotelCount += board[j].noOfHotels;
+                    }
+                }
+            }
+            
+            double loanValue=0.0;
+            if(players[i].activeLoan.isActive == TRUE)
+                loanValue=players[i].activeLoan.currentLoanAmount;
+           
             printf("\n%s\n",players[i].name);
             printf("\nCash : LKR %'.f\n",players[i].cash);
             printf("\nNet Worth : LKR %'.f\n",players[i].netWorth);
-            printf("\nProperties : \n");
-            printf("\nHotels : \n");
-            printf("\nOutstanding Loan : LKR \n");
+            printf("\nProperties : %d\n",propCount);
+            printf("\nHotels : %d\n",hotelCount);
+            printf("\nOutstanding Loan : LKR %'.f\n",loanValue);
             printf(BOLD_YELLOW"\n-----------------------------------------------------------\n"RESET);
         }        
     } 
