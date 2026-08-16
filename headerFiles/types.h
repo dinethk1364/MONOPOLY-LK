@@ -29,8 +29,6 @@
 // #define YELLOW ""
 // #define RESET ""
 
-#define mktCond 1 //tempory
-
 typedef enum{
     FALSE,TRUE
 }boolValue;

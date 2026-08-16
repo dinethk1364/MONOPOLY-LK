@@ -93,6 +93,8 @@ landProperties *initializeBoard()
 }
 void gameCountCounter(Player players[],int *currentRound,int *activePlayersList,int *activePlayersCount,landProperties board[])
 {
+    double mktCond;
+
     int minRound = players[activePlayersList[0]].roundCount;
     for(int i=1;i<*activePlayersCount;i++)
     {
@@ -104,6 +106,7 @@ void gameCountCounter(Player players[],int *currentRound,int *activePlayersList,
     if(minRound>*currentRound)
     {
         *currentRound=minRound;
+        mktCond = getCurrentMarketMultiplier();
         propertyDepreciation(board);// property age and 1% depreciation process
         buildingCondition(board,players);// building condition(-2% every round) and structural damage check
         
@@ -129,6 +132,8 @@ void gameCountCounter(Player players[],int *currentRound,int *activePlayersList,
 }
 void handleLandLanding(Player *player, landProperties *property, Player playerlist[],landProperties board[])
 {
+    double mktCond = getCurrentMarketMultiplier();
+
     updateRailwayRent(property,board);
     updateUtilityRent(property,board,player->dieRollValue);
     displayLandDetails(player,property,board);

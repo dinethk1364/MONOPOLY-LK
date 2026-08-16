@@ -55,6 +55,7 @@ void clearPreviousRegulation(landProperties board[])
 
 void processGovernmentRegulations(int currentRound, landProperties board[], Player playerlist[])
 {
+    double mktCond = getCurrentMarketMultiplier();
     if (currentRound > 0 && currentRound % 20 == 0)
     {
         clearPreviousRegulation(board); //clear previous regulation
@@ -340,4 +341,10 @@ void processInflation(int currentRound, landProperties board[])
         }
         calculateCurrentInterestRate();
     }
+}
+double getCurrentMarketMultiplier()
+{
+    economicState *reg = getActiveGovReg();
+    double multiplier = 1.0 + reg->currentInflationRate;
+    return multiplier;
 }

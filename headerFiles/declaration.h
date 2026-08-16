@@ -21,6 +21,7 @@ void endOfTheRounds(Player* players, int roundCount,landProperties board[]);
 void displayGameOver(Player *player,landProperties board[]);
 int hasMonopoly(landProperties board[],int playerId, int colorGroup);
 void buildHouses(Player *player, landProperties board[]);
+int calFutureRent(Player *player, landProperties board[],int range);
 
 void calPropertyValue(landProperties *property);
 void calMortgageValue(landProperties *property);
@@ -57,6 +58,7 @@ void handleBanking(Player *player,landProperties board[],double currentIntRate);
 void repayLoan(Player *player,landProperties board[],double amount);
 double calReqLoanAmmount(Player *player, landProperties board[]);
 void extendLoan(Player *player);
+double getCurrentMarketMultiplier();
 
 int needsLoanForMonopolyDevelopment(Player *player, landProperties board[]);
 int propertiesCountofGroup(landProperties board[],int colorGroup, int playerId);

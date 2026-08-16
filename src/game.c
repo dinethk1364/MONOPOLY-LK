@@ -243,7 +243,7 @@ void buyProperty(Player *player, landProperties *property,Player playerList[],la
         {
             case AGG_INVESTER:
             {
-                double futureRent = 500;
+                double futureRent = calFutureRent(player,board,12);//12 = block range
 
                 //prioritize completing property groups
                 int countInGroup = propertiesCountofGroup(board,property->cGroup,player->id);
@@ -304,6 +304,28 @@ void buyProperty(Player *player, landProperties *property,Player playerList[],la
             auctionProperty(playerList,property,board);
         }
     }
+}
+int calFutureRent(Player *player, landProperties board[],int range)//for agg inver decisions
+{
+    int maxRent=0;
+    int currPosition = player->currentPosition;
+
+    for(int i=1;i<range;i++)
+    {
+        int checkPosition=(currPosition+i)%TileSize;
+        landProperties *prop = &board[checkPosition];
+
+        if(prop->type != nonProperty && prop->currentOwner>0&&prop->mortgageStatus==FALSE&&prop->isDamage==FALSE)
+        {
+            int estimatedRent = prop->currentRent;
+
+            if(estimatedRent>maxRent)
+            {
+                maxRent=estimatedRent;
+            }
+        }
+    }
+    return maxRent;
 }
 int hasMonopoly(landProperties board[],int playerId, int colorGroup)
 {
@@ -603,7 +625,6 @@ void Bankrupt(Player *player,Player playerlist[],landProperties board[],double m
             }
 
             mortgageProperty(player,board,&board[best],marketConsition);
-            printf(RED"\n%s is mortgaged and receive LKR %'.f\n"RESET,board[best].name,board[best].mortgagePrice);
         }
     }
 
