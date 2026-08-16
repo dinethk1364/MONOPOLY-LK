@@ -1,19 +1,21 @@
 #include<stdio.h>
 #include"../headerFiles/declaraction.h"
 
-void calPropertyValue(landProperties *property,double marketCondition)
+void calPropertyValue(landProperties *property)
 {
-    if(property->type!=nonProperty)
+    if(property->type==nonProperty)
     {
-        property->propertyValue=property->purchasePrice*marketCondition;
+        property->propertyValue=0.0;
+        return;
     }
-    else{
-        property->propertyValue=0;
+    if(property->propertyValue<=0)
+    {
+        property->propertyValue=property->purchasePrice;
     }
 }
-void calMortgageValue(landProperties *property,double marketcondition)
+void calMortgageValue(landProperties *property)
 {
-    calPropertyValue(property,marketcondition);
+    calPropertyValue(property);
     property->mortgagePrice = property->propertyValue*0.5;
 }
 
@@ -27,7 +29,7 @@ void mortgageProperty(Player *player,landProperties board[],landProperties *prop
         }
         else
         {
-            calMortgageValue(property,marketcondition);//update property value
+            calMortgageValue(property);//update property value
             property->mortgageStatus=TRUE;
             property->currentRent=0;//mortgage properties cannot collect rent
             player->cash+=property->mortgagePrice;
@@ -106,7 +108,7 @@ void communityDevFund(Player *player,Player playerlist[],landProperties board[],
     {
         if(board[i].currentOwner==player->id && board[i].type != nonProperty)
         {
-            calPropertyValue(&board[i],marketCondition);
+            calPropertyValue(&board[i]);
             totalAssets+=board[i].propertyValue;
         }
     }
@@ -263,7 +265,7 @@ void handleLoanDefault(Player *player, landProperties board[])
         board[idx].insuaranceType=0;
         board[idx].InsuranceStatus=FALSE;
         board[idx].insuaranceRounds=0;
-        board[idx].currentRent = board[i].baseRental;
+        board[idx].currentRent = board[idx].baseRental;
     }
     player->activeLoan.isActive = FALSE;
     player->activeLoan.currentLoanAmount = 0.0;

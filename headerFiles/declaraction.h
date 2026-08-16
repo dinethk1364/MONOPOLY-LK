@@ -8,7 +8,7 @@ int rollDice(int *, int*);
 landProperties *initializeBoard();
 void playerMovement(Player players[],landProperties board[]);
 void displayLandDetails(Player *player,landProperties *property,landProperties board[]);
-void buyProperty(Player *player, landProperties *property,Player playerlist[]);
+void buyProperty(Player *player, landProperties *property,Player playerlist[],landProperties board[]);
 void Bankrupt(Player *player,Player playerlist[],landProperties board[],double marketConsition);
 void payRent(Player *player,landProperties *property,Player playerlist[],landProperties board[]);
 int checkGameOver(Player playerlist[]);
@@ -21,8 +21,8 @@ void displayGameOver(Player *player,landProperties board[]);
 int hasMonopoly(landProperties board[],int playerId, int colorGroup);
 void buildHouses(Player *player, landProperties board[]);
 
-void calPropertyValue(landProperties *property,double marketCondition);
-void calMortgageValue(landProperties *property,double marketcondition);
+void calPropertyValue(landProperties *property);
+void calMortgageValue(landProperties *property);
 int hasBuildings(landProperties board[], int colorGroup);
 void updateLandRent(landProperties *property);
 void mortgageProperty(Player *player,landProperties board[],landProperties *property,double marketcondition);
@@ -42,7 +42,7 @@ void processDisaster(landProperties *property,Player playerlist[]);
 
 void propertyDepreciation(landProperties board[]);
 void renovateProperty(Player *player,landProperties *property);
-void buildingCondition(landProperties board[]);
+void buildingCondition(landProperties board[],Player players[]);
 double rentMultiplier(landProperties *property);
 void buildingMaintenance(Player *player,landProperties board[]);
 int hasMonopoly(landProperties board[],int playerId, int colorGroup);
@@ -57,6 +57,7 @@ void repayLoan(Player *player,landProperties board[],double amount);
 void extendLoan(Player *player);
 
 int needsLoanForMonopolyDevelopment(Player *player, landProperties board[]);
+int propertiesCountofGroup(landProperties board[],int colorGroup, int playerId);
 
 GlobalEconomy *initGlobalEco();
 economicState *getActiveGovReg();
@@ -74,8 +75,8 @@ void calculateNetWorth(Player *player, landProperties board[]);
 
 //player decisions
 int aggInvDecisions(Player *players, landProperties property, int actionType, double value);
-int consBanDecisions(Player *players, landProperties property, int actionType);
-int riskTakDecisions(Player *players, landProperties property, int actionType);
+int consBanDecisions(Player *players, landProperties property, int actionType, int value);
+int riskTakDecisions(Player *players, landProperties property, int actionType, int value);
 int oppTraDecisions(Player *players, landProperties property,double projectedAppreciation, int currentInflation, int currentSubsidies, int actionType);
 
 #endif 

@@ -165,6 +165,7 @@ typedef struct{
     int revaluationGroup;
 
     LoanInfo activeLoan;
+    boolValue hadDamage;//for risk taker decisions
 }Player;
 
 typedef enum {

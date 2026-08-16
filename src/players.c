@@ -9,13 +9,17 @@ int aggInvDecisions(Player *player, landProperties property, int actionType, dou
         {
             if(player->cash < property.purchasePrice) return FALSE;//check have enough cash to buy property
 
+            double futureRent=value;
             double remainingCash = player->cash - property.purchasePrice;//get remaing cash if buy the property
-            if(remainingCash>=value)// if have money to pay at least one future rent(pass a future rent for value parameter)
+            if(remainingCash>=futureRent)// if have money to pay at least one future rent(pass a future rent for value parameter)
             {
                 return TRUE;
             }
             //prioritized Properties
-            //prioritize completing property groups
+            if(property.cGroup==G_DARK_BLUE)
+            {
+                return TRUE;
+            }
             
             return FALSE;
         }
@@ -23,6 +27,12 @@ int aggInvDecisions(Player *player, landProperties property, int actionType, dou
         {
             double maxbid = property.purchasePrice*1.20;
             int proposedBid = value;
+
+            //Galle Face / Nuwaraeliya
+            if (property.cGroup == G_DARK_BLUE)
+            {
+                maxbid = player->cash;
+            }
 
             if(player->cash >= proposedBid && proposedBid<=maxbid)
             {
@@ -32,8 +42,8 @@ int aggInvDecisions(Player *player, landProperties property, int actionType, dou
         }
         case BUILD_HOUSE_DECISION:
         {
-            //value = construction cost
-            if(player->cash >= value)
+            double constructionCost = value;
+            if(player->cash - constructionCost>=1500.0)
             {
                 return TRUE;
             }
@@ -55,8 +65,10 @@ int aggInvDecisions(Player *player, landProperties property, int actionType, dou
         }
         case MAINTENANCE_DECISION:
         {
-            //value = maintenance cost
-            if(property.buildingCondition<75.0 && player->cash >=value)
+            double maintenaceCost = value;
+            if(player->cash < maintenaceCost) return FALSE;
+            //keep rent at highest value
+            if(property.buildingCondition<90.0 || property.isStucturalDamaged == TRUE)
             {
                 return TRUE;
             }
@@ -100,7 +112,7 @@ int aggInvDecisions(Player *player, landProperties property, int actionType, dou
     }
 }
 
-int consBanDecisions(Player *players, landProperties property, int actionType)
+int consBanDecisions(Player *players, landProperties property, int actionType,int value)
 {
     switch(actionType)
     {
@@ -109,6 +121,44 @@ int consBanDecisions(Player *players, landProperties property, int actionType)
             if(players->cash < property.purchasePrice) return FALSE;
             double remainingCash = players->cash - property.purchasePrice;
             if(remainingCash>=(players->cash*0.50))
+            {
+                return TRUE;
+            }
+            return FALSE;
+        }
+        case AUCTION_MAX_BID_DECISION:
+        {
+            double maxBid = property.purchasePrice*0.80;
+            int proposedBid = (int)value;
+
+            if(players->cash>=proposedBid && proposedBid<=maxBid)
+            {
+                return TRUE;
+            }
+            return FALSE;
+        }
+        case BUILD_HOUSE_DECISION:
+        {
+            double cost = value;
+            if (players->cash < cost) return FALSE;
+            //dont build hoten until settle loan
+            if(property.noOfHouses==4 && players->activeLoan.isActive==TRUE)
+            {
+                return FALSE;
+            }
+            //build with reserve cash
+            if(players->cash - cost >=5000.0)
+            {
+                return TRUE;
+            }
+            return FALSE;
+        }
+        case MAINTENANCE_DECISION:
+        {
+            double maintenanceCost =value;
+            if(players->cash<maintenanceCost) return FALSE;
+            
+            if((property.buildingCondition<=90||property.isStucturalDamaged==TRUE) && (players->cash-maintenanceCost >=3000.0))
             {
                 return TRUE;
             }
@@ -128,6 +178,8 @@ int consBanDecisions(Player *players, landProperties property, int actionType)
             }
             return FALSE;
         }
+        case EXTEND_LOAN_DECISION:
+            return FALSE;
         case REPAY_LOAN_DECISION:
         {
             if(players->activeLoan.currentLoanAmount<players->cash)
@@ -142,22 +194,57 @@ int consBanDecisions(Player *players, landProperties property, int actionType)
     }
 }
 
-int riskTakDecisions(Player *players, landProperties property, int actionType)
+int riskTakDecisions(Player *players, landProperties property, int actionType,int value)
 {
     switch(actionType)
     {
         case BUY_PROPERTY_DECISION:
         {
-            if(players->cash < property.purchasePrice) return FALSE;
-            double remainingCash = players->cash - property.purchasePrice;
-            if(remainingCash>0.0)
+            if(players->cash >= property.purchasePrice)
             {
                 return TRUE;
             }
             return FALSE;        
         }
-        case BUY_INSURANCE_DECISION:
+        case AUCTION_MAX_BID_DECISION:
+        {
+            int proposedBid = (int)value;
+
+            if(players->cash>=proposedBid)
+            {
+                return TRUE;
+            }
             return FALSE;
+        }
+        case BUILD_HOUSE_DECISION:
+        {
+            double cost = value;
+            if(players->cash >=cost)
+            {
+                return TRUE;
+            }
+            return FALSE;
+        }
+        case MAINTENANCE_DECISION:
+        {
+            double maitenanceCost = value;
+            if (property.buildingCondition < 25.0 || property.isStucturalDamaged == TRUE)
+            {
+                return TRUE;
+            }
+            return FALSE;
+        }
+        case BUY_INSURANCE_DECISION:
+        {
+            if(players->hadDamage==TRUE)
+            {
+                if(property.noOfHotels>0)
+                    return INS_COMPREHENSIVE;
+                else if(property.noOfHouses>0)
+                    return INS_BASIC;
+            }
+            return FALSE;
+        }
         case TAKE_LOAN_DECISION:
         {
             return TRUE;
@@ -189,6 +276,68 @@ int oppTraDecisions(Player *players, landProperties property,double value1, int 
             {
                 return TRUE;
             }
+            double projectApreciation = value1;
+            double remainingCash = players->cash - property.purchasePrice;
+            if (remainingCash >= 2000.0 && projectApreciation > 0)
+            {
+                return TRUE;
+            }
+            return FALSE;
+        }
+        case AUCTION_MAX_BID_DECISION:
+        {
+            double maxDiscountedBid = property.purchasePrice * 0.80;
+            int proposedBid = (int)value1;
+
+            if(players->cash >= proposedBid && proposedBid <= maxDiscountedBid)
+            {
+                return TRUE;
+            }
+            return FALSE;
+        }
+        case BUILD_HOUSE_DECISION:
+        {
+            double cost = value1;
+            if(players->cash<cost) return FALSE;
+
+            economicState *mkt = getActiveGovReg();
+
+            if(mkt->currentInflationRate>=0.08 && mkt->activeReg!= REG_HOUSING_SUBSIDY)
+            {
+                return FALSE;
+            }
+            if(mkt->activeReg == REG_HOUSING_SUBSIDY || players->cash>=(cost*2))
+            {
+                return TRUE;
+            }
+            return FALSE;
+        }
+        case MAINTENANCE_DECISION:
+        {
+            double cost = value1;
+            if(players->cash < cost) return FALSE;
+
+            if(property.isStucturalDamaged==TRUE)
+            {
+                return TRUE;
+            }
+
+            economicState *mkt =getActiveGovReg();
+
+            if(mkt->currentInflationRate>=0.05 || mkt->activeBoomGroup==property.cGroup)
+            {
+                if(property.buildingCondition<90.0)
+                {
+                    return TRUE;
+                }
+            }
+            else
+            {
+                if(property.buildingCondition<50.0)
+                {
+                    return TRUE;
+                }
+            }
             return FALSE;
         }
         case BUY_INSURANCE_DECISION:
@@ -196,7 +345,12 @@ int oppTraDecisions(Player *players, landProperties property,double value1, int 
             if(property.noOfHotels > 0 && players->cash >= (property.propertyValue * 0.15))
                 return INS_BUISINESS_INTERUPTION;
             else if(property.purchasePrice >= 6500 && property.noOfHouses > 0)
-                return INS_COMPREHENSIVE;
+            {
+                if(players->cash>=(property.propertyValue*0.10))
+                {
+                    return INS_COMPREHENSIVE;
+                }
+            }
             return FALSE;
         }
         case TAKE_LOAN_DECISION:
@@ -215,7 +369,7 @@ int oppTraDecisions(Player *players, landProperties property,double value1, int 
         }
         case EXTEND_LOAN_DECISION:
         {
-            if(players->activeLoan.remainingRounds <= 3)
+            if(players->activeLoan.remainingRounds <= 3 && value1<=0.08)
                 return TRUE;
             return FALSE;
         }

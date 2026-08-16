@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include "../headerFiles/declaraction.h"
 
-int hasMonopoly(landProperties board[],int playerId, int colorGroup);
-
 void printGameBegins()
 {
     printf("\033[31mMONOPOLY-LK Simulation\033[0m\n\n");
@@ -189,6 +187,24 @@ void displayGameOver(Player *player,landProperties board[])
     {
         outstandingLoan = player->activeLoan.currentLoanAmount;
     }
+    int propCount = 0;
+    int hotelCount = 0;
+    int houseCount = 0;
+    for (int j = 0; j < TileSize; j++)
+    {
+        if (board[j].currentOwner == player->id)
+        {
+            propCount++;
+            if (board[j].noOfHotels > 0)
+            {
+                hotelCount += board[j].noOfHotels;
+            }
+            if (board[j].noOfHouses > 0)
+            {
+                houseCount += board[j].noOfHouses;
+            }
+        }
+    }
 
     printf(BOLD_RED"\n===========================================================\n"RESET);
     printf(BOLD_RED"                         End of Game!                     "RESET);
@@ -198,6 +214,9 @@ void displayGameOver(Player *player,landProperties board[])
     printf("\nWinner                : %s\n",player->name);
     printf("\nTotal Cash            : LKR %'.f\n",player->cash);
     printf("\nTotal Property Value  : LKR %'.f\n",totalPropertyValue);
+    printf("\nProperties            : %d\n",propCount);
+    printf("\nHotels                : %d\n",hotelCount);
+    printf("\nHouses                : %d\n",houseCount);
     printf("\nOutstanding Loans     : LKR %'.f\n",outstandingLoan);
     printf("\nNet Worth             : LKR %'.f\n",player->netWorth);
 

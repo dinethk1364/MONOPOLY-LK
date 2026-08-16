@@ -25,10 +25,10 @@ void handleInsuarace(Player *player, landProperties board[],double marketConditi
                     policyChoice=aggInvDecisions(player,board[i],BUY_INSURANCE_DECISION,0);
                     break;
                 case CONS_BANKER:
-                    policyChoice=consBanDecisions(player,board[i],BUY_INSURANCE_DECISION);
+                    policyChoice=consBanDecisions(player,board[i],BUY_INSURANCE_DECISION,0);
                     break;
                 case RISK_TAKER:
-                    policyChoice=riskTakDecisions(player,board[i],BUY_INSURANCE_DECISION);
+                    policyChoice=riskTakDecisions(player,board[i],BUY_INSURANCE_DECISION,0);
                     break;
                 case OPP_TRADER:
                     policyChoice=oppTraDecisions(player,board[i],0,0,0,BUY_INSURANCE_DECISION);
@@ -53,7 +53,7 @@ void handleInsuarace(Player *player, landProperties board[],double marketConditi
                     premiumRate *= 0.85;
                 }
 
-                calPropertyValue(&board[i],marketCondition);
+                calPropertyValue(&board[i]);
                 double premiumCost = board[i].propertyValue * premiumRate;
                 
                 if(player->cash >= premiumCost)

@@ -96,6 +96,7 @@ void processDisaster(landProperties *property,Player playerlist[])
             if(property->InsuranceStatus == TRUE && isCovered == FALSE)
             {
                 printf(BOLD_RED "Insurance Status    : Policy does NOT cover %s!\n" RESET, disasterName);
+                owner->hadDamage=TRUE;//risktaker decisions
             }
             else
             {
@@ -108,11 +109,13 @@ void processDisaster(landProperties *property,Player playerlist[])
             owner->cash-=repairCost;
             property->isDamage=FALSE;
             property->buildingCondition=100.0;
+            owner->hadDamage=TRUE;//risktaker decisions
             printf(YELLOW "\n%s paid LKR %'.f to repair %s.\n" RESET, owner->name, repairCost, property->name);
         }
         else
         {
             property->isDamage=TRUE;
+            owner->hadDamage=TRUE;//risktaker decisions
             printf(RED"PROPERTY DAMAGED\n"RESET);
         }
     }

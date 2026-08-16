@@ -7,10 +7,10 @@ Player* createPlayers()//return array in Player data type
 {
     //static is use to keep array in memory always
     static Player playersList[Maxplayers]={
-        {.id=1,.name="Aggressive Investor",.cash=PLAYER_STARTING_CASH,.inJail = FALSE,.isBankrupt=FALSE},
-        {.id=2,.name="Conservative Banker",.cash=PLAYER_STARTING_CASH,.inJail = FALSE,.isBankrupt=FALSE},
-        {.id=3,.name="Risk Taker",.cash=PLAYER_STARTING_CASH,.inJail = FALSE,.isBankrupt=FALSE},
-        {.id=4,.name="Opportunistic Trader",.cash=PLAYER_STARTING_CASH,.inJail = FALSE,.isBankrupt=FALSE}//turn order is save in this array
+        {.id=1,.name="Aggressive Investor",.cash=PLAYER_STARTING_CASH,.inJail = FALSE,.isBankrupt=FALSE,.hadDamage=FALSE},
+        {.id=2,.name="Conservative Banker",.cash=PLAYER_STARTING_CASH,.inJail = FALSE,.isBankrupt=FALSE,.hadDamage=FALSE},
+        {.id=3,.name="Risk Taker",.cash=PLAYER_STARTING_CASH,.inJail = FALSE,.isBankrupt=FALSE,.hadDamage=FALSE},
+        {.id=4,.name="Opportunistic Trader",.cash=PLAYER_STARTING_CASH,.inJail = FALSE,.isBankrupt=FALSE,.hadDamage=FALSE}//turn order is save in this array
     };
     return playersList;
 }
@@ -130,7 +130,7 @@ void detTurnOrder(Player players[])
         printf("%s\n",players[i].name);
     }
 }
-void auctionProperty(Player playerlist[],landProperties *property)
+void auctionProperty(Player playerlist[],landProperties *property,landProperties board[])
 {
     printf(BOLD_YELLOW"\n================== Property Auction ==================\n"RESET);
     printf("Base Purchase Price: LKR %'.f\n",property->purchasePrice*0.5);
@@ -171,22 +171,28 @@ void auctionProperty(Player playerlist[],landProperties *property)
             {
                 case AGG_INVESTER:
                 {
+                    int countInGroup = propertiesCountofGroup(board,property->cGroup,playerlist[i].id);
+                    if(countInGroup>0)
+                    {
+                        shouldBid = TRUE;
+                        break;
+                    }
                     shouldBid = aggInvDecisions(cuurentBidder,*property,AUCTION_MAX_BID_DECISION,proposedBid);
                     break;
                 }
                 case CONS_BANKER:
                 {
-                    shouldBid = aggInvDecisions(cuurentBidder,*property,AUCTION_MAX_BID_DECISION,proposedBid);
+                    shouldBid = consBanDecisions(cuurentBidder,*property,AUCTION_MAX_BID_DECISION,proposedBid);
                     break;
                 }
                 case RISK_TAKER:
                 {
-                    shouldBid = aggInvDecisions(cuurentBidder,*property,AUCTION_MAX_BID_DECISION,proposedBid);
+                    shouldBid = riskTakDecisions(cuurentBidder,*property,AUCTION_MAX_BID_DECISION,proposedBid);
                     break;
                 }
                 case OPP_TRADER:
                 {
-                    shouldBid = aggInvDecisions(cuurentBidder,*property,AUCTION_MAX_BID_DECISION,proposedBid);
+                    shouldBid = oppTraDecisions(cuurentBidder,*property,proposedBid,0,0,AUCTION_MAX_BID_DECISION);
                     break;
                 }
             }
@@ -228,7 +234,7 @@ void auctionProperty(Player playerlist[],landProperties *property)
         printf(BOLD_GREEN"\n--------------------------------------------------------\n"RESET);
     }
 }
-void buyProperty(Player *player, landProperties *property,Player playerList[])
+void buyProperty(Player *player, landProperties *property,Player playerList[],landProperties board[])
 {
     if(property->currentOwner==-1)
     {
@@ -237,25 +243,37 @@ void buyProperty(Player *player, landProperties *property,Player playerList[])
         {
             case AGG_INVESTER:
             {
-                double tempFutureRent = 50.00;////// tempary value
-                shouldBuy=aggInvDecisions(player,*property,BUY_PROPERTY_DECISION,tempFutureRent);
+                double futureRent = 500;
+
+                //prioritize completing property groups
+                int countInGroup = propertiesCountofGroup(board,property->cGroup,player->id);
+                if(countInGroup>0) futureRent=0;
+
+                shouldBuy=aggInvDecisions(player,*property,BUY_PROPERTY_DECISION,futureRent);
                 break;
             }
             case CONS_BANKER:
             {
-                shouldBuy=consBanDecisions(player,*property,BUY_PROPERTY_DECISION);
+                shouldBuy=consBanDecisions(player,*property,BUY_PROPERTY_DECISION,0);
                 break;
             }
             case RISK_TAKER:
             {
-                shouldBuy=riskTakDecisions(player,*property,BUY_PROPERTY_DECISION);
+                shouldBuy=riskTakDecisions(player,*property,BUY_PROPERTY_DECISION,0);
                 break;
             }
             case OPP_TRADER:
             {
-                //uses agginv stratagies temraraly
-                double tempFutureRent = 250.00;////// tempary value
-                shouldBuy=oppTraDecisions(player,*property,0,0,0,BUY_PROPERTY_DECISION);
+                economicState *mkt = getActiveGovReg();
+                //if land have dynamic marketboom appreciation rate 20%
+                double appreciationRate=0.0;
+                if(mkt->activeBoomGroup == property->cGroup)
+                    appreciationRate=0.20;
+                else appreciationRate=0.10;
+
+                double projectAppreciation = property->propertyValue * appreciationRate;
+                
+                shouldBuy=oppTraDecisions(player,*property,projectAppreciation,0,0,BUY_PROPERTY_DECISION);
                 break;
             }
         }
@@ -275,7 +293,7 @@ void buyProperty(Player *player, landProperties *property,Player playerList[])
                 printf(RED"Not enough cash to buy, Sending to auction!\n"RESET);
                 
                 //not enough cash send to auction
-                auctionProperty(playerList,property);
+                auctionProperty(playerList,property,board);
             }
         }
         else
@@ -283,7 +301,7 @@ void buyProperty(Player *player, landProperties *property,Player playerList[])
             printf(YELLOW"\n%s decided to not to buy\n"RESET,player->name);
             
             //dicided not to but send to auction
-            auctionProperty(playerList,property);
+            auctionProperty(playerList,property,board);
         }
     }
 }
@@ -405,13 +423,13 @@ void buildHouses(Player *player, landProperties board[])
                                 buildDecision=aggInvDecisions(player,board[i],BUILD_HOUSE_DECISION,board[i].houseCost);
                                 break;
                             case CONS_BANKER:
-                                buildDecision=aggInvDecisions(player,board[i],BUILD_HOUSE_DECISION,board[i].houseCost);
+                                buildDecision=consBanDecisions(player,board[i],BUILD_HOUSE_DECISION,board[i].houseCost);
                                 break;
                             case RISK_TAKER:
-                                buildDecision=aggInvDecisions(player,board[i],BUILD_HOUSE_DECISION,board[i].houseCost);
+                                buildDecision=riskTakDecisions(player,board[i],BUILD_HOUSE_DECISION,board[i].houseCost);
                                 break;
                             case OPP_TRADER:
-                                buildDecision=aggInvDecisions(player,board[i],BUILD_HOUSE_DECISION,board[i].houseCost);
+                                buildDecision=oppTraDecisions(player,board[i],board[i].houseCost,0,0,BUILD_HOUSE_DECISION);
                                 break;                        
                             default:
                                 break;
@@ -446,13 +464,13 @@ void buildHouses(Player *player, landProperties board[])
                                 buildDecision=aggInvDecisions(player,board[i],BUILD_HOUSE_DECISION,board[i].hotelCost);
                                 break;
                             case CONS_BANKER:
-                                buildDecision=aggInvDecisions(player,board[i],BUILD_HOUSE_DECISION,board[i].hotelCost);
+                                buildDecision=consBanDecisions(player,board[i],BUILD_HOUSE_DECISION,board[i].hotelCost);
                                 break;
                             case RISK_TAKER:
-                                buildDecision=aggInvDecisions(player,board[i],BUILD_HOUSE_DECISION,board[i].hotelCost);
+                                buildDecision=riskTakDecisions(player,board[i],BUILD_HOUSE_DECISION,board[i].hotelCost);
                                 break;
                             case OPP_TRADER:
-                                buildDecision=aggInvDecisions(player,board[i],BUILD_HOUSE_DECISION,board[i].hotelCost);
+                                buildDecision=oppTraDecisions(player,board[i],board[i].hotelCost,0,0,BUILD_HOUSE_DECISION);
                                 break;                        
                             default:
                                 break;
@@ -772,7 +790,7 @@ void renovateProperty(Player *player,landProperties *property)
         }
     }
 }
-void buildingCondition(landProperties board[])
+void buildingCondition(landProperties board[],Player playerlist[])
 {
     for(int i=0;i<TileSize;i++)
     {
@@ -791,6 +809,18 @@ void buildingCondition(landProperties board[])
                 board[i].isStucturalDamaged=TRUE;
                 board[i].propertyValue*=0.85;
                 board[i].currentRent*=0.75;
+
+                if(board[i].currentOwner>0)
+                {
+                    for(int k=0;k<Maxplayers;k++)
+                    {
+                        if(playerlist[k].id==board[i].currentOwner)
+                        {
+                            playerlist[k].hadDamage=TRUE;
+                            break;
+                        }
+                    }
+                }
 
                 printf("Buildings on %s suffered structural damage due to 20 rounds of neglect!\n", board[i].name);
                 printf("Property Value decreased by 15%% and Max Rent reduced by 25%%.\n");
@@ -850,16 +880,16 @@ void buildingMaintenance(Player *player,landProperties board[])
             switch (player->id)
             {
             case AGG_INVESTER:
-                shouldMaintenace=aggInvDecisions(player,board[i],BUILD_HOUSE_DECISION,maintenceCost);
+                shouldMaintenace=aggInvDecisions(player,board[i],MAINTENANCE_DECISION,maintenceCost);
                 break;
             case CONS_BANKER:
-                shouldMaintenace=aggInvDecisions(player,board[i],BUILD_HOUSE_DECISION,maintenceCost);
+                shouldMaintenace=consBanDecisions(player,board[i],MAINTENANCE_DECISION,maintenceCost);
                 break;
             case RISK_TAKER:
-                shouldMaintenace=aggInvDecisions(player,board[i],BUILD_HOUSE_DECISION,maintenceCost);
+                shouldMaintenace=riskTakDecisions(player,board[i],MAINTENANCE_DECISION,maintenceCost);
                 break;
             case OPP_TRADER:
-                shouldMaintenace=aggInvDecisions(player,board[i],BUILD_HOUSE_DECISION,maintenceCost);
+                shouldMaintenace=oppTraDecisions(player,board[i],maintenceCost,0,0,MAINTENANCE_DECISION);
                 break;                        
             default:
                 break;
@@ -918,12 +948,12 @@ void handleBanking(Player *player,landProperties board[],double currentIntRate)
             }
             case CONS_BANKER:
             {
-                shouldRepay = consBanDecisions(player, dummy, REPAY_LOAN_DECISION);
+                shouldRepay = consBanDecisions(player, dummy, REPAY_LOAN_DECISION,0);
                 break;
             }
             case RISK_TAKER:
             {
-                shouldExtend = riskTakDecisions(player, dummy, EXTEND_LOAN_DECISION);
+                shouldExtend = riskTakDecisions(player, dummy, EXTEND_LOAN_DECISION,0);
                 break;
             }
             case OPP_TRADER:
@@ -959,12 +989,12 @@ void handleBanking(Player *player,landProperties board[],double currentIntRate)
             }
             case CONS_BANKER:
             {
-                shouldTakeLoan=consBanDecisions(player,dummy,TAKE_LOAN_DECISION);
+                shouldTakeLoan=consBanDecisions(player,dummy,TAKE_LOAN_DECISION,0);
                 break;
             }
             case RISK_TAKER:
             {
-                shouldTakeLoan=riskTakDecisions(player,dummy,TAKE_LOAN_DECISION);
+                shouldTakeLoan=riskTakDecisions(player,dummy,TAKE_LOAN_DECISION,0);
                 break;
             }
             case OPP_TRADER:
