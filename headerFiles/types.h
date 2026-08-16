@@ -210,6 +210,21 @@ typedef enum {
 }NationalEventCardID;
 
 typedef enum {
+    CARD_SOUTHERN_TOURISM_BOOM,
+    CARD_PORT_CITY_EXPANSION,
+    CARD_IT_INDUSTRY_GROWTH,
+    CARD_NORTHERN_DEV_PROGRAMME,
+    CARD_TEA_EXPORT_BOOM,
+    CARD_AIRPORT_EXPANSION,
+    CARD_UNIVERSITY_CITY_GROWTH,
+    CARD_BEACH_POLLUTION,
+    CARD_FLOOD_DAMAGE,
+    CARD_TRANSPORT_STRIKE,
+    CARD_ELECTRICITY_TARIFF_INC,
+    CARD_WATER_SHORTAGE
+} RegionalDevelopmentCardID;
+
+typedef enum {
     TOURISM_BOOM,
     FUEL_CRISIS,
     HEAVY_MONSOON,
@@ -265,6 +280,10 @@ typedef struct {
     //inflation & interest
     double currentInflationRate;
     double currentBaseInterest;
+
+    //regional dev
+    int activeRegionalCard;        
+    int regionalDevRoundsRemaining;
 } economicState;
 
 

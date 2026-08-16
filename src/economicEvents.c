@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include "../headerFiles/declaraction.h"
+#include "../headerFiles/declaration.h"
 
 GlobalEconomy *initGlobalEco()
 {

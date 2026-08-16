@@ -10,6 +10,7 @@ void playerMovement(Player players[],landProperties board[]);
 void displayLandDetails(Player *player,landProperties *property,landProperties board[]);
 void buyProperty(Player *player, landProperties *property,Player playerlist[],landProperties board[]);
 void Bankrupt(Player *player,Player playerlist[],landProperties board[],double marketConsition);
+void transferPlayerAssetsToBank(Player *player , landProperties board[]);
 void payRent(Player *player,landProperties *property,Player playerlist[],landProperties board[]);
 int checkGameOver(Player playerlist[]);
 void gameOver(Player playerlist[],landProperties board[]);
@@ -54,6 +55,7 @@ void updateLoanInterest(Player playerlist[],landProperties board[]);
 double takeLoan(Player *player, landProperties board[],double requestedAmount,double currentIntRate);
 void handleBanking(Player *player,landProperties board[],double currentIntRate);
 void repayLoan(Player *player,landProperties board[],double amount);
+double calReqLoanAmmount(Player *player, landProperties board[]);
 void extendLoan(Player *player);
 
 int needsLoanForMonopolyDevelopment(Player *player, landProperties board[]);
@@ -65,6 +67,7 @@ void clearPreviousRegulation(landProperties board[]);
 void processGovernmentRegulations(int currentRound, landProperties board[], Player playerlist[]);
 double calculateCurrentInterestRate();
 void processInflation(int currentRound, landProperties board[]);
+void processRegionalDevelopmentCards(int currentRound, landProperties board[]);
 
 void processDynamicMarket(int currentRound, landProperties board[]);
 void displayMarketConditions(double currentLoanInterest, double currentInflation);
@@ -73,10 +76,12 @@ double calculateCurrentInterestRate();
 
 void calculateNetWorth(Player *player, landProperties board[]);
 
+void determineWinnerByRoundLimit(Player playerlist[], landProperties board[]);
+
 //player decisions
 int aggInvDecisions(Player *players, landProperties property, int actionType, double value);
-int consBanDecisions(Player *players, landProperties property, int actionType, int value);
-int riskTakDecisions(Player *players, landProperties property, int actionType, int value);
+int consBanDecisions(Player *players, landProperties property, int actionType, double value);
+int riskTakDecisions(Player *players, landProperties property, int actionType, double value);
 int oppTraDecisions(Player *players, landProperties property,double projectedAppreciation, int currentInflation, int currentSubsidies, int actionType);
 
 #endif 

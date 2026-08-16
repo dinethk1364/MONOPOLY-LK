@@ -1,7 +1,7 @@
 //events and government regulation
 #include<stdio.h>
 #include<stdlib.h>
-#include "../headerFiles/declaraction.h"
+#include "../headerFiles/declaration.h"
 
 void nationalEventCardProcess(Player playerlist[], Player *player, landProperties board[])
 {
@@ -497,3 +497,224 @@ void clearPlayerEvent(Player *player, landProperties board[])
     player->affectedPropIdx = -1;
 }
 
+void clearRegionalDevelopmentCard(landProperties board[])
+{
+    economicState *state = getActiveGovReg();
+    if (state->activeRegionalCard == -1) return;
+
+    switch (state->activeRegionalCard)
+    {
+        case CARD_SOUTHERN_TOURISM_BOOM:
+            for (int i = 0; i < TileSize; i++) {
+                if (board[i].type == land && board[i].cGroup == G_YELLOW) board[i].currentRent /= 1.40;
+            }
+            break;
+
+        case CARD_PORT_CITY_EXPANSION:
+            for (int i = 0; i < TileSize; i++) {
+                if ((board[i].type == land && board[i].cGroup == G_BROWN) || i == ColomboFortRailway) {
+                    board[i].propertyValue /= 1.25;
+                }
+            }
+            break;
+
+        case CARD_IT_INDUSTRY_GROWTH:
+            for (int i = 0; i < TileSize; i++) {
+                if (board[i].type == land && board[i].cGroup == G_PINK) board[i].propertyValue /= 1.20;
+            }
+            break;
+
+        case CARD_NORTHERN_DEV_PROGRAMME:
+            for (int i = 0; i < TileSize; i++) {
+                if (board[i].type == land && board[i].cGroup == G_GREEN) board[i].propertyValue /= 1.30;
+            }
+            break;
+
+        case CARD_TEA_EXPORT_BOOM:
+            for (int i = 0; i < TileSize; i++) {
+                if (board[i].type == land && i == NuwaraEliya) board[i].propertyValue /= 1.35;
+            }
+            break;
+
+        case CARD_AIRPORT_EXPANSION:
+            for (int i = 0; i < TileSize; i++) {
+                if (board[i].type == land && board[i].cGroup == G_ORANGE) board[i].currentRent /= 1.30;
+            }
+            break;
+
+        case CARD_UNIVERSITY_CITY_GROWTH:
+            for (int i = 0; i < TileSize; i++) {
+                if (board[i].type == land && board[i].cGroup == G_RED) board[i].propertyValue /= 1.20;
+            }
+            break;
+
+        case CARD_BEACH_POLLUTION:
+            for (int i = 0; i < TileSize; i++) {
+                if (board[i].type == land && board[i].cGroup == G_YELLOW) board[i].currentRent /= 0.70;
+            }
+            break;
+
+        case CARD_FLOOD_DAMAGE:
+            for (int i = 0; i < TileSize; i++) {
+                if (board[i].type == land && (i == GalleFace || i == Wellawatta || i == MountLavinia)) {
+                    board[i].propertyValue /= 0.80;
+                }
+            }
+            break;
+
+        case CARD_TRANSPORT_STRIKE:
+            for (int i = 0; i < TileSize; i++) {
+                if (board[i].type == railway) board[i].currentRent /= 0.60;
+            }
+            break;
+
+        case CARD_ELECTRICITY_TARIFF_INC:
+            for (int i = 0; i < TileSize; i++) {
+                if (board[i].type == utility && i == CEB) board[i].currentRent /= 1.25;
+            }
+            break;
+
+        case CARD_WATER_SHORTAGE:
+            for (int i = 0; i < TileSize; i++) {
+                if (board[i].type == utility && i == WaterBoard) board[i].currentRent /= 1.20;
+                else if (board[i].type == land) board[i].propertyValue /= 0.90;
+            }
+            break;
+
+        default:
+            break;
+    }
+    state->activeRegionalCard = -1;
+}
+void executeRegionalDevelopmentCard(landProperties board[], int cardId)
+{
+    economicState *state = getActiveGovReg();
+    state->activeRegionalCard = cardId;
+    state->regionalDevRoundsRemaining = 15;
+
+    printf(BOLD_BLUE "\n===========================================================\n" RESET);
+    printf(BOLD_BLUE "               REGIONAL DEVELOPMENT CARD REVIEW            \n" RESET);
+    printf(BOLD_BLUE "===========================================================\n\n" RESET);
+
+    switch (cardId)
+    {
+        case CARD_SOUTHERN_TOURISM_BOOM:
+            printf(YELLOW "Active Card: Southern Tourism Boom\n" RESET);
+            printf("- Galle Fort, Unawatuna and Hikkaduwa rental income +40%%\n");
+            for (int i = 0; i < TileSize; i++) {
+                if (board[i].type == land && board[i].cGroup == G_YELLOW) board[i].currentRent *= 1.40;
+            }
+            break;
+
+        case CARD_PORT_CITY_EXPANSION:
+            printf(YELLOW "Active Card: Port City Expansion\n" RESET);
+            printf("- Pettah, Maradana and Colombo Fort Station values +25%%\n");
+            for (int i = 0; i < TileSize; i++) {
+                if ((board[i].type == land && board[i].cGroup == G_BROWN) || i == ColomboFortRailway) {
+                    board[i].propertyValue *= 1.25;
+                }
+            }
+            break;
+
+        case CARD_IT_INDUSTRY_GROWTH:
+            printf(YELLOW "Active Card: IT Industry Growth\n" RESET);
+            printf("- Maharagama, Nugegoda and Kottawa values +20%%\n");
+            for (int i = 0; i < TileSize; i++) {
+                if (board[i].type == land && board[i].cGroup == G_PINK) board[i].propertyValue *= 1.20;
+            }
+            break;
+
+        case CARD_NORTHERN_DEV_PROGRAMME:
+            printf(YELLOW "Active Card: Northern Development Programme\n" RESET);
+            printf("- Jaffna Town, Nallur and Trincomalee values +30%%\n");
+            for (int i = 0; i < TileSize; i++) {
+                if (board[i].type == land && board[i].cGroup == G_GREEN) board[i].propertyValue *= 1.30;
+            }
+            break;
+
+        case CARD_TEA_EXPORT_BOOM:
+            printf(YELLOW "Active Card: Tea Export Boom\n" RESET);
+            printf("- Nuwara Eliya value +35%%\n");
+            for (int i = 0; i < TileSize; i++) {
+                if (board[i].type == land && i == NuwaraEliya) board[i].propertyValue *= 1.35;
+            }
+            break;
+
+        case CARD_AIRPORT_EXPANSION:
+            printf(YELLOW "Active Card: Airport Expansion\n" RESET);
+            printf("- Negombo, Katunayake and Ja-Ela rents +30%%\n");
+            for (int i = 0; i < TileSize; i++) {
+                if (board[i].type == land && board[i].cGroup == G_ORANGE) board[i].currentRent *= 1.30;
+            }
+            break;
+
+        case CARD_UNIVERSITY_CITY_GROWTH:
+            printf(YELLOW "Active Card: University City Growth\n" RESET);
+            printf("- Peradeniya and Kandy City values +20%%\n");
+            for (int i = 0; i < TileSize; i++) {
+                if (board[i].type == land && board[i].cGroup == G_RED) board[i].propertyValue *= 1.20;
+            }
+            break;
+
+        case CARD_BEACH_POLLUTION:
+            printf(YELLOW "Active Card: Beach Pollution\n" RESET);
+            printf("- Southern coastal rents -30%%\n");
+            for (int i = 0; i < TileSize; i++) {
+                if (board[i].type == land && board[i].cGroup == G_YELLOW) board[i].currentRent *= 0.70;
+            }
+            break;
+
+        case CARD_FLOOD_DAMAGE:
+            printf(YELLOW "Active Card: Flood Damage\n" RESET);
+            printf("- Low-lying coastal properties lose 20%% value\n");
+            for (int i = 0; i < TileSize; i++) {
+                if (board[i].type == land && (i == GalleFace || i == Wellawatta || i == MountLavinia)) {
+                    board[i].propertyValue *= 0.80;
+                }
+            }
+            break;
+
+        case CARD_TRANSPORT_STRIKE:
+            printf(YELLOW "Active Card: Transport Strike\n" RESET);
+            printf("- Railway revenue reduced by 40%%\n");
+            for (int i = 0; i < TileSize; i++) {
+                if (board[i].type == railway) board[i].currentRent *= 0.60;
+            }
+            break;
+
+        case CARD_ELECTRICITY_TARIFF_INC:
+            printf(YELLOW "Active Card: Electricity Tariff Increase\n" RESET);
+            printf("- Utility rent +25%%\n");
+            for (int i = 0; i < TileSize; i++) {
+                if (board[i].type == utility && i == CEB) board[i].currentRent *= 1.25;
+            }
+            break;
+
+        case CARD_WATER_SHORTAGE:
+            printf(YELLOW "Active Card: Water Shortage\n" RESET);
+            printf("- Water utility revenue +20%%ar; surrounding properties -10%%\n");
+            for (int i = 0; i < TileSize; i++) {
+                if (board[i].type == utility && i == WaterBoard) board[i].currentRent *= 1.20;
+                else if (board[i].type == land) board[i].propertyValue *= 0.90;
+            }
+            break;
+
+        default:
+            break;
+    }
+    printf("Duration: Active for the next 15 Rounds\n");
+    printf(BOLD_BLUE "===========================================================\n\n" RESET);
+}
+
+void processRegionalDevelopmentCards(int currentRound, landProperties board[])
+{
+    economicState *state = getActiveGovReg();
+
+    if (currentRound > 0 && currentRound % 15 == 0)
+    {
+        clearRegionalDevelopmentCard(board);
+
+        int newCard = rand() % 12;
+        executeRegionalDevelopmentCard(board, newCard);
+    }
+}

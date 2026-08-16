@@ -1,5 +1,5 @@
 //player decision-making algorithms
-#include "../headerFiles/declaraction.h"
+#include "../headerFiles/declaration.h"
 
 int aggInvDecisions(Player *player, landProperties property, int actionType, double value)
 {
@@ -112,7 +112,7 @@ int aggInvDecisions(Player *player, landProperties property, int actionType, dou
     }
 }
 
-int consBanDecisions(Player *players, landProperties property, int actionType,int value)
+int consBanDecisions(Player *players, landProperties property, int actionType,double value)
 {
     switch(actionType)
     {
@@ -194,7 +194,7 @@ int consBanDecisions(Player *players, landProperties property, int actionType,in
     }
 }
 
-int riskTakDecisions(Player *players, landProperties property, int actionType,int value)
+int riskTakDecisions(Player *players, landProperties property, int actionType,double value)
 {
     switch(actionType)
     {
@@ -405,4 +405,46 @@ int needsLoanForMonopolyDevelopment(Player *player, landProperties board[])
         }
     }
     return FALSE; 
+}
+
+double calReqLoanAmmount(Player *player, landProperties board[])
+{
+    double requestedAmount = 0.0;
+
+    switch (player->id)
+    {
+        case AGG_INVESTER:
+        {
+            //calculate needed money to build hotel
+            for (int i = 0; i < TileSize; i++)
+            {
+                if (board[i].type == land && board[i].currentOwner == player->id && hasMonopoly(board, player->id, board[i].cGroup))
+                {
+                    if (board[i].noOfHotels == 0 && player->cash < board[i].hotelCost)
+                    {
+                        requestedAmount = board[i].hotelCost+(board[i].houseCost*4);
+                        break;
+                    }
+                }
+            }
+            break;
+        }
+        case CONS_BANKER:
+        {
+            requestedAmount = 5000.0;
+            break;
+        }
+        case OPP_TRADER:
+        {
+            requestedAmount = 8000.0;
+            break;
+        }
+        case RISK_TAKER:
+        default:
+        {
+            requestedAmount = 0.0;
+            break;
+        }
+    }
+    return requestedAmount;
 }

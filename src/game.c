@@ -1,8 +1,8 @@
-//Game controler and eimulation engine
+//Game controler and simulation engine
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../headerFiles/declaraction.h"
+#include "../headerFiles/declaration.h"
 Player* createPlayers()//return array in Player data type
 {
     //static is use to keep array in memory always
@@ -930,89 +930,6 @@ void buildingMaintenance(Player *player,landProperties board[])
     }
 }
 
-void handleBanking(Player *player,landProperties board[],double currentIntRate)
-{
-    landProperties dummy = {0};
-    if(player->activeLoan.isActive==TRUE)
-    {
-        int shouldRepay=FALSE;
-        int shouldExtend=FALSE;
-
-        switch ((player->id))
-        {
-            case AGG_INVESTER:
-            {
-                shouldRepay = aggInvDecisions(player, dummy, REPAY_LOAN_DECISION, 0);
-                shouldExtend = aggInvDecisions(player, dummy, EXTEND_LOAN_DECISION, 0);
-                break;
-            }
-            case CONS_BANKER:
-            {
-                shouldRepay = consBanDecisions(player, dummy, REPAY_LOAN_DECISION,0);
-                break;
-            }
-            case RISK_TAKER:
-            {
-                shouldExtend = riskTakDecisions(player, dummy, EXTEND_LOAN_DECISION,0);
-                break;
-            }
-            case OPP_TRADER:
-            {
-                shouldRepay = oppTraDecisions(player, dummy, currentIntRate, 0, 0, REPAY_LOAN_DECISION);
-                shouldExtend = oppTraDecisions(player, dummy, currentIntRate, 0, 0, EXTEND_LOAN_DECISION);
-                break;
-            }
-
-        default:
-            break;
-        }
-        if (shouldRepay == TRUE)
-        {
-            repayLoan(player, board, player->activeLoan.currentLoanAmount);
-        }
-        else if (shouldExtend == TRUE)
-        {
-            extendLoan(player);
-        }
-    }
-    else
-    {
-        int shouldTakeLoan = FALSE;
-        double requestedAmmount =0;
-        switch (player->id)
-        {
-            case AGG_INVESTER:
-            {
-                int needsLoan = needsLoanForMonopolyDevelopment(player,board);
-                shouldTakeLoan=aggInvDecisions(player,dummy,TAKE_LOAN_DECISION,(double)needsLoan);
-                break;
-            }
-            case CONS_BANKER:
-            {
-                shouldTakeLoan=consBanDecisions(player,dummy,TAKE_LOAN_DECISION,0);
-                break;
-            }
-            case RISK_TAKER:
-            {
-                shouldTakeLoan=riskTakDecisions(player,dummy,TAKE_LOAN_DECISION,0);
-                break;
-            }
-            case OPP_TRADER:
-            {
-                shouldTakeLoan=oppTraDecisions(player,dummy,currentIntRate,0,0,TAKE_LOAN_DECISION);
-                break;
-            }
-        
-        default:
-            break;
-        }
-        if(shouldTakeLoan==TRUE)
-        {
-            takeLoan(player,board,requestedAmmount,currentIntRate);
-        }
-    }
-}
-
 void calculateNetWorth(Player *player, landProperties board[])
 {
     double total = player->cash;
@@ -1083,7 +1000,7 @@ void gameRun()
     printGameBegins();
     Player *playersList = createPlayers();//get array and assign values 
 
-    printf("\n-----DETERMINEING THE FIRST PLAYER-----\n\n");
+    printf("\n-----DETERMINING THE FIRST PLAYER-----\n\n");
     landProperties *board = initializeBoard();
     playersDieRoll(playersList);
 

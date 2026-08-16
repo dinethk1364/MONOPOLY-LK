@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include "../headerFiles/declaraction.h"
+#include "../headerFiles/declaration.h"
 
 double calculateInsPremium(int insType)
 {

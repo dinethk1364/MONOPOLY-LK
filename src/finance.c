@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include"../headerFiles/declaraction.h"
+#include"../headerFiles/declaration.h"
 
 void calPropertyValue(landProperties *property)
 {
@@ -91,7 +91,7 @@ void incomeTax(Player *player, double marketCondition)
     economicState *reg = getActiveGovReg();
     if (reg->activeReg == REG_INCREASE_PROPERTY_TAX)
     {
-        taxRate *= 1.15;
+        taxRate *= 1.50;
     }
     double taxAmount = player->cash*taxRate;
 
@@ -141,21 +141,69 @@ double takeLoan(Player *player, landProperties board[],double requestedAmount,do
     }
     double totalMortgageValue = 0.0;
     int count =0;
-    int avalablePropertiesForLoan[TileSize];
+    int selctedProperties[TileSize];
+    
     for(int i=0;i<TileSize;i++)
     {
-        if(board[i].currentOwner==player->id && board[i].mortgageStatus==FALSE&& board[i].isLoanLocked==FALSE)
+        if(board[i].currentOwner==player->id && board[i].mortgageStatus==FALSE && board[i].isLoanLocked==FALSE)
         {
-            totalMortgageValue+=board[i].mortgagePrice;
-            avalablePropertiesForLoan[count]=i;
-            count++;
+            int includeProperty=TRUE;
+            switch (player->id)
+            {
+                case AGG_INVESTER:
+                {
+                    if (board[i].noOfHouses > 0 || board[i].noOfHotels > 0)
+                    {
+                        includeProperty = FALSE;
+                    }
+                    break;
+                }
+                case CONS_BANKER:
+                {
+                    if (hasMonopoly(board, player->id, board[i].cGroup))
+                    {
+                        includeProperty = FALSE;
+                    }
+                    break;
+                }
+                case RISK_TAKER:
+                {
+                    includeProperty=TRUE;
+                    break;
+                }
+                case OPP_TRADER:
+                {
+                    if(board[i].propertyValue>=5000)
+                        includeProperty = FALSE;
+                    break;
+                }
+            }
+            if (includeProperty == TRUE)
+            {
+                selctedProperties[count] = i;
+                totalMortgageValue += board[i].mortgagePrice;
+                count++;
+            }
         }
     }
-    double maxLoanAmount=totalMortgageValue*0.75;
-
+    double maxLoanAmount = totalMortgageValue * 0.75;
     if(maxLoanAmount<=0 || count==0)
     {
         return 0.0;
+    }
+
+    for(int i = 0; i < count - 1; i++)
+    {
+        for(int j = 0; j < count - i - 1; j++)
+        {
+            // sort property values assending order
+            if(board[selctedProperties[j]].propertyValue > board[selctedProperties[j+1]].propertyValue)
+            {
+                int temp = selctedProperties[j];
+                selctedProperties[j] = selctedProperties[j+1];
+                selctedProperties[j+1] = temp;
+            }
+        }
     }
 
     double approvedLoanAmount=0.0;
@@ -165,22 +213,39 @@ double takeLoan(Player *player, landProperties board[],double requestedAmount,do
     }
     else approvedLoanAmount= requestedAmount;
 
+    int finalLockedCount = 0;
+    double accumulatedMortgage = 0.0;
+    int finalSelectedProps[TileSize];
+
+    for (int i = 0; i < count; i++)
+    {
+        int idx = selctedProperties[i];
+        finalSelectedProps[finalLockedCount] = idx;
+        accumulatedMortgage += board[idx].mortgagePrice;
+        finalLockedCount++;
+
+        if (requestedAmount > 0 && (accumulatedMortgage * 0.75) >= approvedLoanAmount)
+        {
+            break;
+        }
+    }
+
     player->cash+=approvedLoanAmount;
     player->activeLoan.isActive=TRUE;
     player->activeLoan.currentLoanAmount=approvedLoanAmount;
     player->activeLoan.originalLoanAmount=approvedLoanAmount;
     player->activeLoan.intRate=currentIntRate;
     player->activeLoan.remainingRounds=20;
-    player->activeLoan.collateralCount = count;
+    player->activeLoan.collateralCount = finalLockedCount;
 
     printf(BOLD_GREEN "\n Obtaining a Loan \n" RESET);
     printf("%s obtained a secured loan.\n", player->name);
     printf("Loan Amount : LKR %'.f\n", approvedLoanAmount);
     printf("Collateral :\n");
 
-    for (int i = 0; i < count; i++)
+    for (int i = 0; i < finalLockedCount; i++)
     {
-        int idx = avalablePropertiesForLoan[i];
+        int idx = selctedProperties[i];
         player->activeLoan.collateralProperties[i] = idx;
         board[idx].isLoanLocked = TRUE; 
         printf("%s\n", board[idx].name);
@@ -312,6 +377,107 @@ void updateLoanInterest(Player playerlist[],landProperties board[])
             {
                 handleLoanDefault(player,board);
             }
+        }
+        if (player->isBankrupt == FALSE)
+        {
+            calculateNetWorth(player, board);
+            
+            if (player->netWorth < 0.0)
+            {
+                printf(BOLD_GREEN"\n Bankruptcy \n"RESET);
+                printf(RED "\n%s's Net Worth has dropped below zero (LKR %'.f)!\n" RESET, player->name, player->netWorth);
+                player->isBankrupt=TRUE;
+        
+                printf(RED"\n%s is BANKRUPT and eliminated form the game!\n"RESET,player->name);
+        
+                //Transferring the bankrupt players properties to the bank
+                transferPlayerAssetsToBank(player,board);
+
+                gameOver(playerlist,board);
+            }
+        }
+    }
+}
+void handleBanking(Player *player,landProperties board[],double currentIntRate)
+{
+    landProperties dummy = {0};
+    if(player->activeLoan.isActive==TRUE)
+    {
+        int shouldRepay=FALSE;
+        int shouldExtend=FALSE;
+
+        switch ((player->id))
+        {
+            case AGG_INVESTER:
+            {
+                shouldRepay = aggInvDecisions(player, dummy, REPAY_LOAN_DECISION, 0);
+                shouldExtend = aggInvDecisions(player, dummy, EXTEND_LOAN_DECISION, 0);
+                break;
+            }
+            case CONS_BANKER:
+            {
+                shouldRepay = consBanDecisions(player, dummy, REPAY_LOAN_DECISION,0);
+                break;
+            }
+            case RISK_TAKER:
+            {
+                shouldExtend = riskTakDecisions(player, dummy, EXTEND_LOAN_DECISION,0);
+                break;
+            }
+            case OPP_TRADER:
+            {
+                shouldRepay = oppTraDecisions(player, dummy, currentIntRate, 0, 0, REPAY_LOAN_DECISION);
+                shouldExtend = oppTraDecisions(player, dummy, currentIntRate, 0, 0, EXTEND_LOAN_DECISION);
+                break;
+            }
+
+        default:
+            break;
+        }
+        if (shouldRepay == TRUE)
+        {
+            repayLoan(player, board, player->activeLoan.currentLoanAmount);
+        }
+        else if (shouldExtend == TRUE)
+        {
+            extendLoan(player);
+        }
+    }
+    else
+    {
+        int shouldTakeLoan = FALSE;
+        double requestedAmmount =0;
+        switch (player->id)
+        {
+            case AGG_INVESTER:
+            {
+                int needsLoan = needsLoanForMonopolyDevelopment(player,board);
+                shouldTakeLoan=aggInvDecisions(player,dummy,TAKE_LOAN_DECISION,(double)needsLoan);
+                break;
+            }
+            case CONS_BANKER:
+            {
+                shouldTakeLoan=consBanDecisions(player,dummy,TAKE_LOAN_DECISION,0);
+                break;
+            }
+            case RISK_TAKER:
+            {
+                shouldTakeLoan=riskTakDecisions(player,dummy,TAKE_LOAN_DECISION,0);
+                break;
+            }
+            case OPP_TRADER:
+            {
+                shouldTakeLoan=oppTraDecisions(player,dummy,currentIntRate,0,0,TAKE_LOAN_DECISION);
+                break;
+            }
+        
+        default:
+            break;
+        }
+        if(shouldTakeLoan==TRUE)
+        {
+            double requestedAmount = calReqLoanAmmount(player, board);
+            takeLoan(player,board,requestedAmmount,currentIntRate);
         }
     }
 }

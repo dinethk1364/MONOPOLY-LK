@@ -1,7 +1,7 @@
 //Board initializeation and movement logic
 #include <stdio.h>
 #include <string.h>
-#include "../headerFiles/declaraction.h"   
+#include "../headerFiles/declaration.h"   
 
 landProperties *initializeBoard()
 {
@@ -109,6 +109,7 @@ void gameCountCounter(Player players[],int *currentRound,int *activePlayersList,
         
         processDynamicMarket(*currentRound, board);
         processInflation(*currentRound,board);
+        processRegionalDevelopmentCards(*currentRound, board);
         processGovernmentRegulations(*currentRound, board, players);
         
         endOfTheRounds(players,*currentRound,board);
@@ -171,6 +172,7 @@ void handleLandLanding(Player *player, landProperties *property, Player playerli
             {
                 double currentIntRate = calculateCurrentInterestRate();
                 handleBanking(player,board,currentIntRate);
+                break;
             }
             default:
                 break;
@@ -324,5 +326,6 @@ void playerMovement(Player players[],landProperties board[])
         }
         diceRollRound++;      
     }
+    determineWinnerByRoundLimit(players, board);
 }
 

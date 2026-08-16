@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "../headerFiles/declaraction.h"
+#include "../headerFiles/declaration.h"
 
 void printGameBegins()
 {
@@ -18,7 +18,7 @@ void displayLandDetails(Player *player,landProperties *property,landProperties b
     if(property->currentOwner==-1)
     {
         printf("Status          : Unowned (Available to Buy)\n");
-        printf("Purcase Price   : LKR %'.f\n",property->purchasePrice);
+        printf("Purchase Price   : LKR %'.f\n",property->purchasePrice);
     }
     else if (property->currentOwner==0)
     {
@@ -28,7 +28,7 @@ void displayLandDetails(Player *player,landProperties *property,landProperties b
     {
         if(player->id==property->currentOwner)
         {
-            printf("This property is belongs to you\n");
+            printf("This property belongs to you\n");
         }
         else
         { 
@@ -159,6 +159,32 @@ void displayMarketConditions(double currentLoanInterest, double currentInflation
     {
         printf("None\n");
     }
+    printf("Regional Development\n");
+    printf("-----------------------\n");
+    if (mkt->activeRegionalCard != -1)
+    {
+        const char *cardNames[] = {
+            "Southern Tourism Boom (+40% Rent)",
+            "Port City Expansion (+25% Val)",
+            "IT Industry Growth (+20% Val)",
+            "Northern Development Programme (+30% Val)",
+            "Tea Export Boom (+35% Val)",
+            "Airport Expansion (+30% Rent)",
+            "University City Growth (+20% Val)",
+            "Beach Pollution (-30% Rent)",
+            "Flood Damage (-20% Val)",
+            "Transport Strike (-40% Railway Rent)",
+            "Electricity Tariff Increase (+25% Utility Rent)",
+            "Water Shortage (+20% Water, -10% Surrounding)"
+        };
+        
+        printf("%s\n", cardNames[mkt->activeRegionalCard]);
+        printf("Rounds Remaining : %d\n", mkt->regionalDevRoundsRemaining);
+    }
+    else
+    {
+        printf("None Active\n");
+    }
 
     printf("\nInflation\n------------\n");
     printf("%+.0f%%\n", currentInflation * 100.0);
@@ -222,4 +248,38 @@ void displayGameOver(Player *player,landProperties board[])
 
     printf(BOLD_RED"\n===========================================================\n"RESET);
 
+}
+
+void determineWinnerByRoundLimit(Player playerlist[], landProperties board[])
+{
+    printf(BOLD_YELLOW "\n===========================================================\n" RESET);
+    printf(BOLD_YELLOW "         500 ROUNDS COMPLETED - DETERMINING WINNER        \n" RESET);
+    printf(BOLD_YELLOW "===========================================================\n" RESET);
+
+    int winnerIdx = -1;
+    double highestNetWorth = -1.0;
+
+    for (int i = 0; i < Maxplayers; i++)
+    {
+        if (playerlist[i].isBankrupt == FALSE)
+        {
+            calculateNetWorth(&playerlist[i], board);   //recalculate to ensure latest state
+            printf("%s - Net Worth : LKR %'.f\n", playerlist[i].name, playerlist[i].netWorth);
+
+            if (winnerIdx == -1 || playerlist[i].netWorth > highestNetWorth)
+            {
+                highestNetWorth = playerlist[i].netWorth;
+                winnerIdx = i;
+            }
+        }
+    }
+
+    if (winnerIdx != -1)
+    {
+        displayGameOver(&playerlist[winnerIdx], board);
+    }
+    else
+    {
+        printf(RED "\nNo solvent players remaining. Game ends with no winner.\n" RESET);
+    }
 }
