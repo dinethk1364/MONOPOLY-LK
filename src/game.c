@@ -586,6 +586,63 @@ void Bankrupt(Player *player,Player playerlist[],landProperties board[],double m
 {
     if(player->cash <0)
     {
+        printf(YELLOW "\nLow on cash! Selling buildings\n" RESET);
+        while(player->cash<0)
+        {
+            int soldBuilding = FALSE;
+            for(int colorGroup=G_BROWN;colorGroup<=G_DARK_BLUE && player->cash < 0; colorGroup++)
+            {
+                int maxHousesInGroup = -1;
+                int targetIdx = -1;
+                
+                //get max buildings land
+                for(int i=0;i<TileSize;i++)
+                {
+                    if (board[i].type == land && board[i].cGroup == colorGroup && board[i].currentOwner == player->id)
+                    {
+                        int totalBuildingUnits = (board[i].noOfHotels > 0) ? 5 : board[i].noOfHouses;
+                        if (totalBuildingUnits > maxHousesInGroup)
+                        {
+                            maxHousesInGroup = totalBuildingUnits;
+                            targetIdx = i;
+                        }
+                    }
+                }
+                if (targetIdx != -1 && maxHousesInGroup > 0)
+                {
+                    if (board[targetIdx].noOfHotels > 0)
+                    {
+                        double refund = board[targetIdx].hotelCost * 0.5;
+                        player->cash += refund;
+                        board[targetIdx].noOfHotels = 0;
+                        board[targetIdx].noOfHouses = 4;
+                        updateLandRent(&board[targetIdx]);
+                        printf(GREEN "%s sold a Hotel on %s for LKR %'.f.\n" RESET, player->name, board[targetIdx].name, refund);
+                        soldBuilding = TRUE;
+                        break; 
+                    }
+                    else if (board[targetIdx].noOfHouses > 0)
+                    {
+                        double refund = board[targetIdx].houseCost * 0.5;
+                        player->cash += refund;
+                        board[targetIdx].noOfHouses--;
+                        updateLandRent(&board[targetIdx]);
+                        printf(GREEN "%s sold a House on %s for LKR %'.f.\n" RESET, player->name, board[targetIdx].name, refund);
+                        soldBuilding = TRUE;
+                        break; 
+                    }
+                }
+            }
+            if (soldBuilding==FALSE)
+            {   
+                printf(YELLOW "\n-No more buildings to sold.\n" RESET);
+                break;
+            }
+        }
+    }
+    
+    if(player->cash <0)//still low on cash
+    {
         printf(YELLOW "\nLow on cash! mortgaging properties\n" RESET);
 
         while(player->cash<0)
@@ -610,6 +667,8 @@ void Bankrupt(Player *player,Player playerlist[],landProperties board[],double m
                         currentpriority=1;
                     else if(isMonopoly==FALSE&& groupCount>1)
                         currentpriority=2;
+                    else if (isMonopoly == TRUE)
+                        currentpriority = 3;
 
                     if(currentpriority<priority || (currentpriority==priority&& board[i].propertyValue < price))
                     {
@@ -621,7 +680,8 @@ void Bankrupt(Player *player,Player playerlist[],landProperties board[],double m
             }
             if(best == -1)//repeat untill not have property to morgage
             {
-                break;;
+                printf(YELLOW "\n-No more properties to mortgage.\n" RESET);
+                break;
             }
 
             mortgageProperty(player,board,&board[best],marketConsition);

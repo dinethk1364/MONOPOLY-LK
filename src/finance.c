@@ -76,8 +76,8 @@ void unmortgageProperty(Player *player, landProperties board[])
                 updateLandRent(&board[i]);
 
                 printf(BOLD_GREEN"\n Property is Unmortgaged\n"RESET);
-                printf(YELLOW"%s unmortgaged %s for LKR %.f\n"RESET, player->name, board[i].name, unmortgageCost);
-                printf("Remaining Balance : LKR %.f\n", player->cash);
+                printf(YELLOW"%s unmortgaged %s for LKR %'.f\n"RESET, player->name, board[i].name, unmortgageCost);
+                printf("Remaining Balance : LKR %'.f\n", player->cash);
             }
         }
     }
@@ -103,7 +103,7 @@ void incomeTax(Player *player, double marketCondition)
 
 void communityDevFund(Player *player,Player playerlist[],landProperties board[],double marketCondition)
 {
-    double totalAssets = player->cash;
+    double totalAssets = 0;
     for(int i=0;i<TileSize;i++)
     {
         if(board[i].currentOwner==player->id && board[i].type != nonProperty)
